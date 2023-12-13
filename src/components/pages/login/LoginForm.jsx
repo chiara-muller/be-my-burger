@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
 import { IoIosArrowForward } from "react-icons/io";
+import { VscAccount } from "react-icons/vsc";
 
 export default function LoginForm() {
 
@@ -27,6 +28,7 @@ export default function LoginForm() {
           <h2>Connectez-vous</h2>
         </div>
         <div className="form-container">
+        <VscAccount />
           <input
             value={inputValue}
             onChange={handleChange}
@@ -34,6 +36,7 @@ export default function LoginForm() {
             placeholder="Entrez votre prénom"
             required
           />
+          <br />
           <button> Accédez à votre espace <IoIosArrowForward /> </button>
         </div>
       </LoginFormStyled>
