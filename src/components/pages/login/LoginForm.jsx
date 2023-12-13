@@ -53,7 +53,6 @@ const LoginFormStyled = styled.form `
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
 
   hr {
     display: block;

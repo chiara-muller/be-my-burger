@@ -1,4 +1,4 @@
-import Logo from "../../Logo";
+import Logo from "../../resusable-ui/Logo";
 import LoginForm from "./LoginForm"
 import styled from "styled-components"
 
@@ -6,24 +6,30 @@ export default function LoginPage() {
 
   return (
     <LoginPageStyled>
-        <Logo />
-        <LoginForm />
+      <Logo />
+      <LoginForm />
     </LoginPageStyled>
   )
 }
 
 const LoginPageStyled = styled.div`
-  position: absolute;
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  background-image: url("src/F03 assets/F03 burger-background.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0px 4px 4px 0px #00000040;
-  filter: brightness(40%);
-  z-index: 1;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  ::before {
+    content: "";
+    background: url("src/F03 assets/F03 burger-background.jpg") rgba(0, 0, 0, 0.7);
+    background-position: center;
+    background-size: cover;
+    filter: brightness(40%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }
 `;
