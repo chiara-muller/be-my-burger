@@ -1,11 +1,12 @@
+import Logo from "../../Logo";
 import LoginForm from "./LoginForm"
 import styled from "styled-components"
-
 
 export default function LoginPage() {
 
   return (
     <LoginPageStyled>
+        <Logo />
         <LoginForm />
     </LoginPageStyled>
   )
@@ -23,4 +24,5 @@ const LoginPageStyled = styled.div`
   background-size: cover;
   box-shadow: 0px 4px 4px 0px #00000040;
   filter: brightness(40%);
+  z-index: 1;
 `;
