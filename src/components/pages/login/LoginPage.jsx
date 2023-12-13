@@ -13,7 +13,8 @@ export default function LoginPage() {
 }
 
 const LoginPageStyled = styled.div`
-  position: fixed;
+  position: absolute;
+  overflow: hidden;
   width: 100%;
   height: 100%;
   left: 0;

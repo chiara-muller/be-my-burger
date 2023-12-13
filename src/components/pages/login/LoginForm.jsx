@@ -28,7 +28,8 @@ export default function LoginForm() {
           <h2>Connectez-vous</h2>
         </div>
         <div className="form-container">
-        <VscAccount />
+        <span>
+          <VscAccount />
           <input
             value={inputValue}
             onChange={handleChange}
@@ -36,17 +37,17 @@ export default function LoginForm() {
             placeholder="Entrez votre prénom"
             required
           />
-          <br />
-          <button> Accédez à votre espace <IoIosArrowForward /> </button>
+        </span>
+        <br />
+        <button> Accédez à votre espace span <IoIosArrowForward /> </button>
         </div>
       </LoginFormStyled>
   )
 }
 
 const LoginFormStyled = styled.form `
+  margin-top: 60px;
 
-  height: 100%;
-  margin: 0px;
   padding: 0px;
   display: flex;
   flex-direction: column;
@@ -104,5 +105,11 @@ const LoginFormStyled = styled.form `
     line-height: 15px;
     letter-spacing: 0em;
     text-align: center;
+  }
+
+  button:hover {
+    color: #FF9F1B;
+    background-color: white;
+    cursor: pointer;
   }
 `
