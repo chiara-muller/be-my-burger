@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
+import { IoIosArrowForward } from "react-icons/io";
 
 export default function LoginForm() {
 
@@ -19,55 +20,78 @@ export default function LoginForm() {
     }
 
   return (
-    <div className="form-container">
       <LoginFormStyled action="submit" onSubmit={handleSubmit}>
-        <h2>Bienvenue chez nous !</h2>
-        <br />
-        <h2>Connectez-vous</h2>
-        <input
-          value={inputValue}
-          onChange={handleChange}
-          type="text"
-          placeholder="Entrez votre prénom..."
-          required
-        />
-        <button> Accédez à votre espace</button>
+        <div className="welcome-container">
+          <h2>Bienvenue chez nous !</h2>
+          <hr />
+          <h2>Connectez-vous</h2>
+        </div>
+        <div className="form-container">
+          <input
+            value={inputValue}
+            onChange={handleChange}
+            type="text"
+            placeholder="Entrez votre prénom"
+            required
+          />
+          <button> Accédez à votre espace <IoIosArrowForward /> </button>
+        </div>
       </LoginFormStyled>
-    </div>
   )
 }
 
 const LoginFormStyled = styled.form `
 
-  .form-container {
+    height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
+  hr {
+    display: block;
+    position: relative;
+    padding: 0;
+    margin: 40px auto;
+    height: 1px;
+    width: 400px;
+    border: 1px solid #F56A2C;
+    background: #F56A2C;
+  }
 
+  .welcome-container {
+    color: white;
+  }
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   input {
     width: 400px;
     height: 55px;
-    top: 272.31px;
-    left: 32px;
-    padding: 18px, 24px, 18px, 24px;
+    box-sizing: border-box;
     border-radius: 5px;
-    gap: 12.8px;
+    border: none;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #D3D3D3;
   }
 
   button {
     color: white;
     width: 400px;
     height: 53px;
-    top: 345.31px;
-    left: 32px;
-    padding: 18px, 106.2px, 18px, 106.2px;
     border-radius: 5px;
-    border: 1px;
+    border: none;
     background: #FF9F1B;
-    border: 1px solid #FF9F1B;
     font-family: Arial;
     font-size: 15px;
     font-weight: 700;
