@@ -29,7 +29,7 @@ export default function LoginForm() {
         </div>
         <div>
           <div className="input-container">
-            <BsPersonCircle className="icon"/>
+            <BsPersonCircle className="input-icon"/>
             <input
               value={inputValue}
               onChange={handleChange}
@@ -38,15 +38,23 @@ export default function LoginForm() {
               required
             />
           </div>
-          <button> Accédez à mon espace <IoIosArrowForward /> </button>
+          <div className="button-container">
+            <button> Accédez à mon espace </button>
+            <IoIosArrowForward className="button-icon"/>
+          </div>
         </div>
       </LoginFormStyled>
   )
 }
 
 const LoginFormStyled = styled.form `
-  margin-top: 60px;
+
   font-family: "Amatic SC", cursive;
+  text-align: center;
+  max-width: 500px;
+  min-width: 400px;
+  margin: 0px auto;
+  padding: 2.5rem 2rem;
 
   hr {
     border: 1.5px solid #F56A2C;
@@ -70,7 +78,7 @@ const LoginFormStyled = styled.form `
     padding: 18px 24px;
     margin: 18px 0;
 
-    .icon {
+    .input-icon {
       font-size: 15px;
       margin-right: 8px;
       color: #93a2b1
@@ -79,7 +87,8 @@ const LoginFormStyled = styled.form `
     input {
       border: none;
       font-size: 15px;
-      color: #17161a
+      color: #17161a;
+      width: 100%;
     }
 
     &::placeholder {
@@ -88,24 +97,58 @@ const LoginFormStyled = styled.form `
     }
   }
 
-  button {
-    color: white;
-    width: 400px;
-    height: 53px;
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 24px;
+    margin: 18px 0;
     border-radius: 5px;
-    border: none;
     background: #FF9F1B;
-    font-family: Arial;
-    font-size: 15px;
-    font-weight: 700;
-    line-height: 15px;
-    letter-spacing: 0em;
-    text-align: center;
+
+    button {
+      border: none;
+      background: none;
+      color: white;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .button-icon {
+      color: white;
+    }
+/*
+    &:hover:not(:disabled) {
+      color: #FF9F1B;
+      background-color: white;
+      transition : all 200ms ease-out;
+    }
+
+    &:active {
+      color: white;
+      background-color: #FF9F1B;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    } */
+
   }
 
-  button:hover {
+  .button-container:hover {
     color: #FF9F1B;
     background-color: white;
     cursor: pointer;
+    transition: all 200ms ease-out;
+
+      button {
+        color: #FF9F1B;
+        cursor: pointer;
+      }
+
+      .button-icon {
+      color: #FF9F1B;
+    }
   }
 `
