@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
 import { IoIosArrowForward } from "react-icons/io";
-import { VscAccount } from "react-icons/vsc";
+import { BsPersonCircle } from "react-icons/bs";
 
 export default function LoginForm() {
 
@@ -22,24 +22,23 @@ export default function LoginForm() {
 
   return (
       <LoginFormStyled action="submit" onSubmit={handleSubmit}>
-        <div className="welcome-container">
-          <h2>Bienvenue chez nous !</h2>
+        <div>
+          <h1>Bienvenue chez nous !</h1>
           <hr />
           <h2>Connectez-vous</h2>
         </div>
-        <div className="form-container">
-        <span>
-          <VscAccount />
-          <input
-            value={inputValue}
-            onChange={handleChange}
-            type="text"
-            placeholder="Entrez votre prénom"
-            required
-          />
-        </span>
-        <br />
-        <button> Accédez à votre espace span <IoIosArrowForward /> </button>
+        <div>
+          <div className="input-container">
+            <BsPersonCircle className="icon"/>
+            <input
+              value={inputValue}
+              onChange={handleChange}
+              type="text"
+              placeholder="Entrez votre prénom"
+              required
+            />
+          </div>
+          <button> Accédez à mon espace <IoIosArrowForward /> </button>
         </div>
       </LoginFormStyled>
   )
@@ -47,47 +46,46 @@ export default function LoginForm() {
 
 const LoginFormStyled = styled.form `
   margin-top: 60px;
-  padding: 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  font-family: "Amatic SC", cursive;
 
   hr {
-    display: block;
-    position: relative;
-    padding: 0;
-    margin: 40px auto;
-    height: 1px;
-    width: 400px;
-    border: 1px solid #F56A2C;
-    background: #F56A2C;
+    border: 1.5px solid #F56A2C;
   }
 
-  .welcome-container {
+  h1 {
     color: white;
+    font-size: 48px;
   }
 
-  .form-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  h2 {
+    color: white;
+    font-size: 36px;
   }
 
-  input {
-    width: 400px;
-    height: 55px;
-    box-sizing: border-box;
+  .input-container {
+    background-color: white;
     border-radius: 5px;
-    border: none;
-    font-family: Arial;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 17px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #D3D3D3;
+    display: flex;
+    align-items: center;
+    padding: 18px 24px;
+    margin: 18px 0;
+
+    .icon {
+      font-size: 15px;
+      margin-right: 8px;
+      color: #93a2b1
+    }
+
+    input {
+      border: none;
+      font-size: 15px;
+      color: #17161a
+    }
+
+    &::placeholder {
+      background: white;
+      color: lightgrey;
+    }
   }
 
   button {
