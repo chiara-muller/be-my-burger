@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
 import { IoIosArrowForward } from "react-icons/io";
-import { BsPersonCircle } from "react-icons/bs";
+import Input from '../../resusable-ui/Input';
+
 
 export default function LoginForm() {
 
@@ -28,16 +29,11 @@ export default function LoginForm() {
           <h2>Connectez-vous</h2>
         </div>
         <div>
-          <div className="input-container">
-            <BsPersonCircle className="input-icon"/>
-            <input
-              value={inputValue}
-              onChange={handleChange}
-              type="text"
-              placeholder="Entrez votre prénom"
-              required
-            />
-          </div>
+          <Input
+            value={inputValue}
+            onChange={handleChange}
+            placeholder={"Entrez votre prénom"}
+          />
           <div className="button-container">
             <button> Accédez à mon espace </button>
             <IoIosArrowForward className="button-icon"/>
@@ -71,8 +67,10 @@ const LoginFormStyled = styled.form `
   }
 
   .input-container {
+    box-sizing: border-box;
     background-color: white;
     border-radius: 5px;
+    border: 1px solid white;
     display: flex;
     align-items: center;
     padding: 18px 24px;
@@ -98,12 +96,14 @@ const LoginFormStyled = styled.form `
   }
 
   .button-container {
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 18px 24px;
     margin: 18px 0;
     border-radius: 5px;
+    border: 1px solid #FF9F1B;
     background: #FF9F1B;
 
     button {
@@ -111,7 +111,7 @@ const LoginFormStyled = styled.form `
       background: none;
       color: white;
       font-size: 15px;
-      font-weight: 800;
+      font-weight: 600;
     }
 
     .button-icon {
@@ -127,6 +127,7 @@ const LoginFormStyled = styled.form `
     &:active {
       color: white;
       background-color: #FF9F1B;
+
     }
 
     &:disabled {
@@ -138,6 +139,7 @@ const LoginFormStyled = styled.form `
 
   .button-container:hover {
     color: #FF9F1B;
+    border: 1px solid #FF9F1B;
     background-color: white;
     cursor: pointer;
     transition: all 200ms ease-out;
