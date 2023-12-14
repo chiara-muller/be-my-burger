@@ -47,7 +47,6 @@ export default function LoginForm() {
 
 const LoginFormStyled = styled.form `
   margin-top: 60px;
-
   padding: 0px;
   display: flex;
   flex-direction: column;

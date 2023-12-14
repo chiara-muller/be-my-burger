@@ -1,11 +1,11 @@
+import styled from "styled-components"
 import Logo from "../../resusable-ui/Logo";
 import LoginForm from "./LoginForm"
-import styled from "styled-components"
 
 export default function LoginPage() {
 
   return (
-    <LoginPageStyled>
+    <LoginPageStyled >
       <Logo />
       <LoginForm />
     </LoginPageStyled>
@@ -13,13 +13,14 @@ export default function LoginPage() {
 }
 
 const LoginPageStyled = styled.div`
+
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  ::before {
+  &::before {
     content: "";
     background: url("src/F03 assets/F03 burger-background.jpg") rgba(0, 0, 0, 0.7);
     background-position: center;
@@ -32,4 +33,6 @@ const LoginPageStyled = styled.div`
     bottom: 0;
     z-index: -1;
   }
+
+
 `;
