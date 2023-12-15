@@ -7,6 +7,7 @@ import { IoIosArrowForward } from "react-icons/io";
 
 import TextInput from '../../resusable-ui/TextInput';
 import PrimaryButton from '../../resusable-ui/PrimaryButton';
+import { theme } from '../../../theme';
 
 export default function LoginForm() {
 
@@ -39,7 +40,10 @@ export default function LoginForm() {
             Icon={<BsPersonCircle className="input-icon"/>}
             required
           />
-          <PrimaryButton label="Accédez à mon espace" Icon={<IoIosArrowForward className="button-icon"/>}/>
+          <PrimaryButton
+            label="Accédez à mon espace"
+            Icon={<IoIosArrowForward className="button-icon"/>}
+          />
         </div>
       </LoginFormStyled>
   )
@@ -56,15 +60,22 @@ const LoginFormStyled = styled.form `
 
   hr {
     border: 1.5px solid #F56A2C;
+    margin-bottom: 40px;
   }
 
   h1 {
-    color: white;
-    font-size: 48px;
+    color: ${theme.colors.white};
+    font-size: ${theme.fonts.P5};
   }
 
   h2 {
-    color: white;
-    font-size: 36px;
+    margin: 20px 10px 10px;
+    color: ${theme.colors.white};
+    font-size: ${theme.fonts.P4};
   }
+
+  .button-icon {
+    color: ${theme.colors.white};
+    font-size: ${theme.fonts.P0};
+    }
 `

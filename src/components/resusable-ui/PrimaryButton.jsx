@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { theme } from "../../theme";
 
 
 // eslint-disable-next-line react/prop-types
@@ -19,20 +20,16 @@ const PrimaryButtonStyled = styled.div`
     align-items: center;
     padding: 18px 24px;
     margin: 18px 0;
-    border-radius: 5px;
-    border: 1px solid #FF9F1B;
-    background: #FF9F1B;
+    border-radius: ${theme.borderRadius.round};
+    border: 1px solid ${theme.colors.primary_burger};
+    background: ${theme.colors.primary_burger};
 
     button {
       border: none;
       background: none;
-      color: white;
-      font-size: 15px;
-      font-weight: 600;
-    }
-
-    .button-icon {
-      color: white;
+      color: ${theme.colors.white};
+      font-size: ${theme.fonts.P0};
+      font-weight: ${theme.weights.semiBold};
     }
 
     /*
@@ -54,19 +51,19 @@ const PrimaryButtonStyled = styled.div`
     } */
 
     &:hover {
-      color: #FF9F1B;
-      border: 1px solid #FF9F1B;
-      background-color: white;
+      color: ${theme.colors.primary_burger};
+      border: 1px solid ${theme.colors.primary_burger};
+      background-color: ${theme.colors.white};
       cursor: pointer;
       transition: all 200ms ease-out;
 
       button {
-        color: #FF9F1B;
+        color: ${theme.colors.primary_burger};
         cursor: pointer;
       }
 
       .button-icon {
-        color: #FF9F1B;
+        color: ${theme.colors.primary_burger};
       }
     }
     `;

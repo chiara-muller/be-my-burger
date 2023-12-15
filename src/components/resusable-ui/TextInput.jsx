@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { theme } from "../../theme";
 
 // eslint-disable-next-line react/prop-types
 export default function TextInput({ value, onChange, Icon, ...otherProps }) {
@@ -14,9 +15,9 @@ export default function TextInput({ value, onChange, Icon, ...otherProps }) {
 const TextInputStyled = styled.div`
 
   box-sizing: border-box;
-  background-color: white;
-  border-radius: 5px;
-  border: 1px solid white;
+  background-color: ${theme.colors.white};
+  border-radius: ${theme.borderRadius.round};
+  border: 1px solid ${theme.colors.white};
   display: flex;
   align-items: center;
   padding: 18px 24px;
@@ -25,19 +26,20 @@ const TextInputStyled = styled.div`
     .input-icon {
       font-size: 15px;
       margin-right: 8px;
-      color: #93a2b1
+      color: ${theme.colors.greySemiDark}
     }
 
     input {
       border: none;
       font-size: 15px;
-      color: #17161a;
+      color: ${theme.colors.dark};
       width: 100%;
+
+      &::placeholder {
+        background: ${theme.colors.white};
+        color: ${theme.colors.greyMedium};
+      }
     }
 
-    &::placeholder {
-      background: white;
-      color: lightgrey;
-    }
 
 `;
