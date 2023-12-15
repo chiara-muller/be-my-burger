@@ -33,6 +33,7 @@ export default function LoginForm() {
             value={inputValue}
             onChange={handleChange}
             placeholder={"Entrez votre prénom"}
+            required
           />
           <div className="button-container">
             <button> Accédez à mon espace </button>
