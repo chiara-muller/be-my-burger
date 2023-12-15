@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components'
-import { IoIosArrowForward } from "react-icons/io";
 import { BsPersonCircle } from "react-icons/bs";
+import { IoIosArrowForward } from "react-icons/io";
 
-import Input from '../../resusable-ui/Input';
+import TextInput from '../../resusable-ui/TextInput';
+import PrimaryButton from '../../resusable-ui/PrimaryButton';
 
 export default function LoginForm() {
 
@@ -31,17 +32,14 @@ export default function LoginForm() {
           <h2>Connectez-vous</h2>
         </div>
         <div>
-          <Input
+          <TextInput
             value={inputValue}
             onChange={handleChange}
-            placeholder={"Entrez votre prénom"}
+            placeholder="Entrez votre prénom"
             Icon={<BsPersonCircle className="input-icon"/>}
             required
           />
-          <div className="button-container">
-            <button> Accédez à mon espace </button>
-            <IoIosArrowForward className="button-icon"/>
-          </div>
+          <PrimaryButton label="Accédez à mon espace" Icon={<IoIosArrowForward className="button-icon"/>}/>
         </div>
       </LoginFormStyled>
   )
@@ -68,64 +66,5 @@ const LoginFormStyled = styled.form `
   h2 {
     color: white;
     font-size: 36px;
-  }
-
-  .button-container {
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 18px 24px;
-    margin: 18px 0;
-    border-radius: 5px;
-    border: 1px solid #FF9F1B;
-    background: #FF9F1B;
-
-    button {
-      border: none;
-      background: none;
-      color: white;
-      font-size: 15px;
-      font-weight: 600;
-    }
-
-    .button-icon {
-      color: white;
-    }
-/*
-    &:hover:not(:disabled) {
-      color: #FF9F1B;
-      background-color: white;
-      transition : all 200ms ease-out;
-    }
-
-    &:active {
-      color: white;
-      background-color: #FF9F1B;
-
-    }
-
-    &:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    } */
-
-  }
-
-  .button-container:hover {
-    color: #FF9F1B;
-    border: 1px solid #FF9F1B;
-    background-color: white;
-    cursor: pointer;
-    transition: all 200ms ease-out;
-
-      button {
-        color: #FF9F1B;
-        cursor: pointer;
-      }
-
-      .button-icon {
-      color: #FF9F1B;
-    }
   }
 `

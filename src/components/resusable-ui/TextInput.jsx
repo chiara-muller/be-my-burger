@@ -1,24 +1,17 @@
 import styled from "styled-components"
 
-// {Icon && Icon} ==> If there's an icon, it'll add the icon
-
 // eslint-disable-next-line react/prop-types
-export default function Input({ value, onChange, Icon, ...otherProps }) {
+export default function TextInput({ value, onChange, Icon, ...otherProps }) {
   return (
-    <InputStyled>
+    <TextInputStyled>
       {Icon && Icon}
-      <input
-        value={value}
-        onChange={onChange}
-        type="text"
-        {...otherProps}
-      />
-    </InputStyled>
+      <input value={value} onChange={onChange} type="text" {...otherProps}/>
+    </TextInputStyled>
   )
 }
+// {Icon && Icon} ==> If there's an icon, it'll add the icon
 
-
-const InputStyled = styled.div`
+const TextInputStyled = styled.div`
 
   box-sizing: border-box;
   background-color: white;
