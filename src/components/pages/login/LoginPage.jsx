@@ -22,7 +22,7 @@ const LoginPageStyled = styled.div`
 
   &::before {
     content: "";
-    background: url("src/F03 assets/F03 burger-background.jpg") rgba(0, 0, 0, 0.7);
+    background: url("public/F03 burger-background.jpg") rgba(0, 0, 0, 0.7);
     background-position: center;
     background-size: cover;
     filter: brightness(40%);
