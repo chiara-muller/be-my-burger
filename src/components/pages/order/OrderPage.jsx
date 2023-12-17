@@ -1,15 +1,17 @@
-import { Link, useParams } from "react-router-dom";
+// import { Link, useParams } from "react-router-dom";
+import NavBar from "./NavBar";
 
 export default function OrderPage() {
 
-  const {username} = useParams()
+  // const {username} = useParams()
 
   return (
     <div>
-      <h1>Bonjour {username}</h1>
+      <NavBar />
+      {/* <h1>Bonjour {username}</h1>
       <Link to="/">
         <button>Deconnexion</button>
-      </Link>
+      </Link> */}
     </div>
   )
 }

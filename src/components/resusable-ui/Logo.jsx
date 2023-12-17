@@ -1,9 +1,10 @@
 import styled from "styled-components"
 import { theme } from "../../theme";
 
-export default function Logo() {
+// eslint-disable-next-line react/prop-types
+export default function Logo( {scale} ) {
   return (
-    <LogoStyled>
+    <LogoStyled scale={scale}>
       <h1>BE MY</h1>
       <img src="/images/logo-orange.png" alt="logo" />
       <h1>BURGER</h1>
@@ -11,11 +12,12 @@ export default function Logo() {
   )
 }
 
+
 const LogoStyled = styled.div`
 
   display: flex;
   align-items: center;
-  transform: scale(2.5);
+  transform: ${(props) => (props.scale ? `scale(${props.scale})` : 'none')};
 
   h1 {
     display: inline;

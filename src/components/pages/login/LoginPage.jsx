@@ -6,7 +6,7 @@ export default function LoginPage() {
 
   return (
     <LoginPageStyled >
-      <Logo />
+      <Logo scale={2.5}/>
       <LoginForm />
     </LoginPageStyled>
   )
