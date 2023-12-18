@@ -13,6 +13,7 @@ export default function OrderPage() {
           <NavBar />
         </div>
         <div className="main-container">
+
         </div>
       </div>
     </OrderPageStyled>
@@ -28,15 +29,24 @@ const OrderPageStyled = styled.div`
   align-items: center;
 
   .container {
-    background-color: red;
-    height: 95vh;
     width: 1400px;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+
+    .navbar-container {
+      height: 10vh;
+      background-color: white;
+      border-radius: 15px 15px 0px 0px;
+    }
+
+    .main-container {
+      flex: 1; // take the space left in the container
+      background: #F5F5F7;
+      box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset ;
+      border-radius: 0px 0px 15px 15px;
+    }
   }
 
-  .main-container {
-    background: #F5F5F7;
-    box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset ;
-    border-radius: 0px 0px 15px 15px;
-  }
 
 `;
