@@ -36,16 +36,15 @@ const ProfileInfoStyled = styled.div`
 
   .greetings {
     color: ${theme.colors.greyBlue};
-    font-size: 16px;
+    font-size: ${theme.fonts.P1};
     margin: 0px;
     padding: 1px 6px;
-
   }
 
   button {
     background: none;
     border: none;
-    font-size: 12px;
+    font-size: ${theme.fonts.XS};
     color: ${theme.colors.greyBlue};
 
     &:hover {
@@ -55,7 +54,7 @@ const ProfileInfoStyled = styled.div`
   }
 
   .username {
-    color: orange;
+    color: ${theme.colors.primary};
   }
 
   .icon-container {
@@ -64,9 +63,9 @@ const ProfileInfoStyled = styled.div`
   }
 
   .icon {
-    margin-left: 5px;
-    margin-right: 5px;
-    font-size: 36px;
+    margin-left: ${theme.spacing.xxs};
+    margin-right: ${theme.spacing.xxs};
+    font-size: ${theme.fonts.P4};
     color: ${theme.colors.greyBlue};
   }
 
