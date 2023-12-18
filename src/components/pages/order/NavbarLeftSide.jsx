@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Logo from "../../resusable-ui/Logo";
-import { theme } from "../../../theme";
 
 export default function NavbarLeftSide() {
 
@@ -17,7 +16,6 @@ export default function NavbarLeftSide() {
 
 const NavbarLeftSideStyled = styled.div`
 
-    margin-left: ${theme.spacing.sm};
-    cursor: pointer;
+  cursor: pointer;
 
 `;

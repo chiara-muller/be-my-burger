@@ -22,5 +22,6 @@ const NavBarStyled = styled.div`
   height: 10vh;
   background-color: white;
   border-radius: 15px 15px 0px 0px;
+  padding: 0 20px;
 
 `;
