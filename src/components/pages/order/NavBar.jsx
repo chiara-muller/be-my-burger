@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import NavbarRightSide from "./NavbarRightSide";
 import NavbarLeftSide from "./NavbarLeftSide";
-
+import { theme } from "../../../theme"
 
 
 export default function NavBar() {
@@ -20,7 +20,7 @@ const NavBarStyled = styled.div`
   display: flex;
   justify-content: space-between;
   height: 10vh;
-  background-color: white;
+  background-color: ${theme.colors.white};
   border-radius: 15px 15px 0px 0px;
   padding: 0 20px;
 
