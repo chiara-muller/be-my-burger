@@ -1,22 +1,15 @@
 import styled from "styled-components";
-import Logo from "../../resusable-ui/Logo";
-import ProfileInfo from "./ProfileInfo";
-import { theme } from "../../../theme";
+import NavbarRightSide from "./NavbarRightSide";
+import NavbarLeftSide from "./NavbarLeftSide";
 
 
 
 export default function NavBar() {
 
-  function refreshPage(){
-    window.location.reload();
-}
-
   return (
     <NavBarStyled>
-      <div className="logo-container" onClick={refreshPage}>
-        <Logo />
-      </div>
-      <ProfileInfo />
+      <NavbarLeftSide />
+      <NavbarRightSide />
     </NavBarStyled>
   )
 }
@@ -26,10 +19,8 @@ const NavBarStyled = styled.div`
 
   display: flex;
   justify-content: space-between;
-
-  .logo-container {
-    margin-left: ${theme.spacing.sm};
-    cursor: pointer;
-  }
+  height: 10vh;
+  background-color: white;
+  border-radius: 15px 15px 0px 0px;
 
 `;

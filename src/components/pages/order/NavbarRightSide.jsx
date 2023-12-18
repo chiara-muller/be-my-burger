@@ -4,12 +4,12 @@ import styled from "styled-components";
 import { theme } from "../../../theme";
 
 
-export default function ProfileInfo() {
+export default function NavbarRightSide() {
 
   const {username} = useParams()
 
   return (
-    <ProfileInfoStyled>
+    <NavbarRightSideStyled>
       <div className="profile-container">
         <h5 className="greetings">Hey, <span className="username">{username}</span></h5>
         <Link to="/">
@@ -19,11 +19,11 @@ export default function ProfileInfo() {
       <div className="icon-container">
         <BsPersonCircle className="icon"/>
       </div>
-    </ProfileInfoStyled>
+    </NavbarRightSideStyled>
   )
 }
 
-const ProfileInfoStyled = styled.div`
+const NavbarRightSideStyled = styled.div`
 
   display: flex;
   align-items: center;

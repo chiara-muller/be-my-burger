@@ -9,11 +9,8 @@ export default function OrderPage() {
   return (
     <OrderPageStyled>
       <div className="container">
-        <div className="navbar-container">
           <NavBar />
-        </div>
         <div className="main-container">
-
         </div>
       </div>
     </OrderPageStyled>
@@ -33,12 +30,6 @@ const OrderPageStyled = styled.div`
     height: 95vh;
     display: flex;
     flex-direction: column;
-
-    .navbar-container {
-      height: 10vh;
-      background-color: white;
-      border-radius: 15px 15px 0px 0px;
-    }
 
     .main-container {
       flex: 1; // take the space left in the container
