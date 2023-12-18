@@ -3,10 +3,17 @@ import Logo from "../../resusable-ui/Logo";
 import ProfileInfo from "./ProfileInfo";
 import { theme } from "../../../theme";
 
+
+
 export default function NavBar() {
+
+  function refreshPage(){
+    window.location.reload();
+}
+
   return (
     <NavBarStyled>
-      <div className="logo-container">
+      <div className="logo-container" onClick={refreshPage}>
         <Logo />
       </div>
       <ProfileInfo />
@@ -22,6 +29,7 @@ const NavBarStyled = styled.div`
 
   .logo-container {
     margin-left: ${theme.spacing.sm};
+    cursor: pointer;
   }
 
 `;
