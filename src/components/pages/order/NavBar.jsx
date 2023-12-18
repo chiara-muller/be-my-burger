@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Logo from "../../resusable-ui/Logo";
 import ProfileInfo from "./ProfileInfo";
+import { theme } from "../../../theme";
 
 export default function NavBar() {
   return (
@@ -20,7 +21,7 @@ const NavBarStyled = styled.div`
   justify-content: space-between;
 
   .logo-container {
-    margin-left: 15px;
+    margin-left: ${theme.spacing.sm};
   }
 
 `;

@@ -7,7 +7,7 @@ export default function OrderPage() {
   // const {username} = useParams()
 
   return (
-    <div>
+    <OrderPageStyled>
       <div>
         <NavBar />
         {/* <h1>Bonjour {username}</h1>
@@ -15,18 +15,22 @@ export default function OrderPage() {
           <button>Deconnexion</button>
         </Link> */}
       </div>
-      <OrderPageStyled>
+      <div className="main-container">
 
-      </OrderPageStyled>
-    </div>
+      </div>
+    </OrderPageStyled>
   )
 }
 
 const OrderPageStyled = styled.div`
 
   height: 100vh;
-  background: #F5F5F7;
-  box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset ;
-  border-radius: 0px 0px 15px 15px;
+
+  .main-container {
+    height: 100%;
+    background: #F5F5F7;
+    box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset ;
+    border-radius: 0px 0px 15px 15px;
+  }
 
 `;

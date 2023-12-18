@@ -1,6 +1,8 @@
 import { Link, useParams } from "react-router-dom";
 import { BsPersonCircle } from "react-icons/bs";
 import styled from "styled-components";
+import { theme } from "../../../theme";
+
 
 export default function ProfileInfo() {
 
@@ -8,28 +10,43 @@ export default function ProfileInfo() {
 
   return (
     <ProfileInfoStyled>
-      <h5 className="greetings">Hey, <span className="username">{username}</span></h5>
-      <Link to="/">
-        <button>Se déconnecter</button>
-      </Link>
-      <BsPersonCircle className="icon"/>
+      <div className="profile-container">
+        <h5 className="greetings">Hey, <span className="username">{username}</span></h5>
+        <Link to="/">
+          <button>Se déconnecter</button>
+        </Link>
+      </div>
+      <div className="icon-container">
+        <BsPersonCircle className="icon"/>
+      </div>
     </ProfileInfoStyled>
   )
 }
 
 const ProfileInfoStyled = styled.div`
 
+  display: flex;
+  align-items: center;
+  text-align: right;
+  font-family: 'Open Sans', sans-serif;
+
+  .profile-container {
+    flex-direction: column;
+  }
+
   .greetings {
-    font-size: 18px;
+    color: ${theme.colors.greyBlue};
+    font-size: 16px;
     margin: 0px;
-    margin-right: 20px;
-    padding: 5px;
+    padding: 1px 6px;
+
   }
 
   button {
     background: none;
     border: none;
-    color: darkgray;
+    font-size: 12px;
+    color: ${theme.colors.greyBlue};
 
     &:hover {
       text-decoration: underline;
@@ -41,9 +58,16 @@ const ProfileInfoStyled = styled.div`
     color: orange;
   }
 
+  .icon-container {
+    display: flex;
+    align-items: center;
+  }
+
   .icon {
-    margin: 10px;
-    font-size: 24px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 36px;
+    color: ${theme.colors.greyBlue};
   }
 
 `;
