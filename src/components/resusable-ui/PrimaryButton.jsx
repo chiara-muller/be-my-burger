@@ -28,8 +28,8 @@ const PrimaryButtonStyled = styled.div`
       border: none;
       background: none;
       color: ${theme.colors.white};
-      font-size: ${theme.fonts.P0};
-      font-weight: ${theme.weights.semiBold};
+      font-size: ${theme.fonts.size.P0};
+      font-weight: ${theme.fonts.weights.semiBold};
     }
 
     /*

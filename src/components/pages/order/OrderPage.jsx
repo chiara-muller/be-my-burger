@@ -1,6 +1,7 @@
 // import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import NavBar from "./NavBar";
+import Menu from "./Menu";
 
 export default function OrderPage() {
 
@@ -9,9 +10,8 @@ export default function OrderPage() {
   return (
     <OrderPageStyled>
       <div className="container">
-          <NavBar />
-        <div className="main-container">
-        </div>
+        <NavBar />
+        <Menu />
       </div>
     </OrderPageStyled>
   )
@@ -30,14 +30,6 @@ const OrderPageStyled = styled.div`
     height: 95vh;
     display: flex;
     flex-direction: column;
-
-    .main-container {
-      flex: 1; // take the space left in the container
-      background: #F5F5F7;
-      box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset ;
-      border-radius: 0px 0px 15px 15px;
-    }
   }
-
 
 `;
