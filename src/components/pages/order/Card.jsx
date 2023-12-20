@@ -1,19 +1,23 @@
 import styled from "styled-components";
 import { fakeMenu2 } from "../../fakeMenu";
 import PrimaryButton from "../../resusable-ui/PrimaryButton"
+import { formatPrice } from "../../utils/maths";
 
 export default function Card() {
 
   return (
     <CardStyled>
       {fakeMenu2.map((menu) => {
+
+        const price = menu.price
+
         return (
           <div key={menu.id} className="cards">
             <img src={menu.imageSource} alt="menu image"/>
             <div className="bottom-card">
               <h4 key={menu.id} className="item-name">{menu.title}</h4>
               <div className="pay-container">
-                <p>{menu.price}</p>
+                <p>{formatPrice(price)}</p>
                 <PrimaryButton label={"Ajouter"}/>
               </div>
             </div>
