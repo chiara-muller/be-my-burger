@@ -12,11 +12,23 @@ export default function Card() {
 
         const price = menu.price
 
+        function Title() {
+
+          const title = menu.title
+          const titleSplit = title.split("").length
+
+          if (titleSplit > 14) {
+            const titleSliced = title.slice(0,14);
+            return `${titleSliced}...`
+          }
+          return title
+        }
+
         return (
           <div key={menu.id} className="cards">
             <img src={menu.imageSource} alt="menu image"/>
             <div className="bottom-card">
-              <h4 key={menu.id} className="item-name">{menu.title}</h4>
+              <h4 key={menu.id} className="item-name"><Title /></h4>
               <div className="pay-container">
                 <p>{formatPrice(price)}</p>
                 <PrimaryButton label={"Ajouter"} className={"button-add"}/>
