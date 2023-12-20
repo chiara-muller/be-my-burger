@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { fakeMenu2 } from "../../fakeMenu";
 import PrimaryButton from "../../resusable-ui/PrimaryButton"
 import { formatPrice } from "../../utils/maths";
+import { theme } from "../../../theme";
 
 export default function Card() {
 
@@ -18,7 +19,7 @@ export default function Card() {
               <h4 key={menu.id} className="item-name">{menu.title}</h4>
               <div className="pay-container">
                 <p>{formatPrice(price)}</p>
-                <PrimaryButton label={"Ajouter"}/>
+                <PrimaryButton label={"Ajouter"} className={"button-add"}/>
               </div>
             </div>
           </div>
@@ -39,12 +40,13 @@ const CardStyled = styled.div`
 
   .cards {
 
-    display: grid;
-    grid-template-rows: repeat(2, 1fr);
-    grid-gap: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 240px;
     height: 330px;
     box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
+    border-radius: 15px;
 
     img {
       margin: auto;
@@ -56,7 +58,7 @@ const CardStyled = styled.div`
     .bottom-card {
       display: flex;
       flex-direction: column;
-      margin: 10px;
+      margin: 10px 20px;
 
       .item-name {
         margin: 0;
@@ -70,6 +72,11 @@ const CardStyled = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
+        color: ${theme.colors.primary_burger}
+      }
+
+      .button-add {
+        padding: 10px 18px;
       }
     }
 

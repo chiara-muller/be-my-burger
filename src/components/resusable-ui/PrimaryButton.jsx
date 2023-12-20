@@ -5,8 +5,8 @@ import { theme } from "../../theme";
 // eslint-disable-next-line react/prop-types
 export default function PrimaryButton({label, Icon, className}) {
   return (
-    <PrimaryButtonStyled>
-      <button className="button-primary"> {label} </button>
+    <PrimaryButtonStyled className={className}>
+      <button > {label} </button>
       {Icon && Icon}
     </PrimaryButtonStyled>
   )
