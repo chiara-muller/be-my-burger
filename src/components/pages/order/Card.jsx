@@ -39,7 +39,6 @@ const CardStyled = styled.div`
 
 
   .cards {
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -50,7 +49,7 @@ const CardStyled = styled.div`
 
     img {
       margin: auto;
-      padding-top: 20px;
+      margin-top: 40px;
       max-width: 200px;
       max-height: 140px;;
     }
@@ -58,13 +57,13 @@ const CardStyled = styled.div`
     .bottom-card {
       display: flex;
       flex-direction: column;
-      margin: 10px 20px;
+      margin: 0 25px 25px 25px;
 
       .item-name {
         margin: 0;
         font-family: "Amatic SC", cursive;
         text-align: left;
-        font-size: 28px;
+        font-size: 36px;
       }
 
       .pay-container {
@@ -77,6 +76,7 @@ const CardStyled = styled.div`
 
       .button-add {
         padding: 10px 18px;
+        margin: 10px 0;
       }
     }
 
