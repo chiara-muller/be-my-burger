@@ -34,7 +34,7 @@ const CardStyled = styled.div`
   display: grid;
   justify-items: center;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 40px;
+  grid-gap: ${theme.gridUnit * 5}px;
   grid-auto-rows: minmax(100px, auto);
 
 
@@ -45,7 +45,7 @@ const CardStyled = styled.div`
     width: 240px;
     height: 330px;
     box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
-    border-radius: 15px;
+    border-radius: ${theme.borderRadius.extraRound};
 
     img {
       margin: auto;
@@ -62,8 +62,9 @@ const CardStyled = styled.div`
       .item-name {
         margin: 0;
         font-family: "Amatic SC", cursive;
+        font-weight: ${theme.fonts.weights.regular};
         text-align: left;
-        font-size: 36px;
+        font-size: ${theme.fonts.size.P4};
       }
 
       .pay-container {
@@ -77,6 +78,7 @@ const CardStyled = styled.div`
       .button-add {
         padding: 10px 18px;
         margin: 10px 0;
+        font-weight: ${theme.fonts.weights.light};
       }
     }
 
