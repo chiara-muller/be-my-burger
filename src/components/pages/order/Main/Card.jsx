@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { fakeMenu2 } from "../../fakeMenu";
-import PrimaryButton from "../../resusable-ui/PrimaryButton"
-import { formatPrice } from "../../utils/maths";
-import { theme } from "../../../theme";
+import { fakeMenu2 } from "../../../../fakeData/fakeMenu";
+import PrimaryButton from "../../../resusable-ui/PrimaryButton"
+import { formatPrice } from "../../../../utils/maths";
+import { theme } from "../../../../theme";
 
 export default function Card() {
 
@@ -48,7 +48,6 @@ const CardStyled = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-gap: ${theme.gridUnit * 5}px;
   grid-auto-rows: minmax(100px, auto);
-
 
   .cards {
     display: flex;

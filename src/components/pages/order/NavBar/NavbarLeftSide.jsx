@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Logo from "../../resusable-ui/Logo";
+import Logo from "../../../resusable-ui/Logo";
 
 export default function NavbarLeftSide() {
 

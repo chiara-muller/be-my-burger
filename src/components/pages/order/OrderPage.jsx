@@ -1,7 +1,8 @@
 // import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
-import NavBar from "./NavBar";
-import Menu from "./Menu";
+import NavBar from "./NavBar/NavBar";
+
+import Main from "./Main/Main";
 
 export default function OrderPage() {
 
@@ -11,7 +12,7 @@ export default function OrderPage() {
     <OrderPageStyled>
       <div className="container">
         <NavBar />
-        <Menu />
+        <Main />
       </div>
     </OrderPageStyled>
   )
