@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { formatTitle } from "../../../../utils/formatTitle";
 import { formatPrice } from "../../../../utils/maths";
 import PrimaryButton from "../../../resusable-ui/PrimaryButton";
 import { theme } from "../../../../theme";
@@ -10,7 +9,7 @@ export default function Product({title, id, imageSource, price}) {
     <ProductStyled key={id}>
       <img src={imageSource} alt="menu image"/>
       <div className="bottom-card">
-        <h4 key={id} className="item-name">{formatTitle(title)}</h4>
+        <h4 key={id} className="item-name">{title}</h4>
         <div className="pay-container">
           <p>{formatPrice(price)}</p>
           <PrimaryButton label={"Ajouter"} className={"add-button"}/>
@@ -26,14 +25,17 @@ const ProductStyled = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 240px;
-  height: 330px;
+  width: 200px;
+  height: 300px;
+  padding: 20px;
+  padding-bottom: 10px;
   box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
   border-radius: ${theme.borderRadius.extraRound};
 
   img {
     margin: auto;
-    margin-top: 40px;
+    margin-top: 30px;
+    margin-bottom: 20px;
     max-width: 200px;
     max-height: 140px;;
   }
@@ -41,14 +43,22 @@ const ProductStyled = styled.div`
   .bottom-card {
     display: flex;
     flex-direction: column;
-    margin: 0 25px 25px 25px;
+    padding: 5px;
 
     .item-name {
-      margin: 0;
-      font-family: "Amatic SC", cursive;
-      font-weight: ${theme.fonts.weights.regular};
-      text-align: left;
+      margin: auto 0;
       font-size: ${theme.fonts.size.P4};
+      letter-spacing: 0.5px;
+      position: relative;
+      bottom: 10px;
+      font-weight: ${theme.fonts.weights.bold};
+      color: ${theme.colors.dark};
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 100%;
+      text-overflow: ellipsis;
+      font-family: "Amatic SC", cursive;
     }
 
     .pay-container {
