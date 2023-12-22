@@ -3,10 +3,10 @@ import { theme } from "../../theme";
 
 
 // eslint-disable-next-line react/prop-types
-export default function PrimaryButton({label, Icon}) {
+export default function PrimaryButton({label, Icon, className}) {
   return (
-    <PrimaryButtonStyled>
-      <button> {label} </button>
+    <PrimaryButtonStyled className={className}>
+      <button > {label} </button>
       {Icon && Icon}
     </PrimaryButtonStyled>
   )
@@ -28,8 +28,8 @@ const PrimaryButtonStyled = styled.div`
       border: none;
       background: none;
       color: ${theme.colors.white};
-      font-size: ${theme.fonts.P0};
-      font-weight: ${theme.weights.semiBold};
+      font-size: ${theme.fonts.size.P0};
+      font-weight: ${theme.fonts.weights.semiBold};
     }
 
     /*
