@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import PrimaryButton from "../../../resusable-ui/PrimaryButton";
-import { theme } from "../../../../theme";
+import PrimaryButton from "./PrimaryButton";
+import { theme } from "../../theme";
 
 // eslint-disable-next-line react/prop-types
 export default function Card({title, id, imageSource, leftDescription}) {
@@ -10,8 +10,10 @@ export default function Card({title, id, imageSource, leftDescription}) {
       <div className="bottom-card">
         <h4 key={id} className="item-name">{title}</h4>
         <div className="pay-container">
-          <p>{leftDescription}</p>
-          <PrimaryButton label={"Ajouter"} className={"add-button"}/>
+          <div>{leftDescription}</div>
+          <div>
+            <PrimaryButton label={"Ajouter"} className={"add-button"}/>
+          </div>
         </div>
       </div>
     </CardStyled>
@@ -47,7 +49,7 @@ const CardStyled = styled.div`
     .item-name {
       margin: auto 0;
       font-size: ${theme.fonts.size.P4};
-      letter-spacing: 0.5px;
+      /* letter-spacing: 0.5px; */
       position: relative;
       bottom: 10px;
       font-weight: ${theme.fonts.weights.bold};
