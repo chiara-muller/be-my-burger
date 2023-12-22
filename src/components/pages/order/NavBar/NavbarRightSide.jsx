@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import Profile from "./Profile";
+import ToggleButton from "../../../resusable-ui/ToggleButton";
 
 
 export default function NavbarRightSide() {
 
   return (
     <NavbarRightSideStyled>
+      <ToggleButton labelIfUnchecked="DESACTIVER LE MODE ADMIN" labelIfChecked="ACTIVER LE MODE ADMIN" />
       <Profile />
     </NavbarRightSideStyled>
   )
