@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { fakeMenu2 } from "../../../../fakeData/fakeMenu";
 import PrimaryButton from "../../../resusable-ui/PrimaryButton"
 import { formatPrice } from "../../../../utils/maths";
-import { theme } from "../../../../theme";
+import { theme } from "../../../../theme/index";
+import { fakeMenu2 } from "../../../../fakeData/fakeMenu";
 
 export default function Card() {
 

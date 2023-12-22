@@ -23,5 +23,6 @@ const NavBarStyled = styled.div`
   background-color: ${theme.colors.white};
   border-radius: 15px 15px 0px 0px;
   padding: 0 20px;
+  border: 1px solid ${theme.colors.greyLight}
 
 `;
