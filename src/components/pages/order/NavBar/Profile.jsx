@@ -28,6 +28,7 @@ const ProfileStyled = styled.div`
   justify-content: space-between;
   min-width: 100px;
   padding-right: 50px;
+  padding-left: 50px;
 
   .profile-container {
     flex-direction: column;
@@ -48,7 +49,7 @@ const ProfileStyled = styled.div`
   button {
     background: none;
     border: none;
-    font-size: ${theme.fonts.XS};
+    font-size: ${theme.fonts.size.XS};
     color: ${theme.colors.greyBlue};
 
     position: relative;
