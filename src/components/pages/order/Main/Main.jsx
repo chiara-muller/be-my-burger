@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import Menu from "./Menu";
+import AdminPanel from "./AdminPanel";
 
 export default function Main() {
   return (
     <MainStyled>
       <Menu />
+      <AdminPanel />
     </MainStyled>
   )
 }
