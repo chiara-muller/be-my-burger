@@ -8,7 +8,7 @@ import OrderContext from "../../../context/OrderContext"
 
 export default function OrderPage() {
 
-  const [isModeAdmin, setIsModeAdmin] = useState(false)
+  const [isModeAdmin, setIsModeAdmin] = useState(true)
 
   const orderContextValue = {
     isModeAdmin,
