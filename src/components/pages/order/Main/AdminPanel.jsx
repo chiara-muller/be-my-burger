@@ -11,10 +11,6 @@ export default function AdminPanel() {
     setIsPanelVisible
   }
 
-  // const handleClick = () => {
-  //   setShowPanel(!showPanel)
-  // }
-
   return (
     <AdminPanelStyled>
       <div className="button-container">

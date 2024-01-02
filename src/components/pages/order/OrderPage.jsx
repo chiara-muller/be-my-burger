@@ -3,9 +3,9 @@ import styled from "styled-components";
 import NavBar from "./NavBar/NavBar";
 
 import Main from "./Main/Main";
+import { theme } from "../../../theme";
 
 export default function OrderPage() {
-
 
 
   return (
@@ -21,7 +21,7 @@ export default function OrderPage() {
 const OrderPageStyled = styled.div`
 
   height: 100vh;
-  background: orange;
+  background: ${theme.colors.primary};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,6 +31,7 @@ const OrderPageStyled = styled.div`
     height: 95vh;
     display: flex;
     flex-direction: column;
+    border-radius: ${theme.borderRadius.extraRound};
   }
 
 `;
