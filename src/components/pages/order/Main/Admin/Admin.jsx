@@ -2,13 +2,16 @@ import styled from "styled-components";
 // import PanelButton from "../PanelButton";
 import AdminTabs from "./AdminTabs"
 import AdminPanel from "./AdminPanel"
-import { theme } from "../../../../../theme";
+import { useState } from "react";
 
 export default function Admin() {
+
+  const [ isCollapsed, setIsCollapsed ] = useState(false)
+
   return (
     <AdminStyled>
-      <AdminTabs />
-      <AdminPanel />
+      <AdminTabs isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed }/>
+      {!isCollapsed && <AdminPanel />}
     </AdminStyled>
   )
 }
@@ -16,9 +19,9 @@ export default function Admin() {
 
 const AdminStyled = styled.div`
 
-position: absolute;
-bottom: 0;
-left: 0;
-right: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 
 `;
