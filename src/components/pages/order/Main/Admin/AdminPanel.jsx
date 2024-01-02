@@ -4,7 +4,6 @@ import { theme } from "../../../../../theme";
 export default function AdminPanel() {
   return (
     <AdminPanelStyled>
-      AdminPanel
     </AdminPanelStyled>
   )
 }
