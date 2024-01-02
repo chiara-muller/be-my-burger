@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import Menu from "./Menu";
-import Panel from "./Panel";
-import Cart from "./Cart";
+// import Panel from "./Admin/Admin";
+// import Cart from "./Cart";
+import Admin from "./Admin/Admin";
 // import AdminPanel from "./AdminPanel";
 
 export default function Main() {
@@ -12,10 +13,8 @@ export default function Main() {
       {/* <div className="basket">Basket</div> */}
       <div className="menu-and-admin">
         <Menu />
-        <div className="admin">Admin</div>
+        <Admin />
       </div>
-      {/* <AdminPanel /> */}
-      {/* <Panel /> */}
     </MainStyled>
   )
 }
@@ -39,14 +38,5 @@ const MainStyled = styled.div`
     overflow-y: hidden;
     display: grid; // we need this otherwise the menu is unscrollable
     border-radius: 0px 0px 15px 15px;
-
-    .admin {
-      background: red;
-      height: 250px;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
   }
 `;
