@@ -11,13 +11,11 @@ export const getTabsConfig = (currentTabActive) => [
   {
     index: "add",
     label: "Ajouter un produit",
-    Icon: <AiOutlinePlus />,
-    className: currentTabActive === "add" ? "is-active" : ""
+    Icon: <AiOutlinePlus />
   },
   {
     index: "edit",
     label: "Modifier un produit",
-    Icon: <MdModeEditOutline />,
-    className: currentTabActive === "edit" ? "is-active" : ""
+    Icon: <MdModeEditOutline />
   }
 ]
