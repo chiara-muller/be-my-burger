@@ -12,7 +12,13 @@ export default function Menu() {
   return (
     <MenuStyled>
       {menu.map(({id, title, imageSource, price}) => {
-        return <Card key={id} title={title} imageSource={imageSource} leftDescription={formatPrice(price)} /> // or <Product {...product} />
+        return (
+          <Card
+            key={id}
+            title={title}
+            imageSource={imageSource}
+            leftDescription={formatPrice(price)}
+          />) // or <Product {...product} />
       })}
     </MenuStyled>
   )
@@ -20,12 +26,14 @@ export default function Menu() {
 
 const MenuStyled = styled.div`
 
+  background: ${theme.colors.background_white};
   display: grid;
-  justify-items: center;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: ${theme.gridUnit * 5}px;
-  grid-auto-rows: minmax(100px, auto);
-  padding: 50px 50px 150px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-row-gap: 60px;
+  padding: 50px 50px 150px;
+  justify-items: center;
+  box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
+  grid-gap: ${theme.gridUnit * 5}px;
+  overflow-y: scroll;
 
 `;

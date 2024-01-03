@@ -65,17 +65,17 @@ const LoginFormStyled = styled.form `
 
   h1 {
     color: ${theme.colors.white};
-    font-size: ${theme.fonts.P5};
+    font-size: ${theme.fonts.size.P5};
   }
 
   h2 {
     margin: 20px 10px 10px;
     color: ${theme.colors.white};
-    font-size: ${theme.fonts.P4};
+    font-size: ${theme.fonts.size.P4};
   }
 
   .button-icon {
     color: ${theme.colors.white};
-    font-size: ${theme.fonts.P0};
+    font-size: ${theme.fonts.size.SM};
     }
 `
