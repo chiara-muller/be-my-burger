@@ -1,7 +1,7 @@
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
 
-export const getTabsConfig = (currentTabActive) => [
+export const getTabsConfig = () => [
   // {
   //   label:"",
   //   Icon:isCollapsed? <FiChevronUp /> : <FiChevronDown />,
