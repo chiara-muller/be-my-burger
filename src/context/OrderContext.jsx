@@ -13,4 +13,7 @@ export default createContext({
 
   isEditActive: false,
   setIsEditActive: () => {},
+
+  currentTabActive: false,
+  setCurrentTabActive: () => {},
 })
