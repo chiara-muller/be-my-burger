@@ -9,10 +9,19 @@ import OrderContext from "../../../context/OrderContext"
 export default function OrderPage() {
 
   const [isModeAdmin, setIsModeAdmin] = useState(true)
+  const [ isCollapsed, setIsCollapsed ] = useState(false)
+  const [ isAddActive, setIsAddActive ] = useState(true)
+  const [ isEditActive, setIsEditActive ] = useState(false)
 
   const orderContextValue = {
     isModeAdmin,
-    setIsModeAdmin
+    setIsModeAdmin,
+    isCollapsed,
+    setIsCollapsed,
+    isAddActive,
+    setIsAddActive,
+    isEditActive,
+    setIsEditActive
   }
 
   return (
