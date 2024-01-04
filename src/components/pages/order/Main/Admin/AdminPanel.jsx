@@ -3,6 +3,7 @@ import { theme } from "../../../../../theme";
 import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
 import { getTabsConfig } from "./getTabsConfig";
+import AddProductForm from "./AddProductForm";
 
 export default function AdminPanel() {
 
@@ -12,7 +13,7 @@ export default function AdminPanel() {
 
   return (
     <AdminPanelStyled>
-      {currentTabActive === "add" && "Ajouter un produit"}
+      {currentTabActive === "add" && <AddProductForm />}
       {currentTabActive === "edit" && "Modifier un produit"}
     </AdminPanelStyled>
   )
