@@ -1,11 +1,15 @@
 import styled from "styled-components";
 import PrimaryButton from "./PrimaryButton";
 import { theme } from "../../theme";
+import { TiDelete } from "react-icons/ti"
 
 // eslint-disable-next-line react/prop-types
 export default function Card({title, id, imageSource, leftDescription}) {
+
+
   return (
     <CardStyled key={id}>
+      <button className="delete-button"><TiDelete /></button>
       <img src={imageSource} alt="menu image"/>
       <div className="bottom-card">
         <h4 key={id} className="item-name">{title}</h4>
@@ -23,6 +27,7 @@ export default function Card({title, id, imageSource, leftDescription}) {
 
 const CardStyled = styled.div`
 
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -75,6 +80,14 @@ const CardStyled = styled.div`
       margin: 10px 0;
       font-weight: ${theme.fonts.weights.light};
     }
+  }
+
+  .delete-button {
+    all: unset;
+    position: absolute;
+    padding: 0px;
+    margin: 0px;
+    text-align: right;
   }
 
 `;

@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import styled from "styled-components";
 import OrderContext from "../../../../../context/OrderContext";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function AddProductForm() {
@@ -8,14 +10,28 @@ export default function AddProductForm() {
   const [inputValue, setInputValue ] = useState("")
   const { menu, setMenu } = useContext(OrderContext)
 
-  const addNewItem = () => {
+  const notify = () => {
+    toast.success("Ajouté avec succès!"), {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 2000,
+    }};
 
+  // const handleSubmit = (event) => {
+  //   event.preventDefault()
+  //   console.log("test submit")
+  // }
+
+  const handleChange = (event) => {
+    setInputValue(event.target.value)
+  }
+
+  const addNewItem = (event) => {
+    event.preventDefault()
     const newMenu = [...menu]
-    console.log(newMenu)
     const newItem = {
       id: Date.now(),
       imageSource: "/images/burger2.png",
-      title: "Burger 2",
+      title: "burger",
       price: 7.556,
       quantity: 0,
       isAvailable: true,
@@ -25,31 +41,22 @@ export default function AddProductForm() {
     setMenu(newMenu)
   }
 
-
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    console.log("test submit")
-  }
-
-  const handleChange = (event) => {
-    setInputValue(event.target.value)
-  }
-
   return (
-    <AddProductFormStyled action="submit" onSubmit={handleSubmit}>
+    <AddProductFormStyled action="submit" onSubmit={addNewItem}>
       <div className="image-and-form">
         <div className="image-container">
           <img src="aucune image" alt="image preview" />
         </div>
         <div className="form-container">
-          <input type="text" placeholder="Nom du produit (ex: Super Burger)" onChange={handleChange} value={inputValue}/>
+          <input type="text" placeholder="Nom du produit (ex: Super Burger)" name="title" onChange={handleChange} value={inputValue}/>
           <input type="url" placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"/>
           <input type="number" step="0.01" placeholder="Prix"/>
         </div>
       </div>
       <div className="button-container">
-        <button onClick={addNewItem}>Ajouter un nouveau produit au menu</button>
+        <button onClick={notify}>Ajouter un nouveau produit au menu</button>
       </div>
+      <ToastContainer />
     </AddProductFormStyled>
   )
 }
