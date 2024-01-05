@@ -4,10 +4,11 @@ import Card from "../../../resusable-ui/Card";
 import { theme } from "../../../../theme";
 import { formatPrice } from "../../../../utils/maths"
 import OrderContext from "../../../../context/OrderContext";
+import { TiDelete } from "react-icons/ti"
 
 export default function Menu() {
 
-  const { menu } = useContext(OrderContext)
+  const { menu, isModeAdmin } = useContext(OrderContext)
 
   return (
     <MenuStyled>
@@ -18,6 +19,7 @@ export default function Menu() {
             title={title}
             imageSource={imageSource}
             leftDescription={ "0,00€" && formatPrice(price)}
+            deleteButton={isModeAdmin && <button className="delete-button"><TiDelete className="icon"/></button> }
           />)
       })}
     </MenuStyled>
@@ -35,5 +37,27 @@ const MenuStyled = styled.div`
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
   grid-gap: ${theme.gridUnit * 5}px;
   overflow-y: scroll;
+
+  .delete-button {
+    all: unset;
+    position: absolute;
+    left: 80%;
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    color: ${theme.colors.primary};
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+
+    &:hover {
+      color: red;
+    }
+
+    .icon {
+      width: 100%;
+      height: 100%;
+    }
+  }
 
 `;

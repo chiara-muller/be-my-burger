@@ -1,26 +1,16 @@
 import styled from "styled-components";
 import PrimaryButton from "./PrimaryButton";
 import { theme } from "../../theme";
-// import { TiDelete } from "react-icons/ti"
-// import { useContext } from "react";
-// import OrderContext from "../../context/OrderContext";
 
 // eslint-disable-next-line react/prop-types
-export default function Card({title, id, imageSource, leftDescription}) {
-
-  // const { isModeAdmin } = useContext(OrderContext)
-  // const { menu, setMenu } = useContext(OrderContext)
-
-  // const deleteById = id => {
-  //   setMenu(oldValues => {
-  //     return oldValues.filter(menu => menu.id !== id)
-  //   })
-  // }
+export default function Card({title, id, imageSource, leftDescription, deleteButton}) {
 
   return (
     <CardStyled key={id}>
-      {/* {isModeAdmin && <button className="delete-button" onClick={() => deleteById(id)}><TiDelete /></button>} */}
-      <img src={imageSource} alt="menu image"/>
+      {deleteButton}
+      <div className="image-container">
+        <img src={imageSource} alt="menu image"/>
+      </div>
       <div className="bottom-card">
         <h4 key={id} className="item-name">{title}</h4>
         <div className="pay-container">
@@ -48,12 +38,28 @@ const CardStyled = styled.div`
   box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
   border-radius: ${theme.borderRadius.extraRound};
 
-  img {
+  /* .image-container {
     margin: auto;
     margin-top: 30px;
     margin-bottom: 20px;
+  }
+
+  img {
     max-width: 200px;
     max-height: 140px;;
+  } */
+
+  .image-container {
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
   }
 
   .bottom-card {
@@ -91,13 +97,4 @@ const CardStyled = styled.div`
       font-weight: ${theme.fonts.weights.light};
     }
   }
-
-  .delete-button {
-    all: unset;
-    position: absolute;
-    padding: 0px;
-    margin: 0px;
-    text-align: right;
-  }
-
 `;
