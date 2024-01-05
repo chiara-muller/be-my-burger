@@ -38,22 +38,13 @@ const CardStyled = styled.div`
   box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
   border-radius: ${theme.borderRadius.extraRound};
 
-  /* .image-container {
+  .image-container {
     margin: auto;
     margin-top: 30px;
     margin-bottom: 20px;
-  }
-
-  img {
     max-width: 200px;
-    max-height: 140px;;
-  } */
-
-  .image-container {
-    width: 100%;
-    height: auto;
-    margin-top: 30px;
-    margin-bottom: 20px;
+    max-height: 140px;
+    min-height: 140px;
 
     img {
       width: 100%;
@@ -61,6 +52,7 @@ const CardStyled = styled.div`
       object-fit: contain;
     }
   }
+
 
   .bottom-card {
     display: flex;
