@@ -7,6 +7,9 @@ export default createContext({
   menu: fakeMenu.LARGE,
   setMenu: () => {},
 
+  isEmptyMenu: false,
+  setIsEmptyMenu: () => {},
+
   isModeAdmin: false,
   setIsModeAdmin: () => {},
 

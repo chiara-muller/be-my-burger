@@ -9,14 +9,17 @@ import { fakeMenu } from "../../../fakeData/fakeMenu";
 
 export default function OrderPage() {
 
-  const [ menu, setMenu ] = useState(fakeMenu.LARGE)
-  const [ isModeAdmin, setIsModeAdmin ] = useState(false)
-  const [ isCollapsed, setIsCollapsed ] = useState(false)
+  const [ menu, setMenu ]                         = useState(fakeMenu.LARGE)
+  const [ isEmptyMenu, setIsEmptyMenu ]           = useState(fakeMenu.EMPTY)
+  const [ isModeAdmin, setIsModeAdmin ]           = useState(false)
+  const [ isCollapsed, setIsCollapsed ]           = useState(false)
   const [ currentTabActive, setCurrentTabActive ] = useState("add")
 
   const orderContextValue = {
     menu,
     setMenu,
+    isEmptyMenu,
+    setIsEmptyMenu,
     isModeAdmin,
     setIsModeAdmin,
     isCollapsed,

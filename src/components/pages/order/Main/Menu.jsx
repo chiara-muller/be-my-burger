@@ -18,16 +18,34 @@ export default function Menu() {
 
   return (
     <MenuStyled>
-      {menu.map(({id, title, imageSource, price}) => {
-        return (
-          <Card
-            key={id}
-            title={title}
-            imageSource={imageSource}
-            leftDescription={ "0,00€" && formatPrice(price)}
-            deleteButton={isModeAdmin && <button className="delete-button" onClick={() => handleDelete(id)}><TiDelete className="icon"/></button> }
-          />)
-      })}
+      {(menu.length === 0) ?
+        (isModeAdmin
+          ?
+          <div>
+            <p>Le menu est vide?</p>
+            <p>cliquez ci-dessous pour le réinitialiser</p>
+            <button>Générer de nouveaux produits</button>
+          </div>
+          :
+          <div>
+            <p>Victime de notre succès! :D</p>
+            <p>De nouvelle recette sont en cours de préparation.</p>
+            <p>A très vite!</p>
+          </div>
+        )
+        :
+        menu.map(({id, title, imageSource, price}) => {
+          return (
+            <Card
+              key={id}
+              title={title}
+              imageSource={imageSource}
+              leftDescription={ "0,00€" && formatPrice(price)}
+              deleteButton={isModeAdmin && <button className="delete-button" onClick={() => handleDelete(id)}><TiDelete className="icon"/></button> }
+            />
+          )
+        })
+      }
     </MenuStyled>
   )
 }
