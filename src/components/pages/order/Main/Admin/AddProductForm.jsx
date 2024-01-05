@@ -35,9 +35,9 @@ export default function AddProductForm() {
       "isAvailable": true,
       "isAdvertised": false,
     }
-    const newMenu = [...menu]
-    newMenu.push(newItem)
-    setMenu(newMenu)
+    const menuCopy = [...menu]
+    menuCopy.push(newItem)
+    setMenu(menuCopy)
   }
 
   const handleClick = () => {

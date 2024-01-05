@@ -8,7 +8,13 @@ import { TiDelete } from "react-icons/ti"
 
 export default function Menu() {
 
-  const { menu, isModeAdmin } = useContext(OrderContext)
+  const { menu, setMenu, isModeAdmin } = useContext(OrderContext)
+
+  const handleDelete = (id) => {
+    const menuCopy = [...menu]
+    const newMenu = menuCopy.filter((item) => item.id !== id)
+    setMenu(newMenu)
+  }
 
   return (
     <MenuStyled>
@@ -19,7 +25,7 @@ export default function Menu() {
             title={title}
             imageSource={imageSource}
             leftDescription={ "0,00€" && formatPrice(price)}
-            deleteButton={isModeAdmin && <button className="delete-button"><TiDelete className="icon"/></button> }
+            deleteButton={isModeAdmin && <button className="delete-button" onClick={() => handleDelete(id)}><TiDelete className="icon"/></button> }
           />)
       })}
     </MenuStyled>
