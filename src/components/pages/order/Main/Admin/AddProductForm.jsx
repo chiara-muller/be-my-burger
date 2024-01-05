@@ -7,8 +7,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function AddProductForm() {
 
-  const [inputValue, setInputValue ] = useState("")
   const { menu, setMenu } = useContext(OrderContext)
+  const [ inputTitle, setInputTitle ] = useState("")
+  const [ inputImage, setInputImage ] = useState("")
+  const [ inputPrice, setInputPrice ] = useState("")
 
   const notify = () => {
     toast.success("Ajouté avec succès!"), {
@@ -16,27 +18,31 @@ export default function AddProductForm() {
       autoClose: 2000,
     }};
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault()
-  //   console.log("test submit")
-  // }
 
-  const handleChange = (event) => {
-    setInputValue(event.target.value)
+  const handleTitleChange = (event) => {
+    setInputTitle(event.target.value)
+  }
+
+  const handleImageChange = (event) => {
+    setInputImage(event.target.value)
+  }
+
+  const handlePriceChange = (event) => {
+    setInputPrice(event.target.value)
   }
 
   const addNewItem = (event) => {
     event.preventDefault()
-    const newMenu = [...menu]
     const newItem = {
-      id: Date.now(),
-      imageSource: "/images/burger2.png",
-      title: "burger",
-      price: 7.556,
-      quantity: 0,
-      isAvailable: true,
-      isAdvertised: false,
+      "id": Date.now(),
+      "imageSource": inputImage,
+      "title": inputTitle,
+      "price": inputPrice,
+      "quantity": 0,
+      "isAvailable": true,
+      "isAdvertised": false,
     }
+    const newMenu = [...menu]
     newMenu.push(newItem)
     setMenu(newMenu)
   }
@@ -48,9 +54,9 @@ export default function AddProductForm() {
           <img src="aucune image" alt="image preview" />
         </div>
         <div className="form-container">
-          <input type="text" placeholder="Nom du produit (ex: Super Burger)" name="title" onChange={handleChange} value={inputValue}/>
-          <input type="url" placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"/>
-          <input type="number" step="0.01" placeholder="Prix"/>
+          <input type="text" placeholder="Nom du produit (ex: Super Burger)" onChange={handleTitleChange} value={inputTitle}/>
+          <input type="url" placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)" onChange={handleImageChange} value={inputImage}/>
+          <input type="number" step="0.01" placeholder="Prix" onChange={handlePriceChange} value={inputPrice}/>
         </div>
       </div>
       <div className="button-container">
@@ -93,3 +99,6 @@ const AddProductFormStyled = styled.form`
     border: 2px solid brown;
   }
 `;
+
+
+// FaHamburger, BsFillCameraFill, MdOutlineEuro, FiCheck,
