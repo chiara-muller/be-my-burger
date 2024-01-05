@@ -10,6 +10,7 @@ export default function AddProductForm() {
   const [ inputTitle, setInputTitle ] = useState("")
   const [ inputImage, setInputImage ] = useState("")
   const [ inputPrice, setInputPrice ] = useState("")
+  const [ notification, setNotification ] = useState("")
 
   const handleTitleChange = (event) => {
     setInputTitle(event.target.value)
@@ -39,8 +40,12 @@ export default function AddProductForm() {
     setMenu(newMenu)
   }
 
-  const notify = () => {
-    <span>ajouté avec succès</span>
+  const handleClick = () => {
+    setNotification(<span className="success">ajouté avec succès</span>)
+    setTimeout(() => {
+      setNotification(notification)
+    }, "2000");
+
   }
 
   return (
@@ -56,7 +61,8 @@ export default function AddProductForm() {
         </div>
       </div>
       <div className="button-container">
-        <button onClick={notify}>Ajouter un nouveau produit au menu</button>
+        <button onClick={handleClick}>Ajouter un nouveau produit au menu</button>
+        {notification}
       </div>
     </AddProductFormStyled>
   )
@@ -89,9 +95,12 @@ const AddProductFormStyled = styled.form`
       }
   }
 
-
   .button-container {
     border: 2px solid brown;
+  }
+
+  .success {
+    color: green;
   }
 `;
 
