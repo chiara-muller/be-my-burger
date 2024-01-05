@@ -1,25 +1,25 @@
 import styled from "styled-components";
 import PrimaryButton from "./PrimaryButton";
 import { theme } from "../../theme";
-import { TiDelete } from "react-icons/ti"
-import { useContext } from "react";
-import OrderContext from "../../context/OrderContext";
+// import { TiDelete } from "react-icons/ti"
+// import { useContext } from "react";
+// import OrderContext from "../../context/OrderContext";
 
 // eslint-disable-next-line react/prop-types
 export default function Card({title, id, imageSource, leftDescription}) {
 
-  const { isModeAdmin } = useContext(OrderContext)
-  const { menu, setMenu } = useContext(OrderContext)
+  // const { isModeAdmin } = useContext(OrderContext)
+  // const { menu, setMenu } = useContext(OrderContext)
 
-  const deleteById = id => {
-    setMenu(oldValues => {
-      return oldValues.filter(menu => menu.id !== id)
-    })
-  }
+  // const deleteById = id => {
+  //   setMenu(oldValues => {
+  //     return oldValues.filter(menu => menu.id !== id)
+  //   })
+  // }
 
   return (
     <CardStyled key={id}>
-      {isModeAdmin && <button className="delete-button" onClick={() => deleteById(id)}><TiDelete /></button>}
+      {/* {isModeAdmin && <button className="delete-button" onClick={() => deleteById(id)}><TiDelete /></button>} */}
       <img src={imageSource} alt="menu image"/>
       <div className="bottom-card">
         <h4 key={id} className="item-name">{title}</h4>

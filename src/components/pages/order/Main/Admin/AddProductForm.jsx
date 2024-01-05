@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import styled from "styled-components";
 import OrderContext from "../../../../../context/OrderContext";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -11,13 +10,6 @@ export default function AddProductForm() {
   const [ inputTitle, setInputTitle ] = useState("")
   const [ inputImage, setInputImage ] = useState("")
   const [ inputPrice, setInputPrice ] = useState("")
-
-  const notify = () => {
-    toast.success("Ajouté avec succès!"), {
-      position: toast.POSITION.TOP_RIGHT,
-      autoClose: 2000,
-    }};
-
 
   const handleTitleChange = (event) => {
     setInputTitle(event.target.value)
@@ -47,6 +39,10 @@ export default function AddProductForm() {
     setMenu(newMenu)
   }
 
+  const notify = () => {
+    <span>ajouté avec succès</span>
+  }
+
   return (
     <AddProductFormStyled action="submit" onSubmit={addNewItem}>
       <div className="image-and-form">
@@ -62,7 +58,6 @@ export default function AddProductForm() {
       <div className="button-container">
         <button onClick={notify}>Ajouter un nouveau produit au menu</button>
       </div>
-      <ToastContainer />
     </AddProductFormStyled>
   )
 }

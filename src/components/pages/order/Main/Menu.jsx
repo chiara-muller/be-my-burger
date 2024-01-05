@@ -17,8 +17,8 @@ export default function Menu() {
             key={id}
             title={title}
             imageSource={imageSource}
-            leftDescription={formatPrice(price)}
-          />) // or <Product {...product} />
+            leftDescription={ "0,00€" && formatPrice(price)}
+          />)
       })}
     </MenuStyled>
   )
