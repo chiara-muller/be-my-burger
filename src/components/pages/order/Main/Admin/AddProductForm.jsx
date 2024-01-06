@@ -50,15 +50,13 @@ export default function AddProductForm() {
 
   return (
     <AddProductFormStyled action="submit" onSubmit={addNewItem}>
-      <div className="image-and-form">
-        <div className="image-container">
-          <img src="aucune image" alt="image preview" />
-        </div>
-        <div className="form-container">
-          <input type="text" placeholder="Nom du produit (ex: Super Burger)" onChange={handleTitleChange} value={inputTitle}/>
-          <input type="url" placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)" onChange={handleImageChange} value={inputImage}/>
-          <input type="number" step="0.01" placeholder="Prix" onChange={handlePriceChange} value={inputPrice}/>
-        </div>
+      <div className="image-container">
+        <img src="aucune image" alt="image preview" />
+      </div>
+      <div className="form-container">
+        <input type="text" placeholder="Nom du produit (ex: Super Burger)" onChange={handleTitleChange} value={inputTitle}/>
+        <input type="url" placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)" onChange={handleImageChange} value={inputImage}/>
+        <input type="number" step="0.01" placeholder="Prix" onChange={handlePriceChange} value={inputPrice}/>
       </div>
       <div className="button-container">
         <button onClick={handleClick}>Ajouter un nouveau produit au menu</button>
@@ -70,29 +68,18 @@ export default function AddProductForm() {
 
 const AddProductFormStyled = styled.form`
 
-  width: 880px;
-  height: 160px;
+  display: grid;
   border: 2px solid green;
-  padding-top: 30px;
-  padding-left: 70px;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: repeat(4, 4fr);
 
-  .image-and-form {
-    display: flex;
-    border: 2px solid pink;
+  .image-container {
+    border: 1px solid black;
+    border-radius: 5px;
+  }
 
-      .image-container {
-        width: 215px;
-        height: 120px;
-        border: 1px solid black;
-        border-radius: 5px;
-      }
-
-      .form-container {
-        display: flex;
-        flex-direction: column;
-        border: 2px solid blue;
-        width: 100%;
-      }
+  .form-container {
+    border: 2px solid blue;
   }
 
   .button-container {
