@@ -12,7 +12,7 @@ export default function OrderPage() {
 
   const [ menu, setMenu ]                         = useState(fakeMenu.SMALL)
   const [ isModeAdmin, setIsModeAdmin ]           = useState(false)
-  const [ isCollapsed, setIsCollapsed ]           = useState(true)
+  const [ isCollapsed, setIsCollapsed ]           = useState(false)
   const [ currentTabActive, setCurrentTabActive ] = useState("add")
   const [ newItem, setNewItem ]                   = useState(EMPTY_ITEM)
 

@@ -1,13 +1,17 @@
 import styled from "styled-components";
 import Button from "./Button";
 import { theme } from "../../theme";
+import { TiDelete } from "react-icons/ti"
 
 // eslint-disable-next-line react/prop-types
-export default function Card({title, id, imageSource, leftDescription, deleteButton}) {
+export default function Card({title, id, imageSource, leftDescription, hasDeleteButton, onDelete}) {
 
   return (
     <CardStyled key={id}>
-      {deleteButton}
+      {hasDeleteButton && (
+        <button className="delete-button" onClick={onDelete}>
+          <TiDelete className="icon"/>
+        </button>)}
       <div className="image-container">
         <img src={imageSource} alt="menu image"/>
       </div>
@@ -37,6 +41,32 @@ const CardStyled = styled.div`
   padding-bottom: 10px;
   box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
   border-radius: ${theme.borderRadius.extraRound};
+
+  .delete-button {
+    all: unset;
+    position: absolute;
+    left: 80%;
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    color: ${theme.colors.primary};
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+
+    &:hover {
+      color: ${theme.colors.red};
+    }
+
+    &:active {
+      color: ${theme.colors.primary}
+    }
+
+    .icon {
+      width: 100%;
+      height: 100%;
+    }
+  }
 
   .image-container {
     margin: auto;
@@ -84,7 +114,12 @@ const CardStyled = styled.div`
 
     .add-button {
       padding: 10px 18px;
-      /* margin: 10px 0; */
+      margin: 10px 0;
+      font-size: ${theme.fonts.size.P0}
+      /* ;
+      cursor: pointer;
+      padding: 12px; */
     }
+
   }
 `;
