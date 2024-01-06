@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { theme } from "../../../../theme";
-import Menu from "./Menu";
+import Menu from "./Menu/Menu";
 // import Cart from "./Cart";
 import Admin from "./Admin/Admin";
 import { useContext } from "react";
