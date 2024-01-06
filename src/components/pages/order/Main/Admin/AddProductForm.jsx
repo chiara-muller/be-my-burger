@@ -8,6 +8,7 @@ import TextInput from "../../../../resusable-ui/TextInput"
 import {FaHamburger} from "react-icons/fa"
 import {BsFillCameraFill} from "react-icons/bs"
 import {MdOutlineEuro} from "react-icons/md"
+import Button from "../../../../resusable-ui/Button";
 
 const EMPTY_ITEM = {
   id: "",
@@ -88,7 +89,7 @@ export default function AddProductForm() {
         />
       </div>
       <div className="button-container">
-        <button onClick={handleClick}>Ajouter un nouveau produit au menu</button>
+        <Button onClick={handleClick} label={"Ajouter un nouveau produit au menu"} version="success"/>
         {notification}
       </div>
     </AddProductFormStyled>

@@ -6,7 +6,7 @@ import { BsPersonCircle } from "react-icons/bs";
 import { IoIosArrowForward } from "react-icons/io";
 
 import TextInput from '../../resusable-ui/TextInput';
-import PrimaryButton from '../../resusable-ui/PrimaryButton';
+import Button from '../../resusable-ui/Button';
 import { theme } from '../../../theme';
 
 export default function LoginForm() {
@@ -41,7 +41,7 @@ export default function LoginForm() {
             required
             version="normal"
           />
-          <PrimaryButton
+          <Button
             label="Accédez à mon espace"
             Icon={<IoIosArrowForward/>}
           />

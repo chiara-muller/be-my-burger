@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import PrimaryButton from "./PrimaryButton";
+import Button from "./Button";
 import { theme } from "../../theme";
 
 // eslint-disable-next-line react/prop-types
@@ -16,7 +16,7 @@ export default function Card({title, id, imageSource, leftDescription, deleteBut
         <div className="pay-container">
           <div>{leftDescription}</div>
           <div>
-            <PrimaryButton label={"Ajouter"} className={"add-button"}/>
+            <Button label={"Ajouter"} className={"add-button"}/>
           </div>
         </div>
       </div>
@@ -53,7 +53,6 @@ const CardStyled = styled.div`
     }
   }
 
-
   .bottom-card {
     display: flex;
     flex-direction: column;
@@ -85,8 +84,7 @@ const CardStyled = styled.div`
 
     .add-button {
       padding: 10px 18px;
-      margin: 10px 0;
-      font-weight: ${theme.fonts.weights.light};
+      /* margin: 10px 0; */
     }
   }
 `;
