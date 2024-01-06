@@ -3,7 +3,6 @@ import Button from "./Button";
 import { theme } from "../../theme";
 import { TiDelete } from "react-icons/ti"
 
-// eslint-disable-next-line react/prop-types
 export default function Card({title, id, imageSource, leftDescription, hasDeleteButton, onDelete}) {
 
   return (
