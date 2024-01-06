@@ -3,13 +3,12 @@ import styled from "styled-components";
 import OrderContext from "../../../../../context/OrderContext";
 import 'react-toastify/dist/ReactToastify.css';
 import TextInput from "../../../../resusable-ui/TextInput"
-import {FaHamburger} from "react-icons/fa"
-import {BsFillCameraFill} from "react-icons/bs"
-import {MdOutlineEuro} from "react-icons/md"
 import Button from "../../../../resusable-ui/Button";
 import NotificationMessage from "./NotificationMessage";
 import ImagePreview from "./ImagePreview";
+import { getInputTextsConfig } from "./inputTextsConfig";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const EMPTY_ITEM = {
   id: "",
   imageSource: "",
@@ -50,39 +49,15 @@ export default function AddProductForm() {
     }, "2000");
   }
 
+  const inputTexts = getInputTextsConfig(newItem)
 
   return (
     <AddProductFormStyled action="submit" onSubmit={handleSubmit}>
       <ImagePreview imageSource={newItem.imageSource} title={newItem.title}/>
       <div className="input-fields">
-        <TextInput
-          name="title"
-          type="text"
-          placeholder="Nom du produit (ex: Super Burger)"
-          Icon={<FaHamburger/>}
-          onChange={handleChange}
-          value={newItem.title}
-          version="minimalist"
-        />
-        <TextInput
-          name="imageSource"
-          type="url"
-          placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
-          Icon={<BsFillCameraFill/>}
-          onChange={handleChange}
-          value={newItem.imageSource}
-          version="minimalist"
-        />
-        <TextInput
-          name="price"
-          type="number"
-          step="0.01"
-          placeholder="Prix"
-          Icon={<MdOutlineEuro/>}
-          onChange={handleChange}
-          value={newItem.price}
-          version="minimalist"
-        />
+        {inputTexts.map((input) => (
+          <TextInput {...input} key={input.id} onChange={handleChange} version="minimalist" />
+        ))}
       </div>
       <div className="button-container">
         <Button className="submit-button" label={"Ajouter un nouveau produit au menu"} version="success"/>
