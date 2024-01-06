@@ -6,8 +6,8 @@ import { theme } from "../../theme";
 export default function PrimaryButton({label, Icon, className}) {
   return (
     <PrimaryButtonStyled className={className}>
-      <button > {label} </button>
-      {Icon && Icon}
+      <button> {label} </button>
+      <div className="icon">{Icon && Icon}</div>
     </PrimaryButtonStyled>
   )
 }
@@ -25,11 +25,20 @@ const PrimaryButtonStyled = styled.div`
     background: ${theme.colors.primary_burger};
 
     button {
+      cursor: pointer;
       border: none;
       background: none;
       color: ${theme.colors.white};
       font-size: ${theme.fonts.size.SM};
       font-weight: ${theme.fonts.weights.semiBold};
+    }
+
+    .icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: ${theme.colors.white};
+      margin-left: 10px;
     }
 
     /*
@@ -62,7 +71,7 @@ const PrimaryButtonStyled = styled.div`
         cursor: pointer;
       }
 
-      .button-icon {
+      .icon {
         color: ${theme.colors.primary_burger};
       }
     }
