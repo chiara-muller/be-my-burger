@@ -2,13 +2,13 @@ import { useContext, useState } from "react";
 import styled from "styled-components";
 import OrderContext from "../../../../../context/OrderContext";
 import 'react-toastify/dist/ReactToastify.css';
-import { theme } from "../../../../../theme"
 import TextInput from "../../../../resusable-ui/TextInput"
 import {FaHamburger} from "react-icons/fa"
 import {BsFillCameraFill} from "react-icons/bs"
 import {MdOutlineEuro} from "react-icons/md"
 import Button from "../../../../resusable-ui/Button";
 import NotificationMessage from "./NotificationMessage";
+import ImagePreview from "./ImagePreview";
 
 export const EMPTY_ITEM = {
   id: "",
@@ -53,9 +53,7 @@ export default function AddProductForm() {
 
   return (
     <AddProductFormStyled action="submit" onSubmit={handleSubmit}>
-      <div className="image-container">
-        {newItem.imageSource ? <img src={newItem.imageSource} alt="image preview"/> : <div className="empty-image">Aucune image</div>}
-      </div>
+      <ImagePreview imageSource={newItem.imageSource} title={newItem.title}/>
       <div className="input-fields">
         <TextInput
           name="title"
@@ -107,25 +105,6 @@ const AddProductFormStyled = styled.form`
   .image-container {
     border-radius: 5px;
     grid-area: 1 / 1 / 4 / 2;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-
-    .empty-image {
-      height: 100%;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 1px solid ${theme.colors.greyLight};
-      line-height: 1.5;
-      color: ${theme.colors.greySemiDark};
-      border-radius: ${theme.borderRadius.round};
-    }
   }
 
   .input-fields {
