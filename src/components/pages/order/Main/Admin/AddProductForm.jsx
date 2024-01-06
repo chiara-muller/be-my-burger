@@ -2,8 +2,9 @@ import { useContext, useState } from "react";
 import styled from "styled-components";
 import OrderContext from "../../../../../context/OrderContext";
 import 'react-toastify/dist/ReactToastify.css';
+import { FiCheck } from "react-icons/fi";
 
-const EMPTY_PRODUCT = {
+const EMPTY_ITEM = {
   id: "",
   imageSource: "",
   title: "",
@@ -16,7 +17,7 @@ const EMPTY_PRODUCT = {
 export default function AddProductForm() {
 
   const { handleAdd } = useContext(OrderContext)
-  const [ newItem, setNewItem ] = useState(EMPTY_PRODUCT)
+  const [ newItem, setNewItem ] = useState(EMPTY_ITEM)
   const [ notification, setNotification ] = useState("")
 
   const handleSubmit = (event) => {
@@ -27,6 +28,7 @@ export default function AddProductForm() {
       id: Date.now()
     }
     handleAdd(newItemToAdd)
+    setNewItem(EMPTY_ITEM)
   }
 
   const handleChange = (event) => {
@@ -36,7 +38,9 @@ export default function AddProductForm() {
   }
 
   const handleClick = () => {
-    setNotification(<span className="success">ajouté avec succès</span>)
+    setNotification(
+      <span className="success"><span><FiCheck /></span>ajouté avec succès</span>
+      )
     setTimeout(() => {
       setNotification(notification)
     }, "2000");

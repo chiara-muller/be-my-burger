@@ -20,6 +20,12 @@ export default function OrderPage() {
     setMenu(menuCopy)
   }
 
+  const handleDelete = (itemId) => {
+    const menuCopy = [...menu]
+    const newMenu = menuCopy.filter((item) => item.id !== itemId)
+    setMenu(newMenu)
+  }
+
   const orderContextValue = {
     menu,
     setMenu,
@@ -29,7 +35,8 @@ export default function OrderPage() {
     setIsCollapsed,
     currentTabActive,
     setCurrentTabActive,
-    handleAdd
+    handleAdd,
+    handleDelete
   }
 
   return (

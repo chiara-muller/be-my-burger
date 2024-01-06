@@ -10,13 +10,7 @@ const DEFAULT_IMAGE = "/images/coming-soon.png"
 
 export default function Menu() {
 
-  const { menu, setMenu, isModeAdmin } = useContext(OrderContext)
-
-  const handleDelete = (id) => {
-    const menuCopy = [...menu]
-    const newMenu = menuCopy.filter((item) => item.id !== id)
-    setMenu(newMenu)
-  }
+  const { menu, handleDelete, isModeAdmin } = useContext(OrderContext)
 
   return (
     <MenuStyled>
@@ -78,6 +72,10 @@ const MenuStyled = styled.div`
 
     &:hover {
       color: red;
+    }
+
+    &:active {
+      color: ${theme.colors.primary}
     }
 
     .icon {

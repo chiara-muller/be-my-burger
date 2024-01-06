@@ -16,4 +16,6 @@ export default createContext({
   setCurrentTabActive: () => {},
 
   handleAdd: () => {},
+
+  handleDelete: () => {},
 })
