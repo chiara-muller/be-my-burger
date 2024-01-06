@@ -46,7 +46,7 @@ export default function AddProductForm() {
   return (
     <AddProductFormStyled action="submit" onSubmit={handleSubmit}>
       <div className="image-container">
-        <img src="aucune image" alt="image preview" />
+        {newItem.imageSource ? <img src={newItem.imageSource} alt="image preview"/> : <div>Aucune image</div>}
       </div>
       <div className="input-fields">
         <input name="title" type="text" placeholder="Nom du produit (ex: Super Burger)" onChange={handleChange} value={newItem.title}/>
@@ -67,11 +67,20 @@ const AddProductFormStyled = styled.form`
   border: 2px solid green;
   grid-template-columns: 1fr 3fr;
   grid-template-rows: repeat(4, 1fr);
+  height: 100%;
+  width: 70%;
 
   .image-container {
     border: 1px solid black;
     border-radius: 5px;
     grid-area: 1 / 1 / 4 / 2;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
   }
 
   .input-fields {
@@ -89,6 +98,7 @@ const AddProductFormStyled = styled.form`
 
     button {
       width: 50%;
+      height: 100%;
     }
   }
 
