@@ -14,8 +14,6 @@ export default function AdminPanel() {
 
   return (
     <AdminPanelStyled>
-      {/* {currentTabActive === "add" && <AddProductForm />}
-      {currentTabActive === "edit" && "Modifier un produit"} */}
       {tabActive.Content}
     </AdminPanelStyled>
   )
@@ -29,5 +27,6 @@ const AdminPanelStyled = styled.div`
   background: ${theme.colors.white};
   border-top: 1px solid ${theme.colors.greyLight};
   box-shadow: ${theme.shadows.subtle};
+  padding: 30px 5%;
 
 `;

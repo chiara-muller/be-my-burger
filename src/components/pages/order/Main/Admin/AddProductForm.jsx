@@ -53,7 +53,7 @@ export default function AddProductForm() {
       <div className="image-container">
         <img src="aucune image" alt="image preview" />
       </div>
-      <div className="form-container">
+      <div className="input-fields">
         <input type="text" placeholder="Nom du produit (ex: Super Burger)" onChange={handleTitleChange} value={inputTitle}/>
         <input type="url" placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)" onChange={handleImageChange} value={inputImage}/>
         <input type="number" step="0.01" placeholder="Prix" onChange={handlePriceChange} value={inputPrice}/>
@@ -71,19 +71,26 @@ const AddProductFormStyled = styled.form`
   display: grid;
   border: 2px solid green;
   grid-template-columns: 1fr 3fr;
-  grid-template-rows: repeat(4, 4fr);
+  grid-template-rows: repeat(4, 1fr);
 
   .image-container {
     border: 1px solid black;
     border-radius: 5px;
+    grid-area: 1 / 1 / 4 / 2;
   }
 
-  .form-container {
+  .input-fields {
     border: 2px solid blue;
+    grid-area: 1 / 2 / -2 / 3;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
   }
 
   .button-container {
     border: 2px solid brown;
+    grid-area: 4 / 2 / -1 / -1;
   }
 
   .success {

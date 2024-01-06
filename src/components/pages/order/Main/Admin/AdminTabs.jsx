@@ -49,12 +49,12 @@ export default function AdminTabs() {
 const AdminTabsStyled = styled.div`
 
   display: flex;
-  padding: 0 20px;
 
   .is-active {
     background: ${theme.colors.background_dark};
     color: ${theme.colors.white};
-    border-color: ${theme.colors.white};
+    border-color: ${theme.colors.background_dark};
+    border-bottom: 2px;
   }
 
   button {
