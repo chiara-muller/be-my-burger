@@ -6,9 +6,6 @@ export default createContext({
   menu: [],
   setMenu: () => {},
 
-  isEmptyMenu: false,
-  setIsEmptyMenu: () => {},
-
   isModeAdmin: false,
   setIsModeAdmin: () => {},
 
@@ -17,4 +14,6 @@ export default createContext({
 
   currentTabActive: false,
   setCurrentTabActive: () => {},
+
+  handleAdd: () => {},
 })

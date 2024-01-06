@@ -4,7 +4,7 @@ import OrderContext from "../../../../../context/OrderContext";
 import 'react-toastify/dist/ReactToastify.css';
 
 const EMPTY_PRODUCT = {
-  id: Date.now(),
+  id: "",
   imageSource: "",
   title: "",
   price: "",
@@ -15,15 +15,9 @@ const EMPTY_PRODUCT = {
 
 export default function AddProductForm() {
 
-  const { menu, setMenu } = useContext(OrderContext)
+  const { handleAdd } = useContext(OrderContext)
   const [ newItem, setNewItem ] = useState(EMPTY_PRODUCT)
   const [ notification, setNotification ] = useState("")
-
-  const addNewItem = (itemToAdd) => {
-    const menuCopy = [...menu]
-    menuCopy.push(itemToAdd)
-    setMenu(menuCopy)
-  }
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -32,13 +26,13 @@ export default function AddProductForm() {
       ...newItem,
       id: Date.now()
     }
-    addNewItem(newItemToAdd)
+    handleAdd(newItemToAdd)
   }
 
   const handleChange = (event) => {
     const newValue = event.target.value
     const name = event.target.name
-    setNewItem({...newItem, [name]: newValue}) // copy du state + ajout des nouvelles valeurs en dynamique
+    setNewItem({...newItem, [name]: newValue}) // copy du state + ajout des nouvelles valeurs en dynamique property name
   }
 
   const handleClick = () => {
