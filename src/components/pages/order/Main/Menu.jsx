@@ -6,6 +6,8 @@ import { formatPrice } from "../../../../utils/maths"
 import OrderContext from "../../../../context/OrderContext";
 import { TiDelete } from "react-icons/ti"
 
+const DEFAULT_IMAGE = "/images/coming-soon.png"
+
 export default function Menu() {
 
   const { menu, setMenu, isModeAdmin } = useContext(OrderContext)
@@ -39,7 +41,7 @@ export default function Menu() {
             <Card
               key={id}
               title={title}
-              imageSource={imageSource}
+              imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
               leftDescription={ "0,00€" && formatPrice(price)}
               deleteButton={isModeAdmin && <button className="delete-button" onClick={() => handleDelete(id)}><TiDelete className="icon"/></button> }
             />
