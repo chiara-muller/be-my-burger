@@ -43,12 +43,16 @@ const TextInputStyled = styled.div`
     }
   }
 
-  ${(props)  => {
+  /* ${(props)  => {
     if (props.version === "normal") return extraStyleNormal
     if (props.version === "minimalist") return extraStyleMinimalist
-  }}
+  }} */
+
+  ${(props) => extraStyle[props.version]}
+  // or we can desctructure props like so => ${({version}) => extraStyle[version]}
 
 `
+
 
 const extraStyleNormal = css`
   background-color: ${theme.colors.white};
@@ -78,3 +82,7 @@ const extraStyleMinimalist = css`
     }
   }
 `
+const extraStyle = {
+  normal: extraStyleNormal,
+  minimalist: extraStyleMinimalist
+}
