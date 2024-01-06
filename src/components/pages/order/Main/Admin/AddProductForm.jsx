@@ -3,41 +3,42 @@ import styled from "styled-components";
 import OrderContext from "../../../../../context/OrderContext";
 import 'react-toastify/dist/ReactToastify.css';
 
+const EMPTY_PRODUCT = {
+  id: Date.now(),
+  imageSource: "",
+  title: "",
+  price: "",
+  quantity: 0,
+  isAvailable: true,
+  isAdvertised: false,
+}
 
 export default function AddProductForm() {
 
   const { menu, setMenu } = useContext(OrderContext)
-  const [ inputTitle, setInputTitle ] = useState("")
-  const [ inputImage, setInputImage ] = useState("")
-  const [ inputPrice, setInputPrice ] = useState("")
+  const [ newItem, setNewItem ] = useState(EMPTY_PRODUCT)
   const [ notification, setNotification ] = useState("")
 
-  const handleTitleChange = (event) => {
-    setInputTitle(event.target.value)
-  }
-
-  const handleImageChange = (event) => {
-    setInputImage(event.target.value)
-  }
-
-  const handlePriceChange = (event) => {
-    setInputPrice(event.target.value)
-  }
-
-  const addNewItem = (event) => {
-    event.preventDefault()
-    const newItem = {
-      "id": Date.now(),
-      "imageSource": inputImage,
-      "title": inputTitle,
-      "price": inputPrice,
-      "quantity": 0,
-      "isAvailable": true,
-      "isAdvertised": false,
-    }
+  const addNewItem = (itemToAdd) => {
     const menuCopy = [...menu]
-    menuCopy.push(newItem)
+    menuCopy.push(itemToAdd)
     setMenu(menuCopy)
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    // copy du state + ajout de id
+    const newItemToAdd = {
+      ...newItem,
+      id: Date.now()
+    }
+    addNewItem(newItemToAdd)
+  }
+
+  const handleChange = (event) => {
+    const newValue = event.target.value
+    const name = event.target.name
+    setNewItem({...newItem, [name]: newValue}) // copy du state + ajout des nouvelles valeurs en dynamique
   }
 
   const handleClick = () => {
@@ -49,14 +50,14 @@ export default function AddProductForm() {
   }
 
   return (
-    <AddProductFormStyled action="submit" onSubmit={addNewItem}>
+    <AddProductFormStyled action="submit" onSubmit={handleSubmit}>
       <div className="image-container">
         <img src="aucune image" alt="image preview" />
       </div>
       <div className="input-fields">
-        <input type="text" placeholder="Nom du produit (ex: Super Burger)" onChange={handleTitleChange} value={inputTitle}/>
-        <input type="url" placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)" onChange={handleImageChange} value={inputImage}/>
-        <input type="number" step="0.01" placeholder="Prix" onChange={handlePriceChange} value={inputPrice}/>
+        <input name="title" type="text" placeholder="Nom du produit (ex: Super Burger)" onChange={handleChange} value={newItem.title}/>
+        <input name="imageSource" type="url" placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)" onChange={handleChange} value={newItem.imageSource}/>
+        <input name="price" type="number" step="0.01" placeholder="Prix" onChange={handleChange} value={newItem.price}/>
       </div>
       <div className="button-container">
         <button onClick={handleClick}>Ajouter un nouveau produit au menu</button>
@@ -91,6 +92,10 @@ const AddProductFormStyled = styled.form`
   .button-container {
     border: 2px solid brown;
     grid-area: 4 / 2 / -1 / -1;
+
+    button {
+      width: 50%;
+    }
   }
 
   .success {
