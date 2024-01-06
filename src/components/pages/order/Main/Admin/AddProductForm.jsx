@@ -2,13 +2,13 @@ import { useContext, useState } from "react";
 import styled from "styled-components";
 import OrderContext from "../../../../../context/OrderContext";
 import 'react-toastify/dist/ReactToastify.css';
-import { FiCheck } from "react-icons/fi";
 import { theme } from "../../../../../theme"
 import TextInput from "../../../../resusable-ui/TextInput"
 import {FaHamburger} from "react-icons/fa"
 import {BsFillCameraFill} from "react-icons/bs"
 import {MdOutlineEuro} from "react-icons/md"
 import Button from "../../../../resusable-ui/Button";
+import NotificationMessage from "./NotificationMessage";
 
 const EMPTY_ITEM = {
   id: "",
@@ -24,7 +24,7 @@ export default function AddProductForm() {
 
   const { handleAdd } = useContext(OrderContext)
   const [ newItem, setNewItem ] = useState(EMPTY_ITEM)
-  const [ notification, setNotification ] = useState("")
+  const [ notification, setNotification ] = useState(false)
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -35,6 +35,7 @@ export default function AddProductForm() {
     }
     handleAdd(newItemToAdd)
     setNewItem(EMPTY_ITEM)
+    displayNotification()
   }
 
   const handleChange = (event) => {
@@ -43,15 +44,13 @@ export default function AddProductForm() {
     setNewItem({...newItem, [name]: newValue}) // copy du state + ajout des nouvelles valeurs en dynamique property name
   }
 
-  const handleClick = () => {
-    setNotification(
-      <span className="success"><span><FiCheck /></span>ajouté avec succès</span>
-      )
+  const displayNotification = () => {
+    setNotification(true)
     setTimeout(() => {
-      setNotification(notification)
+      setNotification(false)
     }, "2000");
-
   }
+
 
   return (
     <AddProductFormStyled action="submit" onSubmit={handleSubmit}>
@@ -89,8 +88,8 @@ export default function AddProductForm() {
         />
       </div>
       <div className="button-container">
-        <Button onClick={handleClick} label={"Ajouter un nouveau produit au menu"} version="success"/>
-        {notification}
+        <Button className="submit-button" label={"Ajouter un nouveau produit au menu"} version="success"/>
+        {notification && <NotificationMessage />}
       </div>
     </AddProductFormStyled>
   )
@@ -139,18 +138,15 @@ const AddProductFormStyled = styled.form`
   }
 
   .button-container {
-    grid-area: 4 / 2 / -1 / -1;
+    grid-area: 4 / -2 / -1 / -1;
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 3px;
 
-    button {
-      width: 50%;
+    .submit-button {
+      /* width: 50%; */
       height: 100%;
     }
   }
-
-  .success {
-    color: green;
-  }
 `;
-
-
-// FaHamburger, BsFillCameraFill, MdOutlineEuro, FiCheck,
