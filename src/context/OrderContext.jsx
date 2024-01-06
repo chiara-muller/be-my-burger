@@ -4,7 +4,6 @@ import { createContext } from "react";
 export default createContext({
 
   menu: [],
-  setMenu: () => {},
 
   isModeAdmin: false,
   setIsModeAdmin: () => {},
@@ -16,8 +15,9 @@ export default createContext({
   setCurrentTabActive: () => {},
 
   handleAdd: () => {},
-
   handleDelete: () => {},
-
   resetMenu: () => {},
+
+  newItem : [],
+  setNewItem : () => {}
 })

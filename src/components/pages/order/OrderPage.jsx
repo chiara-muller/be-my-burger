@@ -6,6 +6,7 @@ import { theme } from "../../../theme";
 import { useState } from "react";
 import OrderContext from "../../../context/OrderContext"
 import { fakeMenu } from "../../../fakeData/fakeMenu";
+import { EMPTY_ITEM } from "./Main/Admin/AddProductForm";
 
 export default function OrderPage() {
 
@@ -13,6 +14,7 @@ export default function OrderPage() {
   const [ isModeAdmin, setIsModeAdmin ]           = useState(false)
   const [ isCollapsed, setIsCollapsed ]           = useState(true)
   const [ currentTabActive, setCurrentTabActive ] = useState("add")
+  const [ newItem, setNewItem ]                   = useState(EMPTY_ITEM)
 
   const handleAdd = (itemToAdd) => {
     const menuCopy = [...menu]
@@ -41,7 +43,9 @@ export default function OrderPage() {
     setCurrentTabActive,
     handleAdd,
     handleDelete,
-    resetMenu
+    resetMenu,
+    newItem,
+    setNewItem
   }
 
   return (

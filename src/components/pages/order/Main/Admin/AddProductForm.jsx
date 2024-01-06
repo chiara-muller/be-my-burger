@@ -10,7 +10,7 @@ import {MdOutlineEuro} from "react-icons/md"
 import Button from "../../../../resusable-ui/Button";
 import NotificationMessage from "./NotificationMessage";
 
-const EMPTY_ITEM = {
+export const EMPTY_ITEM = {
   id: "",
   imageSource: "",
   title: "",
@@ -22,8 +22,7 @@ const EMPTY_ITEM = {
 
 export default function AddProductForm() {
 
-  const { handleAdd } = useContext(OrderContext)
-  const [ newItem, setNewItem ] = useState(EMPTY_ITEM)
+  const { handleAdd, newItem, setNewItem } = useContext(OrderContext)
   const [ notification, setNotification ] = useState(false)
 
   const handleSubmit = (event) => {
