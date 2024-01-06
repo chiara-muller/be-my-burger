@@ -10,7 +10,7 @@ const DEFAULT_IMAGE = "/images/coming-soon.png"
 
 export default function Menu() {
 
-  const { menu, handleDelete, isModeAdmin } = useContext(OrderContext)
+  const { menu, handleDelete, isModeAdmin, resetMenu } = useContext(OrderContext)
 
   return (
     <MenuStyled>
@@ -20,7 +20,7 @@ export default function Menu() {
           <div>
             <p>Le menu est vide?</p>
             <p>cliquez ci-dessous pour le réinitialiser</p>
-            <button>Générer de nouveaux produits</button>
+            <button onClick={resetMenu}>Générer de nouveaux produits</button>
           </div>
           :
           <div>

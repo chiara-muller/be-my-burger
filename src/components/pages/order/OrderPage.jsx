@@ -26,6 +26,10 @@ export default function OrderPage() {
     setMenu(newMenu)
   }
 
+  const resetMenu = () => {
+    setMenu(fakeMenu.LARGE)
+  }
+
   const orderContextValue = {
     menu,
     setMenu,
@@ -36,7 +40,8 @@ export default function OrderPage() {
     currentTabActive,
     setCurrentTabActive,
     handleAdd,
-    handleDelete
+    handleDelete,
+    resetMenu
   }
 
   return (
