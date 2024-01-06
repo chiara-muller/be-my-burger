@@ -102,7 +102,7 @@ const AddProductFormStyled = styled.form`
   grid-template-rows: repeat(4, 1fr);
   grid-column-gap: 20px;
   grid-row-gap: 8px;
-  height: 100%;
+  height: 70%;
   width: 70%;
 
   .image-container {
