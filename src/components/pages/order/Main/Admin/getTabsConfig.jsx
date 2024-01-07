@@ -1,7 +1,8 @@
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
+import AddProductForm from "./AddProductForm";
 
-export const getTabsConfig = () => [
+export const getTabsConfig = [
   // {
   //   label:"",
   //   Icon:isCollapsed? <FiChevronUp /> : <FiChevronDown />,
@@ -11,11 +12,16 @@ export const getTabsConfig = () => [
   {
     index: "add",
     label: "Ajouter un produit",
-    Icon: <AiOutlinePlus />
+    Icon: <AiOutlinePlus />,
+    Content: <AddProductForm />
   },
   {
     index: "edit",
     label: "Modifier un produit",
-    Icon: <MdModeEditOutline />
+    Icon: <MdModeEditOutline />,
+    Content: <AddProductForm />
   }
 ]
+
+export const getTabActive = (tabs, currentTabActive) =>
+  tabs.find((tab) => tab.index === currentTabActive)

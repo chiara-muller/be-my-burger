@@ -6,13 +6,12 @@ import { BsPersonCircle } from "react-icons/bs";
 import { IoIosArrowForward } from "react-icons/io";
 
 import TextInput from '../../resusable-ui/TextInput';
-import PrimaryButton from '../../resusable-ui/PrimaryButton';
+import Button from '../../resusable-ui/Button';
 import { theme } from '../../../theme';
 
 export default function LoginForm() {
 
   const [inputValue, setInputValue ] = useState("")
-
   const navigate = useNavigate()
 
   const handleSubmit = (event) => {
@@ -37,12 +36,14 @@ export default function LoginForm() {
             value={inputValue}
             onChange={handleChange}
             placeholder="Entrez votre prénom"
-            Icon={<BsPersonCircle className="input-icon"/>}
+            Icon={<BsPersonCircle />}
+            className={"input-login"}
             required
+            version="normal"
           />
-          <PrimaryButton
+          <Button
             label="Accédez à mon espace"
-            Icon={<IoIosArrowForward className="button-icon"/>}
+            Icon={<IoIosArrowForward/>}
           />
         </div>
       </LoginFormStyled>
@@ -74,8 +75,7 @@ const LoginFormStyled = styled.form `
     font-size: ${theme.fonts.size.P4};
   }
 
-  .button-icon {
-    color: ${theme.colors.white};
-    font-size: ${theme.fonts.size.SM};
-    }
+  .input-login {
+    margin: 18px 0;
+  }
 `

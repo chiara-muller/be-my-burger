@@ -5,20 +5,47 @@ import Main from "./Main/Main";
 import { theme } from "../../../theme";
 import { useState } from "react";
 import OrderContext from "../../../context/OrderContext"
+import { fakeMenu } from "../../../fakeData/fakeMenu";
+import { EMPTY_ITEM } from "./Main/Admin/AddProductForm";
 
 export default function OrderPage() {
 
-  const [ isModeAdmin, setIsModeAdmin ] = useState(false)
-  const [ isCollapsed, setIsCollapsed ] = useState(false)
+  const [ menu, setMenu ]                         = useState(fakeMenu.SMALL)
+  const [ isModeAdmin, setIsModeAdmin ]           = useState(false)
+  const [ isCollapsed, setIsCollapsed ]           = useState(false)
   const [ currentTabActive, setCurrentTabActive ] = useState("add")
+  const [ newItem, setNewItem ]                   = useState(EMPTY_ITEM)
+
+  const handleAdd = (itemToAdd) => {
+    const menuCopy = [...menu]
+    menuCopy.push(itemToAdd)
+    setMenu(menuCopy)
+  }
+
+  const handleDelete = (itemId) => {
+    const menuCopy = [...menu]
+    const newMenu = menuCopy.filter((item) => item.id !== itemId)
+    setMenu(newMenu)
+  }
+
+  const resetMenu = () => {
+    setMenu(fakeMenu.LARGE)
+  }
 
   const orderContextValue = {
+    menu,
+    setMenu,
     isModeAdmin,
     setIsModeAdmin,
     isCollapsed,
     setIsCollapsed,
     currentTabActive,
-    setCurrentTabActive
+    setCurrentTabActive,
+    handleAdd,
+    handleDelete,
+    resetMenu,
+    newItem,
+    setNewItem
   }
 
   return (

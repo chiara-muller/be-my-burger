@@ -2,6 +2,9 @@
 import { createContext } from "react";
 
 export default createContext({
+
+  menu: [],
+
   isModeAdmin: false,
   setIsModeAdmin: () => {},
 
@@ -10,4 +13,11 @@ export default createContext({
 
   currentTabActive: false,
   setCurrentTabActive: () => {},
+
+  handleAdd: () => {},
+  handleDelete: () => {},
+  resetMenu: () => {},
+
+  newItem : [],
+  setNewItem : () => {}
 })

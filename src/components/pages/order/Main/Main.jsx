@@ -1,16 +1,15 @@
 import styled from "styled-components";
 import { theme } from "../../../../theme";
-import Menu from "./Menu";
-// import Panel from "./Admin/Admin";
+import Menu from "./Menu/Menu";
 // import Cart from "./Cart";
 import Admin from "./Admin/Admin";
 import { useContext } from "react";
 import OrderContext from "../../../../context/OrderContext";
-// import AdminPanel from "./AdminPanel";
+
 
 export default function Main() {
 
-  const { isModeAdmin, setIsModeAdmin } = useContext(OrderContext)
+  const { isModeAdmin } = useContext(OrderContext)
 
   return (
     <MainStyled>

@@ -1,11 +1,19 @@
-import styled from "styled-components"
+/* eslint-disable react/prop-types */
+import styled, { css } from "styled-components"
 import { theme } from "../../theme";
 
-// eslint-disable-next-line react/prop-types
-export default function TextInput({ value, onChange, Icon, ...otherProps }) {
+
+export default function TextInput({
+    value,
+    onChange,
+    Icon,
+    className,
+    version = "normal",
+    ...otherProps
+  }) {
   return (
-    <TextInputStyled>
-      {Icon && Icon}
+    <TextInputStyled className={className} version={version}>
+      <div className="icon">{Icon && Icon}</div>
       <input value={value} onChange={onChange} type="text" {...otherProps}/>
     </TextInputStyled>
   )
@@ -15,31 +23,66 @@ export default function TextInput({ value, onChange, Icon, ...otherProps }) {
 const TextInputStyled = styled.div`
 
   box-sizing: border-box;
-  background-color: ${theme.colors.white};
   border-radius: ${theme.borderRadius.round};
-  border: 1px solid ${theme.colors.white};
   display: flex;
   align-items: center;
-  padding: 18px 24px;
-  margin: 18px 0;
 
-    .input-icon {
-      font-size: 15px;
-      margin-right: 8px;
-      color: ${theme.colors.greySemiDark}
+  .icon {
+    display: flex;
+    font-size: ${theme.fonts.size.SM};
+    margin: 0 13px 0 8px;
+  }
+
+  input {
+    border: none;
+    font-size: ${theme.fonts.size.SM};
+    width: 100%;
+
+    &::placeholder {
+      color: ${theme.colors.greyMedium};
     }
+  }
 
-    input {
-      border: none;
-      font-size: 15px;
-      color: ${theme.colors.dark};
-      width: 100%;
+  /* ${(props)  => {
+    if (props.version === "normal") return extraStyleNormal
+    if (props.version === "minimalist") return extraStyleMinimalist
+  }} */
 
-      &::placeholder {
-        background: ${theme.colors.white};
-        color: ${theme.colors.greyMedium};
-      }
+  ${(props) => extraStyle[props.version]}
+  // or we can desctructure props like so => ${({version}) => extraStyle[version]}
+
+`
+
+
+const extraStyleNormal = css`
+  background-color: ${theme.colors.white};
+  padding: 18px 28px;
+  color: ${theme.colors.greySemiDark};
+
+  input {
+    color: ${theme.colors.dark};
+
+    &::placeholder {
+      background: ${theme.colors.white};
     }
+  }
+  `
 
+const extraStyleMinimalist = css`
+  background-color: ${theme.colors.background_white};
+  padding: 8px 16px;
+  color: ${theme.colors.greyBlue};
 
-`;
+  input {
+    background: ${theme.colors.background_white};
+    color: ${theme.colors.dark};
+
+    &:focus {
+      outline: 0;
+    }
+  }
+`
+const extraStyle = {
+  normal: extraStyleNormal,
+  minimalist: extraStyleMinimalist
+}

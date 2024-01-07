@@ -2,27 +2,31 @@ import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
-import { getTabsConfig } from "./getTabsConfig";
+import { getTabActive, getTabsConfig } from "./getTabsConfig";
+// import AddProductForm from "./AddProductForm";
 
 export default function AdminPanel() {
 
   const { currentTabActive } = useContext(OrderContext)
 
-  getTabsConfig(currentTabActive)
+  const tabs = getTabsConfig
+  const tabActive = getTabActive(tabs, currentTabActive)
 
   return (
     <AdminPanelStyled>
-      {currentTabActive === "add" && "Ajouter un produit"}
-      {currentTabActive === "edit" && "Modifier un produit"}
+      {tabActive.Content}
     </AdminPanelStyled>
   )
 }
 
 const AdminPanelStyled = styled.div`
 
-  height: 250px;
+  height: 230px;
+  border-bottom-left-radius: ${theme.borderRadius.extraRound};
+  border-bottom-right-radius: ${theme.borderRadius.extraRound};
   background: ${theme.colors.white};
   border-top: 1px solid ${theme.colors.greyLight};
   box-shadow: ${theme.shadows.subtle};
+  padding: 30px 5%;
 
 `;

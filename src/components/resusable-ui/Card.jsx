@@ -1,18 +1,25 @@
 import styled from "styled-components";
-import PrimaryButton from "./PrimaryButton";
+import Button from "./Button";
 import { theme } from "../../theme";
+import { TiDelete } from "react-icons/ti"
 
-// eslint-disable-next-line react/prop-types
-export default function Card({title, id, imageSource, leftDescription}) {
+export default function Card({title, id, imageSource, leftDescription, hasDeleteButton, onDelete}) {
+
   return (
     <CardStyled key={id}>
-      <img src={imageSource} alt="menu image"/>
+      {hasDeleteButton && (
+        <button className="delete-button" onClick={onDelete}>
+          <TiDelete className="icon"/>
+        </button>)}
+      <div className="image-container">
+        <img src={imageSource} alt="menu image"/>
+      </div>
       <div className="bottom-card">
         <h4 key={id} className="item-name">{title}</h4>
         <div className="pay-container">
           <div>{leftDescription}</div>
           <div>
-            <PrimaryButton label={"Ajouter"} className={"add-button"}/>
+            <Button label={"Ajouter"} className={"add-button"}/>
           </div>
         </div>
       </div>
@@ -23,6 +30,7 @@ export default function Card({title, id, imageSource, leftDescription}) {
 
 const CardStyled = styled.div`
 
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -33,12 +41,45 @@ const CardStyled = styled.div`
   box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
   border-radius: ${theme.borderRadius.extraRound};
 
-  img {
+  .delete-button {
+    all: unset;
+    position: absolute;
+    left: 80%;
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    color: ${theme.colors.primary};
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+
+    &:hover {
+      color: ${theme.colors.red};
+    }
+
+    &:active {
+      color: ${theme.colors.primary}
+    }
+
+    .icon {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .image-container {
     margin: auto;
     margin-top: 30px;
     margin-bottom: 20px;
     max-width: 200px;
-    max-height: 140px;;
+    max-height: 140px;
+    min-height: 140px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
   }
 
   .bottom-card {
@@ -73,8 +114,11 @@ const CardStyled = styled.div`
     .add-button {
       padding: 10px 18px;
       margin: 10px 0;
-      font-weight: ${theme.fonts.weights.light};
+      font-size: ${theme.fonts.size.P0}
+      /* ;
+      cursor: pointer;
+      padding: 12px; */
     }
-  }
 
+  }
 `;
