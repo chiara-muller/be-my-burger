@@ -32,6 +32,12 @@ export default function OrderPage() {
     setMenu(fakeMenu.LARGE)
   }
 
+  // const handleClick = (title, imageSource, price) => {
+  //   console.log(title, imageSource, price)
+  //   setCurrentTabActive("edit")
+  //   setIsCollapsed(false)
+  // }
+
   const orderContextValue = {
     menu,
     setMenu,
