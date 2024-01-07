@@ -8,7 +8,6 @@ import NotificationMessage from "./NotificationMessage";
 import ImagePreview from "./ImagePreview";
 import { getInputTextsConfig } from "./inputTextsConfig";
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const EMPTY_ITEM = {
   id: "",
   imageSource: "",
@@ -74,7 +73,7 @@ const AddProductFormStyled = styled.form`
   grid-template-rows: repeat(4, 1fr);
   grid-column-gap: 20px;
   grid-row-gap: 8px;
-  height: 70%;
+  height: 100%;
   width: 70%;
 
   .image-container {

@@ -5,7 +5,7 @@ import { theme } from "../../../../../theme";
 import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
 import { getTabsConfig } from "./getTabsConfig";
-// eslint-disable-next-line react/prop-types
+
 export default function AdminTabs() {
 
   const {
