@@ -3,10 +3,10 @@ import Button from "./Button";
 import { theme } from "../../theme";
 import { TiDelete } from "react-icons/ti"
 
-export default function Card({title, id, imageSource, leftDescription, hasDeleteButton, onDelete}) {
+export default function Card({title, id, imageSource, leftDescription, hasDeleteButton, onDelete, selectItem}) {
 
   return (
-    <CardStyled key={id}>
+    <CardStyled key={id} onClick={selectItem}>
       {hasDeleteButton && (
         <button className="delete-button" onClick={onDelete}>
           <TiDelete className="icon"/>

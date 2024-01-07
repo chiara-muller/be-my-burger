@@ -18,6 +18,10 @@ export default function Menu() {
     return <EmptyMenuAdmin onReset={resetMenu} />
   }
 
+  const handleClick = () => {
+    console.log("works??")
+  }
+
   return (
     <MenuStyled>
       {menu.map(({id, title, imageSource, price}) => {
@@ -29,6 +33,8 @@ export default function Menu() {
             leftDescription={ "0,00€" && formatPrice(price)}
             hasDeleteButton={isModeAdmin}
             onDelete={() => handleDelete(id)}
+            isItemEditable={isModeAdmin}
+            selectItem={isModeAdmin ? handleClick : undefined}
           />
         )
       })}
