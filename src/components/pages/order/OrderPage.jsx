@@ -18,28 +18,30 @@ export default function OrderPage() {
   const [ itemSelected, setItemSelected ]         = useState(EMPTY_ITEM)
 
   const handleAdd = (itemToAdd) => {
-    const menuCopy = [...menu]
+    const menuCopy = JSON.parse(JSON.stringify(menu)) // deep clone of the menu
+    // or const menuCopy = [...menu]
     menuCopy.push(itemToAdd)
     setMenu(menuCopy)
   }
 
   const handleDelete = (itemId) => {
-    const menuCopy = [...menu]
+    const menuCopy = JSON.parse(JSON.stringify(menu))
     const newMenu = menuCopy.filter((item) => item.id !== itemId)
     setMenu(newMenu)
+  }
+
+  const handleEdit = (itemBeingEdited) => {
+    const menuCopy = JSON.parse(JSON.stringify(menu))
+    const idOfItemToEdit = menuCopy.findIndex((item) => item.id === itemBeingEdited.id)
+    console.log(idOfItemToEdit)
+    menuCopy[idOfItemToEdit] = itemBeingEdited
+     // permet de voir les modification en temps réel grace a itemBeingUpdated dans la fonction handleChange
+     setMenu(menuCopy)
   }
 
   const resetMenu = () => {
     setMenu(fakeMenu.LARGE)
   }
-
-  // const handleCardClick = (idItemClicked) => {
-  //   setCurrentTabActive("edit")
-  //   setIsCollapsed(false)
-  //   const itemClicked = menu.find((item) => idItemClicked === item.id)
-  //   console.log(itemClicked)
-  //   setItemSelected(itemClicked)
-  // }
 
   const orderContextValue = {
     menu,
@@ -52,7 +54,7 @@ export default function OrderPage() {
     setCurrentTabActive,
     handleAdd,
     handleDelete,
-    // handleCardClick,
+    handleEdit,
     resetMenu,
     newItem,
     setNewItem,

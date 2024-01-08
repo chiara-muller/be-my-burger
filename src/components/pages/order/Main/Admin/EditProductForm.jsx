@@ -1,23 +1,23 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
 import OrderContext from "../../../../../context/OrderContext";
 // import HintMessage from "./HintMessage"
 import TextInput from "../../../../resusable-ui/TextInput"
 import ImagePreview from "./ImagePreview";
 import { getInputTextsConfig } from "./inputTextsConfig";
-import { EMPTY_ITEM } from "../../../../../enums/product";
 
 export default function EditProductForm() {
 
-  const { itemSelected } = useContext(OrderContext)
-  const [ itemBeingEdited, setItemBeingEdited ] = useState(EMPTY_ITEM)
+  const { itemSelected, setItemSelected, handleEdit } = useContext(OrderContext)
 
   const handleChange = (event) => {
     const {name, value} = event.target
-    setItemBeingEdited({
-      ...itemBeingEdited,
-      [name]: value,
-    })
+    const itemBeingUpdated = {
+      ...itemSelected, // valeur que le produit avait avant
+      [name]: value, // permet de modifier l'ancienne valeur
+    }
+    setItemSelected(itemBeingUpdated) // update le formulaire
+    handleEdit(itemBeingUpdated) // update le menu
   }
 
   const inputTexts = getInputTextsConfig(itemSelected)
@@ -25,7 +25,7 @@ export default function EditProductForm() {
   return (
     <AddProductFormStyled >
       {/* <HintMessage /> */}
-      <ImagePreview />
+      <ImagePreview imageSource={itemSelected.imageSource} title={itemSelected.title}/>
       <div className="input-fields">
       {inputTexts.map((input) => (
           <TextInput {...input} key={input.id} onChange={handleChange} version="minimalist"/>

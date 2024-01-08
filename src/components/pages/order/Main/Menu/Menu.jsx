@@ -18,11 +18,10 @@ export default function Menu() {
     return <EmptyMenuAdmin onReset={resetMenu} />
   }
 
-  const handleCardClick = (idItemClicked) => {
+  const handleClick = (idItemClicked) => {
     setCurrentTabActive("edit")
     setIsCollapsed(false)
-    const itemClicked = menu.find((item) => idItemClicked === item.id)
-    console.log(itemClicked)
+    const itemClicked = menu.find((item) => item.id === idItemClicked )
     setItemSelected(itemClicked)
   }
 
@@ -38,7 +37,7 @@ export default function Menu() {
             hasDeleteButton={isModeAdmin}
             onDelete={() => handleDelete(id)}
             isItemEditable={isModeAdmin}
-            onClick={isModeAdmin ? () => handleCardClick(id) : undefined}
+            onClick={isModeAdmin ? () => handleClick(id) : undefined}
           />
         )
       })}
