@@ -1,11 +1,8 @@
 import styled from "styled-components";
 import Logo from "../../../resusable-ui/Logo";
+import { refreshPage } from "../../../../utils/window";
 
 export default function NavbarLeftSide() {
-
-  function refreshPage(){
-    window.location.reload();
-  }
 
   return (
     <NavbarLeftSideStyled onClick={refreshPage}>

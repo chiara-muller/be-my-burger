@@ -7,6 +7,7 @@ import { useState } from "react";
 import OrderContext from "../../../context/OrderContext"
 import { fakeMenu } from "../../../fakeData/fakeMenu";
 import { EMPTY_ITEM } from "../../../enums/product";
+import { deepClone } from "../../../utils/array";
 
 export default function OrderPage() {
 
@@ -18,7 +19,7 @@ export default function OrderPage() {
   const [ itemSelected, setItemSelected ]         = useState(EMPTY_ITEM)
 
   const handleAdd = (itemToAdd) => {
-    const menuCopy = JSON.parse(JSON.stringify(menu)) // deep clone of the menu
+    const menuCopy = deepClone(menu) // deep clone of the menu
     // or const menuCopy = [...menu]
     menuCopy.push(itemToAdd)
     setMenu(menuCopy)
