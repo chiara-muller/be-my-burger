@@ -3,7 +3,7 @@ import styled from "styled-components";
 import NavBar from "./NavBar/NavBar";
 import Main from "./Main/Main";
 import { theme } from "../../../theme";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import OrderContext from "../../../context/OrderContext"
 import { fakeMenu } from "../../../fakeData/fakeMenu";
 import { EMPTY_ITEM } from "./Main/Admin/AddProductForm";
@@ -32,11 +32,16 @@ export default function OrderPage() {
     setMenu(fakeMenu.LARGE)
   }
 
-  // const handleClick = (title, imageSource, price) => {
-  //   console.log(title, imageSource, price)
-  //   setCurrentTabActive("edit")
-  //   setIsCollapsed(false)
-  // }
+  const inputRef = useRef([]);
+
+  const handleCardClick = () => {
+    setCurrentTabActive("edit")
+    setIsCollapsed(false)
+    console.log(inputRef.current)
+    // if (inputComposantRef.current && inputComposantRef.current[0]) {
+    //   inputComposantRef.current[0].focus();
+    // }
+  }
 
   const orderContextValue = {
     menu,
@@ -49,6 +54,7 @@ export default function OrderPage() {
     setCurrentTabActive,
     handleAdd,
     handleDelete,
+    handleCardClick,
     resetMenu,
     newItem,
     setNewItem

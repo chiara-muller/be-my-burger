@@ -3,7 +3,6 @@ import { theme } from "../../../../../theme";
 import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
 import { getTabActive, getTabsConfig } from "./getTabsConfig";
-// import AddProductForm from "./AddProductForm";
 
 export default function AdminPanel() {
 

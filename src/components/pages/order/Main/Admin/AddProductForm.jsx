@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 import OrderContext from "../../../../../context/OrderContext";
 import 'react-toastify/dist/ReactToastify.css';
@@ -48,30 +48,20 @@ export default function AddProductForm() {
     }, "2000");
   }
 
-  const inputComposantRef = useRef([]);
-
-  const handleTestClick = () => {
-    console.log(inputComposantRef.current[0])
-    if (inputComposantRef.current && inputComposantRef.current[0]) {
-      inputComposantRef.current[0].focus();
-    }
-  }
-
   const inputTexts = getInputTextsConfig(newItem)
 
   return (
     <AddProductFormStyled action="submit" onSubmit={handleSubmit}>
       <ImagePreview imageSource={newItem.imageSource} title={newItem.title}/>
       <div className="input-fields">
-        {inputTexts.map((input, id) => (
-          <TextInput {...input} key={input.id} onChange={handleChange} version="minimalist" ref={(el) => (inputComposantRef.current[id] = el)}/>
+        {inputTexts.map((input) => (
+          <TextInput {...input} key={input.id} onChange={handleChange} version="minimalist"/>
         ))}
       </div>
       <div className="button-container">
         <Button className="submit-button" label={"Ajouter un nouveau produit au menu"} version="success"/>
         {notification && <NotificationMessage />}
       </div>
-      <button onClick={() => handleTestClick()}>test</button>
     </AddProductFormStyled>
   )
 }

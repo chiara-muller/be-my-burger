@@ -31,3 +31,33 @@ export const getInputTextsConfig = (newItem) => [
     version: "minimalist",
   },
 ]
+
+export const editInputTextsConfig = (item) => [
+  {
+    id: "0",
+    name: "title",
+    value: item.title,
+    type: "text",
+    placeholder: "Nom du produit (ex: Super Burger)",
+    Icon: <FaHamburger />,
+    version: "minimalist",
+  },
+  {
+    id: "1",
+    name: "imageSource",
+    value: item.imageSource,
+    type: "text",
+    placeholder: "Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)",
+    Icon: <BsFillCameraFill />,
+    version: "minimalist",
+  },
+  {
+    id: "2",
+    name: "price",
+    value: item.price ? item.price : "",
+    type: "text",
+    placeholder: "Prix",
+    Icon: <MdOutlineEuro />,
+    version: "minimalist",
+  },
+]
