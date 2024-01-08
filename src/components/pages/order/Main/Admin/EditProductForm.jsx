@@ -1,62 +1,36 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 import OrderContext from "../../../../../context/OrderContext";
 // import HintMessage from "./HintMessage"
 import TextInput from "../../../../resusable-ui/TextInput"
-import Button from "../../../../resusable-ui/Button";
-// import NotificationMessage from "./NotificationMessage";
 import ImagePreview from "./ImagePreview";
-// import { editInputTextsConfig, getInputTextsConfig } from "./inputTextsConfig";
-
-export const EMPTY_ITEM = {
-  id: "",
-  imageSource: "",
-  title: "",
-  price: "",
-  quantity: 0,
-  isAvailable: true,
-  isAdvertised: false,
-}
+import { getInputTextsConfig } from "./inputTextsConfig";
+import { EMPTY_ITEM } from "../../../../../enums/product";
 
 export default function EditProductForm() {
 
-  const { newItem, setNewItem, itemSelected } = useContext(OrderContext)
-  // const [ notification, setNotification ] = useState(false)
-
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    // copy du state + ajout de id
-  }
+  const { itemSelected } = useContext(OrderContext)
+  const [ itemBeingEdited, setItemBeingEdited ] = useState(EMPTY_ITEM)
 
   const handleChange = (event) => {
-    const newValue = event.target.value
-    const name = event.target.name
-    setNewItem({...newItem, [name]: newValue}) // copy du state + ajout des nouvelles valeurs en dynamique property name
+    const {name, value} = event.target
+    setItemBeingEdited({
+      ...itemBeingEdited,
+      [name]: value,
+    })
   }
 
-  // const editInputTexts = editInputTextsConfig(item)
-  // const title = (inputTexts[0])
-
-  // const refItem = (item) => {
-  //   menu[item]
-  // }
-
-  // const inputRef = useRef(itemSelected.title)
+  const inputTexts = getInputTextsConfig(itemSelected)
 
   return (
-    <AddProductFormStyled action="submit" onSubmit={handleSubmit}>
+    <AddProductFormStyled >
       {/* <HintMessage /> */}
-      {itemSelected.title}
-      <ImagePreview imageSource={newItem.imageSource} title={newItem.title}/>
+      <ImagePreview />
       <div className="input-fields">
-      <TextInput onChange={handleChange} version="minimalist" />
-      <TextInput onChange={handleChange} version="minimalist" />
-      <TextInput onChange={handleChange} version="minimalist" />
+      {inputTexts.map((input) => (
+          <TextInput {...input} key={input.id} onChange={handleChange} version="minimalist"/>
+        ))}
       </div>
-      <div className="button-container">
-        <Button className="submit-button" label={"Ajouter un nouveau produit au menu"} version="success"/>
-      </div>
-      {/* <button onClick={() => handleCardClick()}>test</button> */}
     </AddProductFormStyled>
   )
 }

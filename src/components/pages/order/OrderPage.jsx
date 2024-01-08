@@ -6,7 +6,7 @@ import { theme } from "../../../theme";
 import { useState } from "react";
 import OrderContext from "../../../context/OrderContext"
 import { fakeMenu } from "../../../fakeData/fakeMenu";
-import { EMPTY_ITEM } from "./Main/Admin/EditProductForm";
+import { EMPTY_ITEM } from "../../../enums/product";
 
 export default function OrderPage() {
 
