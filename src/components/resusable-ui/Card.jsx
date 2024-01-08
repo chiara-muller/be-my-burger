@@ -34,8 +34,9 @@ const CardStyled = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 200px;
-  height: 300px;
+  box-sizing: border-box;
+  width: 240px;
+  height: 330px;
   padding: 20px;
   padding-bottom: 10px;
   box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);

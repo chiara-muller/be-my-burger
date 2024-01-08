@@ -26,13 +26,13 @@ export default function OrderPage() {
   }
 
   const handleDelete = (itemId) => {
-    const menuCopy = JSON.parse(JSON.stringify(menu))
+    const menuCopy = deepClone(menu)
     const newMenu = menuCopy.filter((item) => item.id !== itemId)
     setMenu(newMenu)
   }
 
   const handleEdit = (itemBeingEdited) => {
-    const menuCopy = JSON.parse(JSON.stringify(menu))
+    const menuCopy = deepClone(menu)
     const idOfItemToEdit = menuCopy.findIndex((item) => item.id === itemBeingEdited.id)
     console.log(idOfItemToEdit)
     menuCopy[idOfItemToEdit] = itemBeingEdited
