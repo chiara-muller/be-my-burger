@@ -7,16 +7,8 @@ import Button from "../../../../resusable-ui/Button";
 import NotificationMessage from "./NotificationMessage";
 import ImagePreview from "./ImagePreview";
 import { getInputTextsConfig } from "./inputTextsConfig";
+import { EMPTY_ITEM } from "../../../../../enums/product";
 
-export const EMPTY_ITEM = {
-  id: "",
-  imageSource: "",
-  title: "",
-  price: "",
-  quantity: 0,
-  isAvailable: true,
-  isAdvertised: false,
-}
 
 export default function AddProductForm() {
 

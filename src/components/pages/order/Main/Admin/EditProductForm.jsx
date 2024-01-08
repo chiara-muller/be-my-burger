@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import OrderContext from "../../../../../context/OrderContext";
-import 'react-toastify/dist/ReactToastify.css';
+// import HintMessage from "./HintMessage"
 import TextInput from "../../../../resusable-ui/TextInput"
 import Button from "../../../../resusable-ui/Button";
 // import NotificationMessage from "./NotificationMessage";
@@ -20,7 +20,7 @@ export const EMPTY_ITEM = {
 
 export default function EditProductForm() {
 
-  const { newItem, setNewItem } = useContext(OrderContext)
+  const { newItem, setNewItem, itemSelected } = useContext(OrderContext)
   // const [ notification, setNotification ] = useState(false)
 
   const handleSubmit = (event) => {
@@ -41,8 +41,12 @@ export default function EditProductForm() {
   //   menu[item]
   // }
 
+  // const inputRef = useRef(itemSelected.title)
+
   return (
     <AddProductFormStyled action="submit" onSubmit={handleSubmit}>
+      {/* <HintMessage /> */}
+      {itemSelected.title}
       <ImagePreview imageSource={newItem.imageSource} title={newItem.title}/>
       <div className="input-fields">
       <TextInput onChange={handleChange} version="minimalist" />

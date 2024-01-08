@@ -11,11 +11,19 @@ const DEFAULT_IMAGE = "/images/coming-soon.png"
 
 export default function Menu() {
 
-  const { menu, handleDelete, isModeAdmin, resetMenu, handleCardClick} = useContext(OrderContext)
+  const { menu, handleDelete, isModeAdmin, resetMenu, setCurrentTabActive, setIsCollapsed, setItemSelected} = useContext(OrderContext)
 
   if (menu.length === 0) {
     if (!isModeAdmin) return <EmptyMenuClient />
     return <EmptyMenuAdmin onReset={resetMenu} />
+  }
+
+  const handleCardClick = (idItemClicked) => {
+    setCurrentTabActive("edit")
+    setIsCollapsed(false)
+    const itemClicked = menu.find((item) => idItemClicked === item.id)
+    console.log(itemClicked)
+    setItemSelected(itemClicked)
   }
 
   return (
@@ -30,7 +38,7 @@ export default function Menu() {
             hasDeleteButton={isModeAdmin}
             onDelete={() => handleDelete(id)}
             isItemEditable={isModeAdmin}
-            selectItem={isModeAdmin ? () => handleCardClick() : undefined}
+            onClick={isModeAdmin ? () => handleCardClick(id) : undefined}
           />
         )
       })}

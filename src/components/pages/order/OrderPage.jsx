@@ -3,10 +3,10 @@ import styled from "styled-components";
 import NavBar from "./NavBar/NavBar";
 import Main from "./Main/Main";
 import { theme } from "../../../theme";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import OrderContext from "../../../context/OrderContext"
 import { fakeMenu } from "../../../fakeData/fakeMenu";
-import { EMPTY_ITEM } from "./Main/Admin/AddProductForm";
+import { EMPTY_ITEM } from "./Main/Admin/EditProductForm";
 
 export default function OrderPage() {
 
@@ -15,6 +15,7 @@ export default function OrderPage() {
   const [ isCollapsed, setIsCollapsed ]           = useState(false)
   const [ currentTabActive, setCurrentTabActive ] = useState("add")
   const [ newItem, setNewItem ]                   = useState(EMPTY_ITEM)
+  const [ itemSelected, setItemSelected ]         = useState(EMPTY_ITEM)
 
   const handleAdd = (itemToAdd) => {
     const menuCopy = [...menu]
@@ -32,16 +33,13 @@ export default function OrderPage() {
     setMenu(fakeMenu.LARGE)
   }
 
-  const inputRef = useRef([]);
-
-  const handleCardClick = () => {
-    setCurrentTabActive("edit")
-    setIsCollapsed(false)
-    console.log(inputRef.current)
-    // if (inputComposantRef.current && inputComposantRef.current[0]) {
-    //   inputComposantRef.current[0].focus();
-    // }
-  }
+  // const handleCardClick = (idItemClicked) => {
+  //   setCurrentTabActive("edit")
+  //   setIsCollapsed(false)
+  //   const itemClicked = menu.find((item) => idItemClicked === item.id)
+  //   console.log(itemClicked)
+  //   setItemSelected(itemClicked)
+  // }
 
   const orderContextValue = {
     menu,
@@ -54,10 +52,12 @@ export default function OrderPage() {
     setCurrentTabActive,
     handleAdd,
     handleDelete,
-    handleCardClick,
+    // handleCardClick,
     resetMenu,
     newItem,
-    setNewItem
+    setNewItem,
+    itemSelected,
+    setItemSelected
   }
 
   return (
