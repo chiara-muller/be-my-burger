@@ -5,6 +5,7 @@ import OrderContext from "../../../../../../context/OrderContext";
 import TextInput from "../../../../../resusable-ui/TextInput"
 import ImagePreview from "./ImagePreview";
 import { getInputTextsConfig } from "./inputTextsConfig";
+import { theme } from "../../../../../../theme";
 
 export default function EditProductForm() {
 
@@ -24,12 +25,17 @@ export default function EditProductForm() {
 
   return (
     <AddProductFormStyled >
-      {/* <HintMessage /> */}
       <ImagePreview imageSource={itemSelected.imageSource} title={itemSelected.title}/>
       <div className="input-fields">
       {inputTexts.map((input) => (
           <TextInput {...input} key={input.id} onChange={handleChange} version="minimalist" ref={input.name === "title" ? titleEditRef : null}/>
         ))}
+      </div>
+      <div className="button-container">
+        <span className="sentence">
+          Cliquer sur un produit du menu pour le modifier{" "}
+          <span className="live-update">en temps réel</span>
+        </span>
       </div>
     </AddProductFormStyled>
   )
@@ -65,9 +71,15 @@ const AddProductFormStyled = styled.form`
     position: relative;
     top: 3px;
 
-    .submit-button {
-      /* width: 50%; */
-      height: 100%;
+    .sentence {
+      color: ${theme.colors.primary};
+      font-size: ${theme.fonts.size.SM};
+
+      .live-update {
+        text-decoration: underline;
+      }
     }
   }
+
+
 `;
