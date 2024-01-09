@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { theme } from "../../../../../theme"
+import { theme } from "../../../../../../theme"
 
 // eslint-disable-next-line react/prop-types
 export default function ImagePreview({ imageSource, title }) {

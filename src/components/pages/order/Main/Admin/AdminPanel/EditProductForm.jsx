@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import OrderContext from "../../../../../context/OrderContext";
+import OrderContext from "../../../../../../context/OrderContext";
 // import HintMessage from "./HintMessage"
-import TextInput from "../../../../resusable-ui/TextInput"
+import TextInput from "../../../../../resusable-ui/TextInput"
 import ImagePreview from "./ImagePreview";
 import { getInputTextsConfig } from "./inputTextsConfig";
 

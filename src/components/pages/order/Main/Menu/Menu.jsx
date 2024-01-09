@@ -6,23 +6,24 @@ import { formatPrice } from "../../../../../utils/maths"
 import OrderContext from "../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
+import { checkIfItemIsClicked } from "./helper";
 
 const DEFAULT_IMAGE = "/images/coming-soon.png"
 
 export default function Menu() {
 
-  const { menu, handleDelete, isModeAdmin, resetMenu, setCurrentTabActive, setIsCollapsed, setItemSelected} = useContext(OrderContext)
-
-  if (menu.length === 0) {
-    if (!isModeAdmin) return <EmptyMenuClient />
-    return <EmptyMenuAdmin onReset={resetMenu} />
-  }
+  const { menu, handleDelete, isModeAdmin, resetMenu, itemSelected, setCurrentTabActive, setIsCollapsed, setItemSelected} = useContext(OrderContext)
 
   const handleClick = (idItemClicked) => {
     setCurrentTabActive("edit")
     setIsCollapsed(false)
     const itemClicked = menu.find((item) => item.id === idItemClicked )
     setItemSelected(itemClicked)
+  }
+
+  if (menu.length === 0) {
+    if (!isModeAdmin) return <EmptyMenuClient />
+    return <EmptyMenuAdmin onReset={resetMenu} />
   }
 
   return (
@@ -36,9 +37,9 @@ export default function Menu() {
             leftDescription={ "0,00€" && formatPrice(price)}
             hasDeleteButton={isModeAdmin}
             onDelete={() => handleDelete(id)}
-            isItemEditable={isModeAdmin}
             onClick={isModeAdmin ? () => handleClick(id) : undefined}
             isHoverable={isModeAdmin}
+            isSelected={checkIfItemIsClicked(id, itemSelected.id)}
           />
         )
       })}
