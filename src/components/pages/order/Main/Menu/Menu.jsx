@@ -37,7 +37,7 @@ export default function Menu() {
             leftDescription={ "0,00€" && formatPrice(price)}
             hasDeleteButton={isModeAdmin}
             onDelete={() => handleDelete(id)}
-            onClick={isModeAdmin ? () => handleClick(id) : undefined}
+            onClick={() => handleClick(id)}
             isHoverable={isModeAdmin}
             isSelected={checkIfItemIsClicked(id, itemSelected.id)}
           />
