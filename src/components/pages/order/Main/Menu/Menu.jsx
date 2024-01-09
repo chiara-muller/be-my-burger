@@ -38,6 +38,7 @@ export default function Menu() {
             onDelete={() => handleDelete(id)}
             isItemEditable={isModeAdmin}
             onClick={isModeAdmin ? () => handleClick(id) : undefined}
+            isHoverable={isModeAdmin}
           />
         )
       })}
