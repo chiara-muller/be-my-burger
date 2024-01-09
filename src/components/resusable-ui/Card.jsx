@@ -30,7 +30,7 @@ export default function Card({
           <div className="pay-container">
             <div className="price">{leftDescription}</div>
             <div>
-              <Button label={"Ajouter"} className={"add-button"}/>
+              <Button label={"Ajouter"} className={"add-button"} onClick={(event) => event.stopPropagation()}/>
             </div>
           </div>
         </div>
