@@ -12,13 +12,16 @@ const DEFAULT_IMAGE = "/images/coming-soon.png"
 
 export default function Menu() {
 
-  const { menu, handleDelete, isModeAdmin, resetMenu, itemSelected, setCurrentTabActive, setIsCollapsed, setItemSelected} = useContext(OrderContext)
+  const { menu, handleDelete, isModeAdmin, resetMenu, itemSelected, titleEditRef, setCurrentTabActive, setIsCollapsed, setItemSelected} = useContext(OrderContext)
 
-  const handleClick = (idItemClicked) => {
+  // on rend la fonction asynchrone pour que le focus attende que les premiers setter soit exécutés avant de s'exécuter lui même
+  const handleClick = async (idItemClicked) => {
+    if (!isModeAdmin) return // si on n'est pas en mode admin, on n'execute pas handleClick
     setCurrentTabActive("edit")
     setIsCollapsed(false)
     const itemClicked = menu.find((item) => item.id === idItemClicked )
-    setItemSelected(itemClicked)
+    await setItemSelected(itemClicked)
+    titleEditRef.current.focus()
   }
 
   const handleCardDelete = (event, id) => {

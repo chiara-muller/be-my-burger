@@ -22,5 +22,7 @@ export default createContext({
   setNewItem : () => {},
 
   itemSelected : {},
-  setItemSelected : () => {}
+  setItemSelected : () => {},
+
+  titleEditRef : {},
 })

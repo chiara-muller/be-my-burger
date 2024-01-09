@@ -3,7 +3,7 @@ import styled from "styled-components";
 import NavBar from "./NavBar/NavBar";
 import Main from "./Main/Main";
 import { theme } from "../../../theme";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import OrderContext from "../../../context/OrderContext"
 import { fakeMenu } from "../../../fakeData/fakeMenu";
 import { EMPTY_ITEM } from "../../../enums/product";
@@ -17,6 +17,7 @@ export default function OrderPage() {
   const [ currentTabActive, setCurrentTabActive ] = useState("add")
   const [ newItem, setNewItem ]                   = useState(EMPTY_ITEM)
   const [ itemSelected, setItemSelected ]         = useState(EMPTY_ITEM)
+  const titleEditRef                              = useRef()
 
   const handleAdd = (itemToAdd) => {
     const menuCopy = deepClone(menu) // deep clone of the menu
@@ -60,7 +61,8 @@ export default function OrderPage() {
     newItem,
     setNewItem,
     itemSelected,
-    setItemSelected
+    setItemSelected,
+    titleEditRef
   }
 
   return (

@@ -8,7 +8,8 @@ import { getInputTextsConfig } from "./inputTextsConfig";
 
 export default function EditProductForm() {
 
-  const { itemSelected, setItemSelected, handleEdit } = useContext(OrderContext)
+  const { itemSelected, setItemSelected, handleEdit, titleEditRef } = useContext(OrderContext)
+  const inputTexts = getInputTextsConfig(itemSelected)
 
   const handleChange = (event) => {
     const {name, value} = event.target
@@ -20,7 +21,6 @@ export default function EditProductForm() {
     handleEdit(itemBeingUpdated) // update le menu
   }
 
-  const inputTexts = getInputTextsConfig(itemSelected)
 
   return (
     <AddProductFormStyled >
@@ -28,7 +28,7 @@ export default function EditProductForm() {
       <ImagePreview imageSource={itemSelected.imageSource} title={itemSelected.title}/>
       <div className="input-fields">
       {inputTexts.map((input) => (
-          <TextInput {...input} key={input.id} onChange={handleChange} version="minimalist"/>
+          <TextInput {...input} key={input.id} onChange={handleChange} version="minimalist" ref={input.name === "title" ? titleEditRef : null}/>
         ))}
       </div>
     </AddProductFormStyled>
