@@ -7,6 +7,7 @@ import OrderContext from "../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfItemIsClicked } from "./helper";
+import { EMPTY_ITEM } from "../../../../../enums/product";
 
 const DEFAULT_IMAGE = "/images/coming-soon.png"
 
@@ -27,6 +28,7 @@ export default function Menu() {
   const handleCardDelete = (event, id) => {
     event.stopPropagation()
     handleDelete(id)
+    id === itemSelected.id && setItemSelected(EMPTY_ITEM)
   }
 
   if (menu.length === 0) {

@@ -20,7 +20,7 @@ export default function AdminTabs() {
     setCurrentTabActive(tabActive)
   }
 
-  const tabs = getTabsConfig
+  const tabs = getTabsConfig()
 
   return (
     <AdminTabsStyled>
