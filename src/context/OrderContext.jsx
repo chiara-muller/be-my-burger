@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 import { createContext } from "react";
 
 export default createContext({
@@ -16,8 +15,14 @@ export default createContext({
 
   handleAdd: () => {},
   handleDelete: () => {},
+  handleEdit: () => {},
   resetMenu: () => {},
 
-  newItem : [],
-  setNewItem : () => {}
+  newItem : {},
+  setNewItem : () => {},
+
+  itemSelected : {},
+  setItemSelected : () => {},
+
+  titleEditRef : {},
 })

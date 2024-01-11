@@ -3,10 +3,11 @@ import styled from "styled-components";
 import NavBar from "./NavBar/NavBar";
 import Main from "./Main/Main";
 import { theme } from "../../../theme";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import OrderContext from "../../../context/OrderContext"
 import { fakeMenu } from "../../../fakeData/fakeMenu";
-import { EMPTY_ITEM } from "./Main/Admin/AddProductForm";
+import { EMPTY_ITEM } from "../../../enums/product";
+import { deepClone } from "../../../utils/array";
 
 export default function OrderPage() {
 
@@ -15,17 +16,29 @@ export default function OrderPage() {
   const [ isCollapsed, setIsCollapsed ]           = useState(false)
   const [ currentTabActive, setCurrentTabActive ] = useState("add")
   const [ newItem, setNewItem ]                   = useState(EMPTY_ITEM)
+  const [ itemSelected, setItemSelected ]         = useState(EMPTY_ITEM)
+  const titleEditRef                              = useRef()
 
   const handleAdd = (itemToAdd) => {
-    const menuCopy = [...menu]
+    const menuCopy = deepClone(menu) // deep clone of the menu
+    // or const menuCopy = [...menu]
     menuCopy.push(itemToAdd)
     setMenu(menuCopy)
   }
 
   const handleDelete = (itemId) => {
-    const menuCopy = [...menu]
+    const menuCopy = deepClone(menu)
     const newMenu = menuCopy.filter((item) => item.id !== itemId)
     setMenu(newMenu)
+  }
+
+  const handleEdit = (itemBeingEdited) => {
+    const menuCopy = deepClone(menu)
+    const idOfItemToEdit = menuCopy.findIndex((item) => item.id === itemBeingEdited.id)
+    console.log(idOfItemToEdit)
+    menuCopy[idOfItemToEdit] = itemBeingEdited
+     // permet de voir les modification en temps réel grace a itemBeingUpdated dans la fonction handleChange
+     setMenu(menuCopy)
   }
 
   const resetMenu = () => {
@@ -43,9 +56,13 @@ export default function OrderPage() {
     setCurrentTabActive,
     handleAdd,
     handleDelete,
+    handleEdit,
     resetMenu,
     newItem,
-    setNewItem
+    setNewItem,
+    itemSelected,
+    setItemSelected,
+    titleEditRef
   }
 
   return (

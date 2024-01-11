@@ -41,7 +41,7 @@ const EmptyMenuStyled = styled.div`
 
   button {
     margin-top: 30px;
-    font-size: ${theme.fonts.size.XS};
+    font-size: ${theme.fonts.size.P0};
     width: auto;
   }
 `

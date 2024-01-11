@@ -1,24 +1,24 @@
-/* eslint-disable react/prop-types */
+import React from "react"
 import styled, { css } from "styled-components"
 import { theme } from "../../theme";
 
-
-export default function TextInput({
-    value,
+// eslint-disable-next-line react/display-name
+const TextInput = React.forwardRef(({value,
     onChange,
     Icon,
     className,
     version = "normal",
     ...otherProps
-  }) {
-  return (
+  }, ref) => {
+      return (
     <TextInputStyled className={className} version={version}>
       <div className="icon">{Icon && Icon}</div>
-      <input value={value} onChange={onChange} type="text" {...otherProps}/>
+      <input value={value} onChange={onChange} type="text" {...otherProps} ref={ref}/>
     </TextInputStyled>
   )
-}
-// {Icon && Icon} ==> If there's an icon, it'll add the icon
+})
+
+export default TextInput;
 
 const TextInputStyled = styled.div`
 
