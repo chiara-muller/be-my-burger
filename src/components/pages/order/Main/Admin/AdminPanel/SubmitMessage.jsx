@@ -1,17 +1,17 @@
 import styled from "styled-components"
-import { theme } from "../../../../../../theme"
 import { FiCheck } from "react-icons/fi"
+import { theme } from "../../../../../../theme"
 
-export default function NotificationMessage() {
+export default function SubmitMessage() {
   return (
-    <NotificationMessageStyled>
+    <SubmitMessageStyled>
       <FiCheck className="icon" />
       <span className="message">Ajouté avec succès !</span>
-    </NotificationMessageStyled>
+    </SubmitMessageStyled>
   )
 }
 
-const NotificationMessageStyled = styled.div`
+const SubmitMessageStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
