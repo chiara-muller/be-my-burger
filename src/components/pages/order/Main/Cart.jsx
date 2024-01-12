@@ -34,6 +34,7 @@ const CartStyled = styled.div`
     font-family: ${theme.fonts.family.stylish};
     font-size: ${theme.fonts.size.P4};
   }
+
   .order-container {
     display: flex;
     justify-content: center;
@@ -43,6 +44,7 @@ const CartStyled = styled.div`
     font-family: ${theme.fonts.family.stylish};
     font-size: ${theme.fonts.size.P4};
   }
+
   .footer-container {
     display: flex;
     justify-content: center;
@@ -54,6 +56,7 @@ const CartStyled = styled.div`
     color: ${theme.colors.white};
     font-family: ${theme.fonts.family.stylish};
     font-size: ${theme.fonts.size.P2};
+    border-bottom-left-radius: ${theme.borderRadius.extraRound};
   }
 
 `;
