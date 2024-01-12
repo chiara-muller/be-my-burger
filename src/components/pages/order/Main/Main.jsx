@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import Menu from "./Menu/Menu";
-import Cart from "./Cart";
 import Admin from "./Admin/Admin";
 import { useContext } from "react";
 import OrderContext from "../../../../context/OrderContext";
+import Cart from "./Cart/Cart";
 
 
 export default function Main() {
@@ -14,7 +14,6 @@ export default function Main() {
   return (
     <MainStyled>
       <Cart />
-      {/* <div className="basket">Basket</div> */}
       <div className="menu-and-admin">
         <Menu />
         { isModeAdmin && <Admin /> }
@@ -32,15 +31,12 @@ const MainStyled = styled.div`
   border-radius: 0px 0px 15px 15px;
   display: grid;
   grid-template-columns: 25% 1fr;
-
-  /* .basket {
-    background: pink;
-  } */
+  overflow: hidden;
 
   .menu-and-admin {
     position: relative;
     overflow-y: hidden;
     display: grid; // we need this otherwise the menu is unscrollable
-    border-radius: 0px 0px 15px 15px;
+    border-radius: 0px 0px 15px 0px;
   }
 `;

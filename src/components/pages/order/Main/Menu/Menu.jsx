@@ -61,7 +61,8 @@ const MenuStyled = styled.div`
 
   background: ${theme.colors.background_white};
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
+  grid-template-columns: repeat(3, 1fr); // easier when we delete an item
   grid-row-gap: 60px;
   padding: 50px 50px 150px;
   justify-items: center;
