@@ -6,7 +6,7 @@ import { fakeBasket } from "../../../../../fakeData/fakeBasket";
 
 export default function Body() {
 
-  const [fakeCart, setFakeCart] = useState(fakeBasket.MEDIUM)
+  const [fakeCart, setFakeCart] = useState(fakeBasket.LARGE)
 
 
   return (
@@ -28,9 +28,16 @@ export default function Body() {
 }
 
 const BodyStyled = styled.div`
+
     flex: 1;
     background-color: ${theme.colors.background_white};
     box-shadow: 0px 0px 20px 0px #00000033 inset;
+    max-height: 460px;
+    padding: 20px 16px 20px 16px;
+    display: grid;
+    grid-template-columns: 1;
+    grid-row-gap: 20px;
+    overflow-y: scroll;
 
     .empty-message {
       display: flex;
