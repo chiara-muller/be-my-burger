@@ -4,7 +4,7 @@ import { deepClone } from "../utils/array"
 
 export function useMenu() {
 
-  const [ menu, setMenu ] = useState(fakeMenu.SMALL)
+  const [ menu, setMenu ] = useState(fakeMenu.LARGE)
 
   const handleAdd = (itemToAdd) => {
     const menuCopy = deepClone(menu) // deep clone of the menu
