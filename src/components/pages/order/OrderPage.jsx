@@ -5,45 +5,19 @@ import Main from "./Main/Main";
 import { theme } from "../../../theme";
 import { useRef, useState } from "react";
 import OrderContext from "../../../context/OrderContext"
-import { fakeMenu } from "../../../fakeData/fakeMenu";
 import { EMPTY_ITEM } from "../../../enums/product";
-import { deepClone } from "../../../utils/array";
+import { useMenu } from "../../../hooks/useMenu";
 
 export default function OrderPage() {
 
-  const [ menu, setMenu ]                         = useState(fakeMenu.SMALL)
   const [ isModeAdmin, setIsModeAdmin ]           = useState(false)
   const [ isCollapsed, setIsCollapsed ]           = useState(false)
   const [ currentTabActive, setCurrentTabActive ] = useState("add")
   const [ newItem, setNewItem ]                   = useState(EMPTY_ITEM)
   const [ itemSelected, setItemSelected ]         = useState(EMPTY_ITEM)
-  const titleEditRef                              = useRef()
 
-  const handleAdd = (itemToAdd) => {
-    const menuCopy = deepClone(menu) // deep clone of the menu
-    // or const menuCopy = [...menu]
-    menuCopy.push(itemToAdd)
-    setMenu(menuCopy)
-  }
-
-  const handleDelete = (itemId) => {
-    const menuCopy = deepClone(menu)
-    const newMenu = menuCopy.filter((item) => item.id !== itemId)
-    setMenu(newMenu)
-  }
-
-  const handleEdit = (itemBeingEdited) => {
-    const menuCopy = deepClone(menu)
-    const idOfItemToEdit = menuCopy.findIndex((item) => item.id === itemBeingEdited.id)
-    console.log(idOfItemToEdit)
-    menuCopy[idOfItemToEdit] = itemBeingEdited
-     // permet de voir les modification en temps réel grace a itemBeingUpdated dans la fonction handleChange
-     setMenu(menuCopy)
-  }
-
-  const resetMenu = () => {
-    setMenu(fakeMenu.LARGE)
-  }
+  const { menu, setMenu, handleAdd, handleDelete, handleEdit, resetMenu} = useMenu()
+  const titleEditRef = useRef()
 
   const orderContextValue = {
     menu,
