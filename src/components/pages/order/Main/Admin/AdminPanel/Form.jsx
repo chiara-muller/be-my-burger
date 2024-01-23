@@ -24,9 +24,9 @@ const Form = React.forwardRef(({ product, onSubmit, onChange, children }, ref) =
         ))}
       </div>
       <div className="form-footer">{children}</div>
-  </FormStyled>
+    </FormStyled>
   )
-    })
+})
 
 export default Form
 

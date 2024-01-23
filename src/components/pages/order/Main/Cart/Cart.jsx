@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import Body from "./Body";
 
 export default function Cart() {
+
   return (
     <CartStyled>
       <Total amountToPay={formatPrice(0)}/>

@@ -1,18 +1,17 @@
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import CartItem from "./CartItem";
-import { useState } from "react";
-import { fakeBasket } from "../../../../../fakeData/fakeBasket";
+import { useContext } from "react";
+import OrderContext from "../../../../../context/OrderContext";
 
 export default function Body() {
 
-  const [fakeCart, setFakeCart] = useState(fakeBasket.LARGE)
-
+  const { cart } = useContext(OrderContext)
 
   return (
     <BodyStyled>
       {/* <span className="empty-message">Votre commande est vide.</span> */}
-      {fakeCart.map(({id, title, imageSource, price, quantity}) => {
+      {cart.map(({id, title, imageSource, price, quantity}) => {
       return (
       <CartItem
         key={id}

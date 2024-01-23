@@ -25,6 +25,12 @@ export default function Menu() {
     titleEditRef.current.focus()
   }
 
+  const handleAddClick = (title, imageSource, price, quantity) => {
+    const itemToBuy = {title, imageSource, price, quantity}
+    console.log(itemToBuy)
+
+  }
+
   const handleCardDelete = (event, id) => {
     event.stopPropagation()
     handleDelete(id)
@@ -38,18 +44,21 @@ export default function Menu() {
 
   return (
     <MenuStyled>
-      {menu.map(({id, title, imageSource, price}) => {
+      {menu.map(({id, title, imageSource, price, quantity}) => {
         return (
           <Card
             key={id}
+            id={id}
             title={title}
             imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
             leftDescription={ "0,00€" && formatPrice(price)}
+            quantity={quantity}
             hasDeleteButton={isModeAdmin}
             onDelete={(event) => handleCardDelete(event, id)}
             onClick={() => handleClick(id)}
             isHoverable={isModeAdmin}
             isSelected={checkIfItemIsClicked(id, itemSelected.id)}
+            onAddButtonClick={() => handleAddClick(title, imageSource, formatPrice(price), quantity)}
           />
         )
       })}
@@ -58,6 +67,7 @@ export default function Menu() {
 }
 
 const MenuStyled = styled.div`
+
 
   background: ${theme.colors.background_white};
   display: grid;
