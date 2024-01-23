@@ -13,7 +13,7 @@ const DEFAULT_IMAGE = "/images/coming-soon.png"
 
 export default function Menu() {
 
-  const { menu, handleDelete, isModeAdmin, resetMenu, itemSelected, titleEditRef, setCurrentTabActive, setIsCollapsed, setItemSelected} = useContext(OrderContext)
+  const { menu, handleDelete, isModeAdmin, resetMenu, itemSelected, titleEditRef, setCurrentTabActive, setIsCollapsed, setItemSelected, handleAddItemToBuy} = useContext(OrderContext)
 
   // on rend la fonction asynchrone pour que le focus attende que les premiers setter soit exécutés avant de s'exécuter lui même
   const handleClick = async (idItemClicked) => {
@@ -28,7 +28,7 @@ export default function Menu() {
   const handleAddClick = (title, imageSource, price, quantity) => {
     const itemToBuy = {title, imageSource, price, quantity}
     console.log(itemToBuy)
-
+    handleAddItemToBuy(itemToBuy)
   }
 
   const handleCardDelete = (event, id) => {

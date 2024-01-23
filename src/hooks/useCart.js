@@ -4,7 +4,7 @@ import { deepClone } from "../utils/array";
 
 export function useCart() {
 
-  const [ cart, setCart ] = useState(fakeBasket.LARGE)
+  const [ cart, setCart ] = useState(fakeBasket.SMALL)
 
   const handleAddItemToBuy = (itemToBuy) => {
     const cartCopy = deepClone(cart) // deep clone of the menu
