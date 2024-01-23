@@ -20,13 +20,14 @@ export default function Menu() {
     if (!isModeAdmin) return // si on n'est pas en mode admin, on n'execute pas handleClick
     setCurrentTabActive("edit")
     setIsCollapsed(false)
-    const itemClicked = menu.find((item) => item.id === idItemClicked )
+    const itemClicked = menu.find((item) => item.id === idItemClicked)
     await setItemSelected(itemClicked)
     titleEditRef.current.focus()
   }
 
-  const handleAddClick = (title, imageSource, price, quantity) => {
-    const itemToBuy = {title, imageSource, price, quantity}
+  const handleAddClick = (idItemClicked) => {
+    const itemToBuy = menu.find((item) => item.id === idItemClicked)
+    setItemSelected(itemToBuy)
     console.log(itemToBuy)
     handleAddItemToBuy(itemToBuy)
   }
@@ -48,7 +49,6 @@ export default function Menu() {
         return (
           <Card
             key={id}
-            id={id}
             title={title}
             imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
             leftDescription={ "0,00€" && formatPrice(price)}
@@ -58,7 +58,7 @@ export default function Menu() {
             onClick={() => handleClick(id)}
             isHoverable={isModeAdmin}
             isSelected={checkIfItemIsClicked(id, itemSelected.id)}
-            onAddButtonClick={() => handleAddClick(title, imageSource, formatPrice(price), quantity)}
+            onAddButtonClick={() => handleAddClick(id)}
           />
         )
       })}

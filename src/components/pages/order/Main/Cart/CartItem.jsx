@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function CartItem({title, id, imageSource, price, quantity}) {
+export default function CartItem({title, id, imageSource, price, quantity, onDeleteItem}) {
 
   return (
    <CartItemStyled key={id}>
@@ -10,6 +10,7 @@ export default function CartItem({title, id, imageSource, price, quantity}) {
       <p>{price}</p>
     </div>
     <div className="quantity">{quantity}</div>
+    <button onClick={onDeleteItem}>delete</button>
    </CartItemStyled>
   )
 }

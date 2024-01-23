@@ -3,10 +3,18 @@ import { theme } from "../../../../../theme";
 import CartItem from "./CartItem";
 import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
+import { EMPTY_ITEM } from "../../../../../enums/product";
 
 export default function Body() {
 
-  const { cart } = useContext(OrderContext)
+  const { cart, handleDeleteItemToBuy, itemSelected, setItemSelected } = useContext(OrderContext)
+
+  const handleItemDelete = (event, id) => {
+    event.stopPropagation()
+    console.log(id)
+    handleDeleteItemToBuy(id)
+    id === itemSelected.id && setItemSelected(EMPTY_ITEM)
+  }
 
   return (
     <BodyStyled>
@@ -19,6 +27,7 @@ export default function Body() {
         imageSource={imageSource}
         price={price}
         quantity={quantity}
+        onDeleteItem={(event) => handleItemDelete(event, id)}
       />
       )
     })}
