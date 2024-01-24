@@ -1,60 +1,148 @@
 import styled from "styled-components";
+import { formatPrice } from "../../../../../utils/maths";
+import { MdDeleteForever } from "react-icons/md"
+import { theme } from "../../../../../theme";
 
-export default function CartItem({title, id, imageSource, price, quantity, onDeleteItem}) {
+export default function CartItem({id, title, imageSource, price, quantity, onDeleteItem, isModeAdmin, className}) {
 
   return (
-   <CartItemStyled key={id}>
-    <div className="img-container">
-      <img src={imageSource} alt="image" />
-    </div>
-    <div className="info">
-      <p>{title}</p>
-      <p>{price}</p>
-    </div>
-    <div className="quantity">{quantity}</div>
-    <button className="delete-button" onClick={onDeleteItem}>delete</button>
-   </CartItemStyled>
+    <CartItemStyled key={id} className={className} isModeAdmin={isModeAdmin}>
+      <div className="delete-button" onClick={onDeleteItem}>
+        <MdDeleteForever className="icon" />
+      </div>
+      <div className="image">
+        <img src={imageSource} alt={title} />
+      </div>
+      <div className="text-info">
+        <div className="left-info">
+          <div className="title">
+            <span>{title}</span>
+          </div>
+          <span className="price">{formatPrice(price)}</span>
+        </div>
+        <div className="quantity">
+          <span>x {quantity}</span>
+        </div>
+      </div>
+    </CartItemStyled>
   )
 }
 
 const CartItemStyled = styled.div`
 
-  max-height: 85px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  cursor: ${({ isModeAdmin }) => (isModeAdmin ? "pointer" : "auto")};
+  box-sizing: border-box;
+  height: 86px;
+  padding: 8px 16px;
+  display: grid;
+  grid-template-columns: 30% 1fr;
 
-  .img-container {
-    border: 1px solid blue;
-    max-width: 85px;
-    max-height: 70px;
+  border-radius: ${theme.borderRadius.round};
+  background: ${theme.colors.white};
+  box-shadow: ${theme.shadows.cardBasket};
 
+  position: relative;
+
+  .image {
+    box-sizing: border-box;
+    height: 70px;
     img {
-      width: 100%;
+      padding: 5px;
+      box-sizing: border-box;
       height: 100%;
-      object-fit: cover;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .text-info {
+    user-select: none;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 70% 1fr;
+    font-size: ${theme.fonts.size.P0};
+    color: ${theme.colors.primary};
+
+    .left-info {
+      display: grid;
+      grid-template-rows: 60% 40%;
+      margin-left: 21px;
+      .title {
+        display: flex;
+        align-items: center;
+        font-family: ${theme.fonts.family.stylish};
+        font-size: ${theme.fonts.size.P3};
+        line-height: 32px;
+        font-weight: ${theme.fonts.weights.bold};
+        color: ${theme.colors.dark};
+        /* sans cette div avec "min-width: 0", l'ellipsis ne fonctionne pas dans un span : https://semicolon.dev/tutorial/css/text-overflow-ellipsis-doesnt-work#:~:text=If%20your%20text%2Doverflow%20is,Grid%20or%20on%20a%20Table. */
+        min-width: 0;
+        span {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+      }
+
+      .price {
+        font-size: ${theme.fonts.size.SM};
+        font-weight: ${theme.fonts.weights.medium};
+        font-family: ${theme.fonts.family.openSans};
+      }
+    }
+
+    .quantity {
+      box-sizing: border-box;
+      font-weight: ${theme.fonts.weights.medium};
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-right: 20px;
+      font-size: ${theme.fonts.size.SM};
     }
   }
 
   .delete-button {
-    width: 75px;
-    height: 85px;
     display: none;
+    z-index: 1;
   }
 
-  .quantity {
-    width: 75px;
-    height: 85px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  /* hover de la card */
+  &:hover {
+    .delete-button {
+      border: none;
+      box-sizing: border-box;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 76px;
+      border-top-right-radius: ${theme.borderRadius.round};
+      border-bottom-right-radius: ${theme.borderRadius.round};
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: ${theme.colors.red};
+      color: ${theme.colors.white};
+      cursor: pointer;
 
-    &:hover {
-      visibility: hidden;
-    }
+      .icon {
+        width: ${theme.fonts.size.P3};
+        height: ${theme.fonts.size.P3};
+      }
 
-    &:hover + .delete-button {
-      display: block;
+      /* behaviour on delete-button hover */
+      &:hover {
+        .icon {
+          color: ${theme.colors.dark};
+        }
+        :active {
+          .icon {
+            color: ${theme.colors.white};
+          }
+        }
+      }
     }
   }
 

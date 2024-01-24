@@ -6,6 +6,7 @@ import CartItems from "./CartItems";
 import EmptyCart from "./EmptyCart";
 import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
+import { theme } from "../../../../../theme";
 
 export default function Cart() {
 
@@ -16,7 +17,7 @@ export default function Cart() {
   return (
     <CartStyled>
       <Total amountToPay={formatPrice(0)}/>
-      { isCartEmpty ? <EmptyCart/> : <CartItems />}
+      { isCartEmpty ? <EmptyCart/> : <CartItems cart={cart}/>}
       <Footer />
     </CartStyled>
   )
@@ -24,8 +25,22 @@ export default function Cart() {
 
 const CartStyled = styled.div`
 
-  box-sizing: border-box;
+  background: ${theme.colors.background_white};
+  box-shadow: ${theme.shadows.basket};
   display: flex;
   flex-direction: column;
+  border-bottom-left-radius: ${theme.borderRadius.extraRound};
+  height: 85vh;
+
+  .head {
+    position: sticky;
+    top: 0;
+  }
+
+  .footer {
+    border-bottom-left-radius: ${theme.borderRadius.extraRound};
+    position: sticky;
+    bottom: 0;
+  }
 
 `;
