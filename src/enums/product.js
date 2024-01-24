@@ -7,3 +7,5 @@ export const EMPTY_ITEM = Object.freeze({
   isAvailable: true,
   isAdvertised: false,
 })
+
+export const DEFAULT_IMAGE = "/images/coming-soon.png"

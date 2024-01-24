@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import CartItem from "./CartItem";
+import { DEFAULT_IMAGE } from "../../../../../enums/product";
 
 
 export default function CartItems({ cart, isModeAdmin, handleDeleteItemToBuy }) {
@@ -14,7 +15,7 @@ export default function CartItems({ cart, isModeAdmin, handleDeleteItemToBuy }) 
       <div className="cart-item" key={cartItem.id}>
         <CartItem
           {...cartItem}
-          imageSource={cartItem.imageSource ? cartItem.imageSource : "IMAGE_COMING_SOON"}
+          imageSource={cartItem.imageSource ? cartItem.imageSource : DEFAULT_IMAGE}
           onDeleteItem={() => handleItemDelete(cartItem.id)}
           isModeAdmin={isModeAdmin}
         />
