@@ -9,7 +9,9 @@ export function useCart() {
   const handleAddItemToBuy = (itemToBuy) => {
     const cartCopy = deepClone(cart) // deep clone of the menu
     // or const menuCopy = [...menu]
+
     cartCopy.unshift(itemToBuy)
+    itemToBuy.quantity += 1
     setCart(cartCopy)
   }
 

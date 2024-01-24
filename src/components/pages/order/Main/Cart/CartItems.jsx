@@ -5,7 +5,7 @@ import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
 import { EMPTY_ITEM } from "../../../../../enums/product";
 
-export default function Body() {
+export default function CartItems() {
 
   const { cart, handleDeleteItemToBuy, itemSelected, setItemSelected } = useContext(OrderContext)
 
@@ -17,7 +17,7 @@ export default function Body() {
   }
 
   return (
-    <BodyStyled>
+    <CartItemsStyled>
       {/* <span className="empty-message">Votre commande est vide.</span> */}
       {cart.map(({id, title, imageSource, price, quantity}) => {
       return (
@@ -31,11 +31,11 @@ export default function Body() {
       />
       )
     })}
-    </BodyStyled>
+    </CartItemsStyled>
   )
 }
 
-const BodyStyled = styled.div`
+const CartItemsStyled = styled.div`
 
     flex: 1;
     background-color: ${theme.colors.background_white};
