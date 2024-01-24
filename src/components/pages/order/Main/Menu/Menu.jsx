@@ -8,6 +8,7 @@ import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfItemIsClicked } from "./helper";
 import { DEFAULT_IMAGE, EMPTY_ITEM } from "../../../../../enums/product";
+import { findInArray } from "../../../../../utils/array";
 
 export default function Menu() {
 
@@ -18,16 +19,9 @@ export default function Menu() {
     if (!isModeAdmin) return // si on n'est pas en mode admin, on n'execute pas handleClick
     setCurrentTabActive("edit")
     setIsCollapsed(false)
-    const itemClicked = menu.find((item) => item.id === idItemClicked)
+    const itemClicked = findInArray(idItemClicked, menu)
     await setItemSelected(itemClicked)
     titleEditRef.current.focus()
-  }
-
-  const handleAddClick = (idItemClicked) => {
-    const itemToBuy = menu.find((item) => item.id === idItemClicked)
-    setItemSelected(itemToBuy)
-    console.log(itemToBuy)
-    handleAddItemToBuy(itemToBuy)
   }
 
   const handleCardDelete = (event, id) => {
@@ -35,6 +29,12 @@ export default function Menu() {
     handleDelete(id)
     id === itemSelected.id && setItemSelected(EMPTY_ITEM)
     handleDeleteItemToBuy(id)
+  }
+
+  const handleAddClick = (event, idItemClicked) => {
+    event.stopPropagation()
+    const itemToBuy = findInArray(idItemClicked, menu)
+    handleAddItemToBuy(itemToBuy)
   }
 
   if (menu.length === 0) {
@@ -57,7 +57,7 @@ export default function Menu() {
             onClick={() => handleClick(id)}
             isHoverable={isModeAdmin}
             isSelected={checkIfItemIsClicked(id, itemSelected.id)}
-            onAddButtonClick={() => handleAddClick(id)}
+            onAddButtonClick={(event) => handleAddClick(event, id)}
           />
         )
       })}

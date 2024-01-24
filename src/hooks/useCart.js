@@ -1,18 +1,29 @@
 import { useState } from "react";
 import { fakeBasket } from "../fakeData/fakeBasket";
-import { deepClone } from "../utils/array";
+import { deepClone, findInArray } from "../utils/array";
 
 export function useCart() {
 
   const [ cart, setCart ] = useState(fakeBasket.EMPTY)
 
   const handleAddItemToBuy = (itemToBuy) => {
-    const cartCopy = deepClone(cart) // deep clone of the menu
-    // or const menuCopy = [...menu]
 
-    cartCopy.unshift(itemToBuy)
-    itemToBuy.quantity += 1
-    setCart(cartCopy)
+    const cartCopy = deepClone(cart)
+    const isItemInCart = findInArray(itemToBuy.id, cartCopy)
+
+    if (!isItemInCart) {
+      const newCartItem = {
+        ...itemToBuy,
+        quantity: 1,
+      }
+      const cartUpdated = [newCartItem, ...cartCopy]
+      setCart(cartUpdated)
+    } else {
+      const indexOfCartItemToIncrement = cart.findIndex((cartItem) => cartItem.id === itemToBuy.id)
+      cartCopy[indexOfCartItemToIncrement].quantity += 1
+      setCart(cartCopy)
+    }
+
   }
 
   const handleDeleteItemToBuy = (itemId) => {
