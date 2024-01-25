@@ -12,7 +12,18 @@ import { findInArray } from "../../../../../utils/array";
 
 export default function Menu() {
 
-  const { menu, handleDelete, isModeAdmin, resetMenu, itemSelected, titleEditRef, setCurrentTabActive, setIsCollapsed, setItemSelected, handleAddItemToBuy, handleDeleteItemToBuy} = useContext(OrderContext)
+  const { menu,
+    handleDelete,
+    isModeAdmin,
+    resetMenu,
+    itemSelected,
+    titleEditRef,
+    setCurrentTabActive,
+    setIsCollapsed,
+    setItemSelected,
+    handleAddItemToBuy,
+    handleDeleteItemToBuy
+  } = useContext(OrderContext)
 
   // on rend la fonction asynchrone pour que le focus attende que les premiers setter soit exécutés avant de s'exécuter lui même
   const handleClick = async (idItemClicked) => {
