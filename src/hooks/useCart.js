@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { fakeBasket } from "../fakeData/fakeBasket";
-import { deepClone, findInArray, findIndex } from "../utils/array";
+import { deepClone, filter, findInArray, findIndex } from "../utils/array";
 
 export function useCart() {
 
@@ -33,8 +33,8 @@ export function useCart() {
 
   const handleDeleteItemToBuy = (itemId) => {
     const cartCopy = deepClone(cart)
-    const newCart = cartCopy.filter((item) => item.id !== itemId)
-    setCart(newCart)
+    const cartUpdated = filter(itemId, cartCopy)
+    setCart(cartUpdated)
   }
 
   return { cart, setCart, handleAddItemToBuy, handleDeleteItemToBuy }

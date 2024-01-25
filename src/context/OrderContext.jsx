@@ -3,7 +3,6 @@ import { createContext } from "react";
 export default createContext({
 
   menu: [],
-  cart: [],
 
   isModeAdmin: false,
   setIsModeAdmin: () => {},
@@ -18,7 +17,6 @@ export default createContext({
   handleDelete: () => {},
   handleEdit: () => {},
   resetMenu: () => {},
-  handleAddItemToBuy: () => {},
 
   newItem : {},
   setNewItem : () => {},
@@ -27,4 +25,9 @@ export default createContext({
   setItemSelected : () => {},
 
   titleEditRef : {},
+
+  cart: [],
+  handleAddItemToBuy: () => {},
+  handleDeleteItemToBuy: () => {},
+
 })

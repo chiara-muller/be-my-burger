@@ -10,7 +10,7 @@ import { theme } from "../../../../../theme";
 
 export default function Cart() {
 
-  const { cart } = useContext(OrderContext)
+  const { cart, isModeAdmin, handleDeleteItemToBuy } = useContext(OrderContext)
 
   const totalPrice = cart.reduce((total, item) => {
     if (isNaN(item.price)) return total
@@ -23,7 +23,7 @@ export default function Cart() {
   return (
     <CartStyled>
       <Total amountToPay={formatPrice(totalPrice)}/>
-      { isCartEmpty ? <EmptyCart/> : <CartItems cart={cart}/>}
+      { isCartEmpty ? <EmptyCart/> : <CartItems cart={cart} $isModeAdmin={isModeAdmin} handleDeleteItemToBuy={handleDeleteItemToBuy}/>}
       <Footer />
     </CartStyled>
   )

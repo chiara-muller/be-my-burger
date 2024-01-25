@@ -3,10 +3,10 @@ import { formatPrice } from "../../../../../utils/maths";
 import { MdDeleteForever } from "react-icons/md"
 import { theme } from "../../../../../theme";
 
-export default function CartItem({id, title, imageSource, price, quantity, onDeleteItem, isModeAdmin, className}) {
+export default function CartItem({id, title, imageSource, price, quantity, onDeleteItem, $isModeAdmin, className}) {
 
   return (
-    <CartItemStyled key={id} className={className} isModeAdmin={isModeAdmin}>
+    <CartItemStyled key={id} className={className} $isModeAdmin={$isModeAdmin}>
       <div className="delete-button" onClick={onDeleteItem}>
         <MdDeleteForever className="icon" />
       </div>
@@ -30,7 +30,7 @@ export default function CartItem({id, title, imageSource, price, quantity, onDel
 
 const CartItemStyled = styled.div`
 
-  cursor: ${({ isModeAdmin }) => (isModeAdmin ? "pointer" : "auto")};
+  cursor: ${({ $isModeAdmin }) => ($isModeAdmin ? "pointer" : "auto")};
   box-sizing: border-box;
   height: 86px;
   padding: 8px 16px;
@@ -137,7 +137,7 @@ const CartItemStyled = styled.div`
         .icon {
           color: ${theme.colors.dark};
         }
-        :active {
+        &:active {
           .icon {
             color: ${theme.colors.white};
           }
