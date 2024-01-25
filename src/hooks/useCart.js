@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { fakeBasket } from "../fakeData/fakeBasket";
-import { deepClone, findInArray } from "../utils/array";
+import { deepClone, findInArray, findIndex } from "../utils/array";
 
 export function useCart() {
 
@@ -18,12 +18,17 @@ export function useCart() {
       }
       const cartUpdated = [newCartItem, ...cartCopy]
       setCart(cartUpdated)
-    } else {
-      const indexOfCartItemToIncrement = cart.findIndex((cartItem) => cartItem.id === itemToBuy.id)
-      cartCopy[indexOfCartItemToIncrement].quantity += 1
-      setCart(cartCopy)
+      return // arrete le comportement ==> on evite le else
     }
 
+    incrementItemInCart(itemToBuy, cartCopy);
+
+  }
+
+  const incrementItemInCart = (itemToBuy, cartCopy) => {
+    const indexOfCartItemToIncrement = findIndex(itemToBuy.id, cart);
+    cartCopy[indexOfCartItemToIncrement].quantity += 1;
+    setCart(cartCopy);
   }
 
   const handleDeleteItemToBuy = (itemId) => {
