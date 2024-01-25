@@ -12,11 +12,16 @@ export default function Cart() {
 
   const { cart } = useContext(OrderContext)
 
+  const totalPrice = cart.reduce((total, item) => {
+    total += item.price * item.quantity
+    return total
+  }, 0)
+
   const isCartEmpty = cart.length === 0
 
   return (
     <CartStyled>
-      <Total amountToPay={formatPrice(0)}/>
+      <Total amountToPay={formatPrice(totalPrice)}/>
       { isCartEmpty ? <EmptyCart/> : <CartItems cart={cart}/>}
       <Footer />
     </CartStyled>
