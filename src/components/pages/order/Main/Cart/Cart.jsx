@@ -13,6 +13,7 @@ export default function Cart() {
   const { cart } = useContext(OrderContext)
 
   const totalPrice = cart.reduce((total, item) => {
+    if (isNaN(item.price)) return total
     total += item.price * item.quantity
     return total
   }, 0)
