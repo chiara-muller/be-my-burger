@@ -12,8 +12,10 @@ export default function Card({
   onDelete,
   onClick,
   isHoverable,
-  isSelected
+  isSelected,
+  onAddButtonClick
 }) {
+
 
   return (
     <CardStyled key={id} onClick={onClick} $isHoverable={isHoverable} $isSelected={isSelected}>
@@ -30,7 +32,7 @@ export default function Card({
           <div className="pay-container">
             <div className="price">{leftDescription}</div>
             <div>
-              <Button label={"Ajouter"} className={"add-button"} onClick={(event) => event.stopPropagation()}/>
+              <Button label={"Ajouter"} className={"add-button"} onClick={onAddButtonClick}/>
             </div>
           </div>
         </div>

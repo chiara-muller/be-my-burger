@@ -13,6 +13,7 @@ export default function Footer() {
 }
 
 const FooterStyled = styled.div`
+
   height: 100%;
   display: flex;
   justify-content: center;

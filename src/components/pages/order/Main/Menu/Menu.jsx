@@ -7,20 +7,30 @@ import OrderContext from "../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfItemIsClicked } from "./helper";
-import { EMPTY_ITEM } from "../../../../../enums/product";
-
-const DEFAULT_IMAGE = "/images/coming-soon.png"
+import { DEFAULT_IMAGE, EMPTY_ITEM } from "../../../../../enums/product";
+import { findInArray } from "../../../../../utils/array";
 
 export default function Menu() {
 
-  const { menu, handleDelete, isModeAdmin, resetMenu, itemSelected, titleEditRef, setCurrentTabActive, setIsCollapsed, setItemSelected} = useContext(OrderContext)
+  const { menu,
+    handleDelete,
+    isModeAdmin,
+    resetMenu,
+    itemSelected,
+    titleEditRef,
+    setCurrentTabActive,
+    setIsCollapsed,
+    setItemSelected,
+    handleAddItemToBuy,
+    handleDeleteItemToBuy
+  } = useContext(OrderContext)
 
   // on rend la fonction asynchrone pour que le focus attende que les premiers setter soit exécutés avant de s'exécuter lui même
   const handleClick = async (idItemClicked) => {
     if (!isModeAdmin) return // si on n'est pas en mode admin, on n'execute pas handleClick
     setCurrentTabActive("edit")
     setIsCollapsed(false)
-    const itemClicked = menu.find((item) => item.id === idItemClicked )
+    const itemClicked = findInArray(idItemClicked, menu)
     await setItemSelected(itemClicked)
     titleEditRef.current.focus()
   }
@@ -29,6 +39,13 @@ export default function Menu() {
     event.stopPropagation()
     handleDelete(id)
     id === itemSelected.id && setItemSelected(EMPTY_ITEM)
+    handleDeleteItemToBuy(id)
+  }
+
+  const handleAddClick = (event, idItemClicked) => {
+    event.stopPropagation()
+    const itemToBuy = findInArray(idItemClicked, menu)
+    handleAddItemToBuy(itemToBuy)
   }
 
   if (menu.length === 0) {
@@ -38,18 +55,20 @@ export default function Menu() {
 
   return (
     <MenuStyled>
-      {menu.map(({id, title, imageSource, price}) => {
+      {menu.map(({id, title, imageSource, price, quantity}) => {
         return (
           <Card
             key={id}
             title={title}
             imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
             leftDescription={ "0,00€" && formatPrice(price)}
+            quantity={quantity}
             hasDeleteButton={isModeAdmin}
             onDelete={(event) => handleCardDelete(event, id)}
             onClick={() => handleClick(id)}
             isHoverable={isModeAdmin}
             isSelected={checkIfItemIsClicked(id, itemSelected.id)}
+            onAddButtonClick={(event) => handleAddClick(event, id)}
           />
         )
       })}
@@ -58,6 +77,7 @@ export default function Menu() {
 }
 
 const MenuStyled = styled.div`
+
 
   background: ${theme.colors.background_white};
   display: grid;
