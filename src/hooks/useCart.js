@@ -7,10 +7,8 @@ export function useCart() {
   const [ cart, setCart ] = useState(fakeBasket.EMPTY)
 
   const handleAddItemToBuy = (itemToBuy) => {
-
     const cartCopy = deepClone(cart)
     const isItemInCart = findInArray(itemToBuy.id, cartCopy)
-
     if (!isItemInCart) {
       const newCartItem = {
         ...itemToBuy,
@@ -20,9 +18,7 @@ export function useCart() {
       setCart(cartUpdated)
       return // arrete le comportement ==> on evite le else
     }
-
     incrementItemInCart(itemToBuy, cartCopy);
-
   }
 
   const incrementItemInCart = (itemToBuy, cartCopy) => {
@@ -37,6 +33,13 @@ export function useCart() {
     setCart(cartUpdated)
   }
 
-  return { cart, setCart, handleAddItemToBuy, handleDeleteItemToBuy }
+  const handleEditItemToBuy = (itemBeingEdited) => {
+    const cartCopy = deepClone(cart)
+    const idOfItemToEdit = cartCopy.findIndex((item) => item.id === itemBeingEdited.id)
+    cartCopy[idOfItemToEdit] = itemBeingEdited
+    setCart(cartCopy)
+  }
+
+  return { cart, setCart, handleAddItemToBuy, handleDeleteItemToBuy, handleEditItemToBuy }
 
 }

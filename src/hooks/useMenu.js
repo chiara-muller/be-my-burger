@@ -22,7 +22,6 @@ export function useMenu() {
   const handleEdit = (itemBeingEdited) => {
     const menuCopy = deepClone(menu)
     const idOfItemToEdit = menuCopy.findIndex((item) => item.id === itemBeingEdited.id)
-    console.log(idOfItemToEdit)
     menuCopy[idOfItemToEdit] = itemBeingEdited
      // permet de voir les modification en temps réel grace a itemBeingUpdated dans la fonction handleChange
      setMenu(menuCopy)
