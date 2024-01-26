@@ -3,7 +3,18 @@ import { formatPrice } from "../../../../../utils/maths";
 import { MdDeleteForever } from "react-icons/md"
 import { theme } from "../../../../../theme";
 
-export default function CartItem({id, title, imageSource, price, quantity, onDeleteItem, isModeAdmin, className, onClick, isSelected}) {
+export default function CartItem({
+  id,
+  title,
+  imageSource,
+  price,
+  quantity,
+  onDeleteItem,
+  isModeAdmin,
+  className,
+  onClick,
+  isSelected
+}) {
 
   return (
     <CartItemStyled key={id} className={className} $isModeAdmin={isModeAdmin} onClick={onClick} $isSelected={isSelected}>
@@ -30,7 +41,6 @@ export default function CartItem({id, title, imageSource, price, quantity, onDel
 
 const CartItemStyled = styled.div`
 
-  ${({ $isSelected }) => $isSelected && selectedStyle}
   cursor: ${({ $isModeAdmin }) => ($isModeAdmin ? "pointer" : "auto")};
   box-sizing: border-box;
   height: 86px;
@@ -143,10 +153,21 @@ const CartItemStyled = styled.div`
         }
       }
     }
+
+    ${({ $isSelected }) => $isSelected && selectedStyle}
   }
 
 `;
 
+
 const selectedStyle = css`
-  background-color: ${theme.colors.primary};
+  background: ${theme.colors.primary};
+
+  .price {
+    color: ${theme.colors.white}
+  }
+
+  .quantity {
+    color: ${theme.colors.white}
+  }
 `

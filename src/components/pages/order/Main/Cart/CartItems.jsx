@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import CartItem from "./CartItem";
 import { DEFAULT_IMAGE } from "../../../../../enums/product";
-// import { checkIfItemIsClicked } from "../Menu/helper";
+import { checkIfItemIsClicked } from "../Menu/helper";
 import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
 import { findInArray } from "../../../../../utils/array";
@@ -9,7 +9,7 @@ import { findInArray } from "../../../../../utils/array";
 
 export default function CartItems({ cart, isModeAdmin, handleDeleteItemToBuy }) {
 
-  const { itemsSelected, setItemSelected, setCurrentTabActive, setIsCollapsed, titleEditRef } = useContext(OrderContext)
+  const { itemSelected, setItemSelected, setCurrentTabActive, setIsCollapsed, titleEditRef } = useContext(OrderContext)
 
   const handleItemDelete = (id) => {
     handleDeleteItemToBuy(id)
@@ -34,7 +34,7 @@ export default function CartItems({ cart, isModeAdmin, handleDeleteItemToBuy }) 
           onDeleteItem={() => handleItemDelete(cartItem.id)}
           isModeAdmin={isModeAdmin}
           onClick={() =>handleCartItemClick(cartItem.id)}
-          // isSelected={checkIfItemIsClicked(cartItem.id, itemsSelected.id)}
+          isSelected={checkIfItemIsClicked(cartItem.id, itemSelected.id)}
         />
       </div>
     ))}
