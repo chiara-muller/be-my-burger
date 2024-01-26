@@ -14,6 +14,7 @@ export function useCart() {
         ...itemToBuy,
         quantity: 1,
       }
+      console.log(newCartItem)
       const cartUpdated = [newCartItem, ...cartCopy]
       setCart(cartUpdated)
       return // arrete le comportement ==> on evite le else

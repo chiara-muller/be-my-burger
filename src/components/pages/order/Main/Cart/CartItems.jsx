@@ -11,7 +11,8 @@ export default function CartItems({ cart, isModeAdmin, handleDeleteItemToBuy }) 
 
   const { itemSelected, setItemSelected, setCurrentTabActive, setIsCollapsed, titleEditRef } = useContext(OrderContext)
 
-  const handleItemDelete = (id) => {
+  const handleItemDelete = (event, id) => {
+    event.stopPropagation()
     handleDeleteItemToBuy(id)
   }
 
@@ -31,8 +32,8 @@ export default function CartItems({ cart, isModeAdmin, handleDeleteItemToBuy }) 
         <CartItem
           {...cartItem}
           imageSource={cartItem.imageSource ? cartItem.imageSource : DEFAULT_IMAGE}
-          onDeleteItem={() => handleItemDelete(cartItem.id)}
-          isModeAdmin={isModeAdmin}
+          onDeleteItem={(event) => handleItemDelete(event, cartItem.id)}
+          isClickable={isModeAdmin}
           onClick={() =>handleCartItemClick(cartItem.id)}
           isSelected={checkIfItemIsClicked(cartItem.id, itemSelected.id)}
         />

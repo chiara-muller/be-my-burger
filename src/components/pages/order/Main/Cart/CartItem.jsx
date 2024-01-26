@@ -10,14 +10,14 @@ export default function CartItem({
   price,
   quantity,
   onDeleteItem,
-  isModeAdmin,
+  isClickable,
   className,
   onClick,
   isSelected
 }) {
 
   return (
-    <CartItemStyled key={id} className={className} $isModeAdmin={isModeAdmin} onClick={onClick} $isSelected={isSelected}>
+    <CartItemStyled key={id} className={className} $isClickable={isClickable} onClick={onClick} $isSelected={isSelected}>
       <div className="delete-button" onClick={onDeleteItem}>
         <MdDeleteForever className="icon" />
       </div>
@@ -41,7 +41,7 @@ export default function CartItem({
 
 const CartItemStyled = styled.div`
 
-  cursor: ${({ $isModeAdmin }) => ($isModeAdmin ? "pointer" : "auto")};
+  cursor: ${({ $isClickable }) => ($isClickable ? "pointer" : "auto")};
   box-sizing: border-box;
   height: 86px;
   padding: 8px 16px;
@@ -154,8 +154,9 @@ const CartItemStyled = styled.div`
       }
     }
 
-    ${({ $isSelected }) => $isSelected && selectedStyle}
   }
+
+  ${({ $isClickable, $isSelected }) => $isClickable && $isSelected && selectedStyle}
 
 `;
 
