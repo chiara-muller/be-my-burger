@@ -4,7 +4,7 @@ import { DEFAULT_IMAGE } from "../../../../../enums/product";
 import { checkIfItemIsClicked } from "../Menu/helper";
 import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
-import { findInArray } from "../../../../../utils/array";
+import { findObjectById } from "../../../../../utils/array";
 
 
 export default function CartItems({ cart, isModeAdmin, handleDeleteItemToBuy }) {
@@ -19,7 +19,7 @@ export default function CartItems({ cart, isModeAdmin, handleDeleteItemToBuy }) 
     if (!isModeAdmin) return // si on n'est pas en mode admin, on n'execute pas handleClick
     setCurrentTabActive("edit")
     setIsCollapsed(false)
-    const itemClicked = findInArray(idItemClicked, cart)
+    const itemClicked = findObjectById(idItemClicked, cart)
     await setItemSelected(itemClicked)
     titleEditRef.current.focus()
   }

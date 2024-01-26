@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { fakeBasket } from "../fakeData/fakeBasket";
-import { deepClone, filter, findInArray, findIndex } from "../utils/array";
+import { deepClone, removeObjectById, findObjectById, findIndexById} from "../utils/array";
 
 export function useCart() {
 
@@ -8,7 +8,7 @@ export function useCart() {
 
   const handleAddItemToBuy = (itemToBuy) => {
     const cartCopy = deepClone(cart)
-    const isItemInCart = findInArray(itemToBuy.id, cartCopy)
+    const isItemInCart = findObjectById(itemToBuy.id, cartCopy)
     if (!isItemInCart) {
       const newCartItem = {
         ...itemToBuy,
@@ -22,20 +22,20 @@ export function useCart() {
   }
 
   const incrementItemInCart = (itemToBuy, cartCopy) => {
-    const indexOfCartItemToIncrement = findIndex(itemToBuy.id, cart);
+    const indexOfCartItemToIncrement = findIndexById(itemToBuy.id, cart);
     cartCopy[indexOfCartItemToIncrement].quantity += 1;
     setCart(cartCopy);
   }
 
   const handleDeleteItemToBuy = (itemId) => {
     const cartCopy = deepClone(cart)
-    const cartUpdated = filter(itemId, cartCopy)
+    const cartUpdated = removeObjectById(itemId, cartCopy)
     setCart(cartUpdated)
   }
 
   const handleEditItemToBuy = (itemBeingEdited) => {
     const cartCopy = deepClone(cart)
-    const idOfItemToEdit = cartCopy.findIndex((item) => item.id === itemBeingEdited.id)
+    const idOfItemToEdit = findIndexById(itemBeingEdited.id, cartCopy)
     cartCopy[idOfItemToEdit] = itemBeingEdited
     setCart(cartCopy)
   }
