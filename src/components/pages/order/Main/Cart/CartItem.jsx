@@ -1,12 +1,12 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { formatPrice } from "../../../../../utils/maths";
 import { MdDeleteForever } from "react-icons/md"
 import { theme } from "../../../../../theme";
 
-export default function CartItem({id, title, imageSource, price, quantity, onDeleteItem, $isModeAdmin, className}) {
+export default function CartItem({id, title, imageSource, price, quantity, onDeleteItem, isModeAdmin, className, onClick, isSelected}) {
 
   return (
-    <CartItemStyled key={id} className={className} $isModeAdmin={$isModeAdmin}>
+    <CartItemStyled key={id} className={className} $isModeAdmin={isModeAdmin} onClick={onClick} $isSelected={isSelected}>
       <div className="delete-button" onClick={onDeleteItem}>
         <MdDeleteForever className="icon" />
       </div>
@@ -30,6 +30,7 @@ export default function CartItem({id, title, imageSource, price, quantity, onDel
 
 const CartItemStyled = styled.div`
 
+  ${({ $isSelected }) => $isSelected && selectedStyle}
   cursor: ${({ $isModeAdmin }) => ($isModeAdmin ? "pointer" : "auto")};
   box-sizing: border-box;
   height: 86px;
@@ -107,7 +108,6 @@ const CartItemStyled = styled.div`
     z-index: 1;
   }
 
-  /* hover de la card */
   &:hover {
     .delete-button {
       border: none;
@@ -132,7 +132,6 @@ const CartItemStyled = styled.div`
         height: ${theme.fonts.size.P3};
       }
 
-      /* behaviour on delete-button hover */
       &:hover {
         .icon {
           color: ${theme.colors.dark};
@@ -147,3 +146,7 @@ const CartItemStyled = styled.div`
   }
 
 `;
+
+const selectedStyle = css`
+  background-color: ${theme.colors.primary};
+`

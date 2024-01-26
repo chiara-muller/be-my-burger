@@ -23,7 +23,14 @@ export default function Cart() {
   return (
     <CartStyled>
       <Total amountToPay={formatPrice(totalPrice)}/>
-      { isCartEmpty ? <EmptyCart/> : <CartItems cart={cart} $isModeAdmin={isModeAdmin} handleDeleteItemToBuy={handleDeleteItemToBuy}/>}
+      {isCartEmpty ?
+        <EmptyCart/> :
+        <CartItems
+          cart={cart}
+          isModeAdmin={isModeAdmin}
+          handleDeleteItemToBuy={handleDeleteItemToBuy}
+        />
+      }
       <Footer />
     </CartStyled>
   )
