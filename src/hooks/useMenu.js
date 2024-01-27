@@ -5,7 +5,7 @@ import { replaceFrenchCommaWithDot } from "../utils/maths"
 
 export function useMenu() {
 
-  const [ menu, setMenu ] = useState(fakeMenu.LARGE)
+  const [ menu, setMenu ] = useState(fakeMenu.MEDIUM)
 
   const handleAdd = (itemToAdd) => {
     const menuCopy = deepClone(menu) // deep clone of the menu
@@ -25,6 +25,7 @@ export function useMenu() {
     const idOfItemToEdit = menuCopy.findIndex((item) => item.id === itemBeingEdited.id)
     const editedPrice = replaceFrenchCommaWithDot(itemBeingEdited.price)
     const itemWithEditedPrice = {...itemBeingEdited, price: editedPrice}
+    console.log(itemBeingEdited)
     menuCopy[idOfItemToEdit] = itemWithEditedPrice
      // permet de voir les modification en temps réel grace a itemBeingUpdated dans la fonction handleChange
      setMenu(menuCopy)

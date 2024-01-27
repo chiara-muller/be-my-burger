@@ -14,7 +14,6 @@ export default function EditProductForm() {
       ...itemSelected, // valeur que le produit avait avant
       [name]: value, // permet de modifier l'ancienne valeur
     }
-    console.log(itemBeingUpdated)
     setItemSelected(itemBeingUpdated) // update le formulaire
     handleEdit(itemBeingUpdated) // update le menu
     handleEditItemToBuy(itemBeingUpdated) // update le panier
