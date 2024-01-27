@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { fakeBasket } from "../fakeData/fakeBasket";
 import { deepClone, removeObjectById, findObjectById, findIndexById} from "../utils/array";
+import { replaceFrenchCommaWithDot } from "../utils/maths";
 
 export function useCart() {
 
@@ -37,7 +38,9 @@ export function useCart() {
   const handleEditItemToBuy = (itemBeingEdited) => {
     const cartCopy = deepClone(cart)
     const idOfItemToEdit = findIndexById(itemBeingEdited.id, cartCopy)
-    cartCopy[idOfItemToEdit] = itemBeingEdited
+    const editedPrice = replaceFrenchCommaWithDot(itemBeingEdited.price)
+    const itemWithEditedPrice = {...itemBeingEdited, price: editedPrice}
+    cartCopy[idOfItemToEdit] = itemWithEditedPrice
     setCart(cartCopy)
   }
 

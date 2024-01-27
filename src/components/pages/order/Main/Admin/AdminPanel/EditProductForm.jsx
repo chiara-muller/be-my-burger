@@ -3,7 +3,6 @@ import OrderContext from "../../../../../../context/OrderContext";
 import EditInfoMessage from "./EditInfoMessage";
 import Form from "./Form";
 
-
 export default function EditProductForm() {
 
   const { itemSelected, setItemSelected, handleEdit, titleEditRef, handleEditItemToBuy } = useContext(OrderContext)
@@ -15,6 +14,7 @@ export default function EditProductForm() {
       ...itemSelected, // valeur que le produit avait avant
       [name]: value, // permet de modifier l'ancienne valeur
     }
+    console.log(itemBeingUpdated)
     setItemSelected(itemBeingUpdated) // update le formulaire
     handleEdit(itemBeingUpdated) // update le menu
     handleEditItemToBuy(itemBeingUpdated) // update le panier

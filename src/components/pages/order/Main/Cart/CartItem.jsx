@@ -153,7 +153,6 @@ const CartItemStyled = styled.div`
         }
       }
     }
-
   }
 
   ${({ $isClickable, $isSelected }) => $isClickable && $isSelected && selectedStyle}

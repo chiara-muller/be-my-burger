@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { fakeMenu } from "../fakeData/fakeMenu"
 import { deepClone } from "../utils/array"
+import { replaceFrenchCommaWithDot } from "../utils/maths"
 
 export function useMenu() {
 
@@ -22,7 +23,9 @@ export function useMenu() {
   const handleEdit = (itemBeingEdited) => {
     const menuCopy = deepClone(menu)
     const idOfItemToEdit = menuCopy.findIndex((item) => item.id === itemBeingEdited.id)
-    menuCopy[idOfItemToEdit] = itemBeingEdited
+    const editedPrice = replaceFrenchCommaWithDot(itemBeingEdited.price)
+    const itemWithEditedPrice = {...itemBeingEdited, price: editedPrice}
+    menuCopy[idOfItemToEdit] = itemWithEditedPrice
      // permet de voir les modification en temps réel grace a itemBeingUpdated dans la fonction handleChange
      setMenu(menuCopy)
   }
