@@ -8,7 +8,7 @@ import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfItemIsClicked } from "./helper";
 import { DEFAULT_IMAGE, EMPTY_ITEM } from "../../../../../enums/product";
-import { findInArray } from "../../../../../utils/array";
+import { findObjectById, isEmpty } from "../../../../../utils/array";
 
 export default function Menu() {
 
@@ -30,7 +30,7 @@ export default function Menu() {
     if (!isModeAdmin) return // si on n'est pas en mode admin, on n'execute pas handleClick
     setCurrentTabActive("edit")
     setIsCollapsed(false)
-    const itemClicked = findInArray(idItemClicked, menu)
+    const itemClicked = findObjectById(idItemClicked, menu)
     await setItemSelected(itemClicked)
     titleEditRef.current.focus()
   }
@@ -44,11 +44,11 @@ export default function Menu() {
 
   const handleAddClick = (event, idItemClicked) => {
     event.stopPropagation()
-    const itemToBuy = findInArray(idItemClicked, menu)
+    const itemToBuy = findObjectById(idItemClicked, menu)
     handleAddItemToBuy(itemToBuy)
   }
 
-  if (menu.length === 0) {
+  if (isEmpty(menu)) {
     if (!isModeAdmin) return <EmptyMenuClient />
     return <EmptyMenuAdmin onReset={resetMenu} />
   }

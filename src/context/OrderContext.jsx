@@ -29,5 +29,6 @@ export default createContext({
   cart: [],
   handleAddItemToBuy: () => {},
   handleDeleteItemToBuy: () => {},
+  handleEditItemToBuy: () => {},
 
 })

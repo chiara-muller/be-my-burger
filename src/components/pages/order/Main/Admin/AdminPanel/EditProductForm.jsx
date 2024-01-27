@@ -3,10 +3,9 @@ import OrderContext from "../../../../../../context/OrderContext";
 import EditInfoMessage from "./EditInfoMessage";
 import Form from "./Form";
 
-
 export default function EditProductForm() {
 
-  const { itemSelected, setItemSelected, handleEdit, titleEditRef } = useContext(OrderContext)
+  const { itemSelected, setItemSelected, handleEdit, titleEditRef, handleEditItemToBuy } = useContext(OrderContext)
 
 
   const handleChange = (event) => {
@@ -17,6 +16,7 @@ export default function EditProductForm() {
     }
     setItemSelected(itemBeingUpdated) // update le formulaire
     handleEdit(itemBeingUpdated) // update le menu
+    handleEditItemToBuy(itemBeingUpdated) // update le panier
   }
 
 

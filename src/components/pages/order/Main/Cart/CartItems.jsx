@@ -1,12 +1,28 @@
 import styled from "styled-components";
 import CartItem from "./CartItem";
 import { DEFAULT_IMAGE } from "../../../../../enums/product";
+import { checkIfItemIsClicked } from "../Menu/helper";
+import { useContext } from "react";
+import OrderContext from "../../../../../context/OrderContext";
+import { findObjectById } from "../../../../../utils/array";
 
 
 export default function CartItems({ cart, isModeAdmin, handleDeleteItemToBuy }) {
 
-  const handleItemDelete = (id) => {
+  const { itemSelected, setItemSelected, setCurrentTabActive, setIsCollapsed, titleEditRef } = useContext(OrderContext)
+
+  const handleItemDelete = (event, id) => {
+    event.stopPropagation()
     handleDeleteItemToBuy(id)
+  }
+
+  const handleCartItemClick = async (idItemClicked) => {
+    if (!isModeAdmin) return // si on n'est pas en mode admin, on n'execute pas handleClick
+    setCurrentTabActive("edit")
+    setIsCollapsed(false)
+    const itemClicked = findObjectById(idItemClicked, cart)
+    await setItemSelected(itemClicked)
+    titleEditRef.current.focus()
   }
 
   return (
@@ -16,8 +32,10 @@ export default function CartItems({ cart, isModeAdmin, handleDeleteItemToBuy }) 
         <CartItem
           {...cartItem}
           imageSource={cartItem.imageSource ? cartItem.imageSource : DEFAULT_IMAGE}
-          onDeleteItem={() => handleItemDelete(cartItem.id)}
-          isModeAdmin={isModeAdmin}
+          onDeleteItem={(event) => handleItemDelete(event, cartItem.id)}
+          isClickable={isModeAdmin}
+          onClick={() =>handleCartItemClick(cartItem.id)}
+          isSelected={checkIfItemIsClicked(cartItem.id, itemSelected.id)}
         />
       </div>
     ))}

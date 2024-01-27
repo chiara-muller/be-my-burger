@@ -7,6 +7,7 @@ import EmptyCart from "./EmptyCart";
 import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
 import { theme } from "../../../../../theme";
+import { isEmpty } from "../../../../../utils/array";
 
 export default function Cart() {
 
@@ -18,12 +19,19 @@ export default function Cart() {
     return total
   }, 0)
 
-  const isCartEmpty = cart.length === 0
+  const isCartEmpty = isEmpty(cart)
 
   return (
     <CartStyled>
       <Total amountToPay={formatPrice(totalPrice)}/>
-      { isCartEmpty ? <EmptyCart/> : <CartItems cart={cart} $isModeAdmin={isModeAdmin} handleDeleteItemToBuy={handleDeleteItemToBuy}/>}
+      {isCartEmpty ?
+        <EmptyCart/> :
+        <CartItems
+          cart={cart}
+          isModeAdmin={isModeAdmin}
+          handleDeleteItemToBuy={handleDeleteItemToBuy}
+        />
+      }
       <Footer />
     </CartStyled>
   )
