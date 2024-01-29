@@ -7,7 +7,7 @@ export const getUser = async (userId) => {
   const docSnapshot = await getDoc(docRef)
   if (docSnapshot.exists()) {
     const userRecieved = docSnapshot.data()
-    console.log(userRecieved)
+    return userRecieved
   }
 }
 
@@ -17,6 +17,12 @@ export const addNewUser = (userId) => {
     username: userId,
     menu: fakeMenu.LARGE,
   }
-
   setDoc(docRef, food)
+}
+
+export const authenticateUser = async (userId) => {
+  const existingUser = await getUser(userId)
+  if (!existingUser) {
+    addNewUser(userId)
+  }
 }

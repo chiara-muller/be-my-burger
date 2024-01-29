@@ -5,7 +5,7 @@ import { replaceFrenchCommaWithDot } from "../utils/maths"
 
 export function useMenu() {
 
-  const [ menu, setMenu ] = useState(fakeMenu.MEDIUM)
+  const [ menu, setMenu ] = useState(fakeMenu.LARGE)
 
   const handleAdd = (itemToAdd) => {
     const menuCopy = deepClone(menu) // deep clone of the menu

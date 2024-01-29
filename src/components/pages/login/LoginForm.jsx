@@ -4,11 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
 import { BsPersonCircle } from "react-icons/bs";
 import { IoIosArrowForward } from "react-icons/io";
-
 import TextInput from '../../resusable-ui/TextInput';
 import Button from '../../resusable-ui/Button';
 import { theme } from '../../../theme';
-import { addNewUser } from '../../../api/user';
+import { authenticateUser } from "../../../api/user"
 
 export default function LoginForm() {
 
@@ -17,7 +16,7 @@ export default function LoginForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    addNewUser(inputValue)
+    authenticateUser(inputValue)
     setInputValue("")
     navigate(`order/${inputValue}`)
    }
