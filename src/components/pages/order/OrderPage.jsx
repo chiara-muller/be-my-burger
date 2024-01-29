@@ -8,6 +8,7 @@ import OrderContext from "../../../context/OrderContext"
 import { EMPTY_ITEM } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 import { useCart } from "../../../hooks/useCart";
+import { getUser } from "../../../api/user";
 
 export default function OrderPage() {
 
@@ -45,6 +46,8 @@ export default function OrderPage() {
     setItemSelected,
     titleEditRef
   }
+
+  getUser("Luc")
 
   return (
     <OrderContext.Provider value={orderContextValue}>

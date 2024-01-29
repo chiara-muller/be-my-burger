@@ -19,7 +19,6 @@ export default function AddProductForm() {
       id: Date.now(),
       price: replaceFrenchCommaWithDot(newItem.price)
     }
-    console.log(newItemToAdd)
     handleAdd(newItemToAdd)
     setNewItem(EMPTY_ITEM)
     displaySuccessMessage()

@@ -8,6 +8,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import TextInput from '../../resusable-ui/TextInput';
 import Button from '../../resusable-ui/Button';
 import { theme } from '../../../theme';
+import { addNewUser } from '../../../api/user';
 
 export default function LoginForm() {
 
@@ -16,6 +17,7 @@ export default function LoginForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    addNewUser(inputValue)
     setInputValue("")
     navigate(`order/${inputValue}`)
    }
