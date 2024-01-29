@@ -6,7 +6,7 @@ import { syncMenus } from "../api/menu"
 
 export function useMenu() {
 
-  const [ menu, setMenu ] = useState(fakeMenu.LARGE)
+  const [ menu, setMenu ] = useState()
 
   const handleAdd = (itemToAdd, username) => {
     const menuCopy = deepClone(menu) // deep clone of the menu

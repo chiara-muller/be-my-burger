@@ -9,6 +9,7 @@ import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfItemIsClicked } from "./helper";
 import { DEFAULT_IMAGE, EMPTY_ITEM } from "../../../../../enums/product";
 import { findObjectById, isEmpty } from "../../../../../utils/array";
+import Loader from "./Loader";
 
 export default function Menu() {
 
@@ -49,6 +50,8 @@ export default function Menu() {
     const itemToBuy = findObjectById(idItemClicked, menu)
     handleAddItemToBuy(itemToBuy)
   }
+
+  if (menu === undefined) return <Loader/>
 
   if (isEmpty(menu)) {
     if (!isModeAdmin) return <EmptyMenuClient />
