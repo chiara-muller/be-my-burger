@@ -5,7 +5,7 @@ import Form from "./Form";
 
 export default function EditProductForm() {
 
-  const { itemSelected, setItemSelected, handleEdit, titleEditRef, handleEditItemToBuy } = useContext(OrderContext)
+  const { username, itemSelected, setItemSelected, handleEdit, titleEditRef, handleEditItemToBuy } = useContext(OrderContext)
 
 
   const handleChange = (event) => {
@@ -15,7 +15,7 @@ export default function EditProductForm() {
       [name]: value, // permet de modifier l'ancienne valeur
     }
     setItemSelected(itemBeingUpdated) // update le formulaire
-    handleEdit(itemBeingUpdated) // update le menu
+    handleEdit(itemBeingUpdated, username) // update le menu
     handleEditItemToBuy(itemBeingUpdated) // update le panier
   }
 

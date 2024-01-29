@@ -23,7 +23,7 @@ export function useMenu() {
     syncMenus(username, newMenu)
   }
 
-  const handleEdit = (itemBeingEdited) => {
+  const handleEdit = (itemBeingEdited, username) => {
     const menuCopy = deepClone(menu)
     const idOfItemToEdit = menuCopy.findIndex((item) => item.id === itemBeingEdited.id)
     const editedPrice = replaceFrenchCommaWithDot(itemBeingEdited.price)
@@ -31,6 +31,7 @@ export function useMenu() {
     menuCopy[idOfItemToEdit] = itemWithEditedPrice
      // permet de voir les modification en temps réel grace a itemBeingUpdated dans la fonction handleChange
      setMenu(menuCopy)
+     syncMenus(username, menuCopy)
   }
 
   const resetMenu = (username) => {
