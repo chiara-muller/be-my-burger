@@ -48,7 +48,7 @@ export default function Menu() {
   const handleAddClick = (event, idItemClicked) => {
     event.stopPropagation()
     const itemToBuy = findObjectById(idItemClicked, menu)
-    handleAddItemToBuy(itemToBuy)
+    handleAddItemToBuy(itemToBuy, username)
   }
 
   if (menu === undefined) return <Loader/>

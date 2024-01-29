@@ -2,12 +2,13 @@ import { useState } from "react";
 import { fakeBasket } from "../fakeData/fakeBasket";
 import { deepClone, removeObjectById, findObjectById, findIndexById} from "../utils/array";
 import { replaceFrenchCommaWithDot } from "../utils/maths";
+import { setLocalStorage } from "../utils/window";
 
 export function useCart() {
 
   const [ cart, setCart ] = useState(fakeBasket.EMPTY)
 
-  const handleAddItemToBuy = (itemToBuy) => {
+  const handleAddItemToBuy = (itemToBuy, username) => {
     const cartCopy = deepClone(cart)
     const isItemInCart = findObjectById(itemToBuy.id, cartCopy)
     if (!isItemInCart) {
@@ -15,18 +16,19 @@ export function useCart() {
         ...itemToBuy,
         quantity: 1,
       }
-      console.log(newCartItem)
       const cartUpdated = [newCartItem, ...cartCopy]
       setCart(cartUpdated)
+      setLocalStorage(username, cartUpdated)
       return // arrete le comportement ==> on evite le else
     }
     incrementItemInCart(itemToBuy, cartCopy);
   }
 
-  const incrementItemInCart = (itemToBuy, cartCopy) => {
+  const incrementItemInCart = (itemToBuy, cartCopy, username) => {
     const indexOfCartItemToIncrement = findIndexById(itemToBuy.id, cart);
     cartCopy[indexOfCartItemToIncrement].quantity += 1;
     setCart(cartCopy);
+    setLocalStorage(username, cartCopy)
   }
 
   const handleDeleteItemToBuy = (itemId) => {
