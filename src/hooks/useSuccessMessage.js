@@ -10,5 +10,5 @@ export function useSuccessMessage() {
       setIsSubmitted(false)
     }, "2000");
   }
-  return { displaySuccessMessage, isSubmitted }
+  return { isSubmitted, displaySuccessMessage }
 }

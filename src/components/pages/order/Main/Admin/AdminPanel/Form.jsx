@@ -5,7 +5,7 @@ import ImagePreview from "./ImagePreview";
 import TextInput from "../../../../../resusable-ui/TextInput";
 import { getInputTextsConfig } from "./inputTextsConfig";
 
-const Form = React.forwardRef(({ product, onSubmit, onChange, children }, ref) => {
+const Form = React.forwardRef(({ product, onSubmit, onChange, onFocus, onBlur, children }, ref) => {
 
   const inputTexts = getInputTextsConfig(product)
 
@@ -18,6 +18,8 @@ const Form = React.forwardRef(({ product, onSubmit, onChange, children }, ref) =
             {...input}
             key={input.id}
             onChange={onChange}
+            onFocus={onFocus}
+            onBlur={onBlur}
             version="minimalist"
             ref={ref && input.name === "title" ? ref : null}
           />
