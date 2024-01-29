@@ -8,6 +8,7 @@ import OrderContext from "../../../context/OrderContext"
 import { EMPTY_ITEM } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 import { useCart } from "../../../hooks/useCart";
+import { useParams } from "react-router-dom";
 
 export default function OrderPage() {
 
@@ -19,10 +20,12 @@ export default function OrderPage() {
 
   const { menu, setMenu, handleAdd, handleDelete, handleEdit, resetMenu} = useMenu()
   const { cart, handleAddItemToBuy, handleDeleteItemToBuy, handleEditItemToBuy } = useCart()
+  const {username} = useParams()
 
   const titleEditRef = useRef()
 
   const orderContextValue = {
+    username,
     menu,
     cart,
     setMenu,

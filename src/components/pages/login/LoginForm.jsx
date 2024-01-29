@@ -12,18 +12,18 @@ import Welcome from './Welcome';
 
 export default function LoginForm() {
 
-  const [inputValue, setInputValue ] = useState("")
+  const [username, setUsername ] = useState("")
   const navigate = useNavigate()
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    authenticateUser(inputValue)
-    setInputValue("")
-    navigate(`order/${inputValue}`)
+    authenticateUser(username)
+    setUsername("")
+    navigate(`order/${username}`)
    }
 
    const handleChange = (event) => {
-      setInputValue(event.target.value)
+      setUsername(event.target.value)
     }
 
   return (
@@ -31,7 +31,7 @@ export default function LoginForm() {
         <Welcome/>
         <div>
           <TextInput
-            value={inputValue}
+            value={username}
             onChange={handleChange}
             placeholder="Entrez votre prénom"
             Icon={<BsPersonCircle />}

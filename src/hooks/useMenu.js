@@ -2,16 +2,18 @@ import { useState } from "react"
 import { fakeMenu } from "../fakeData/fakeMenu"
 import { deepClone } from "../utils/array"
 import { replaceFrenchCommaWithDot } from "../utils/maths"
+import { syncMenus } from "../api/menu"
 
 export function useMenu() {
 
   const [ menu, setMenu ] = useState(fakeMenu.LARGE)
 
-  const handleAdd = (itemToAdd) => {
+  const handleAdd = (itemToAdd, username) => {
     const menuCopy = deepClone(menu) // deep clone of the menu
     // or const menuCopy = [...menu]
     menuCopy.push(itemToAdd)
     setMenu(menuCopy)
+    syncMenus(username, menuCopy)
   }
 
   const handleDelete = (itemId) => {
