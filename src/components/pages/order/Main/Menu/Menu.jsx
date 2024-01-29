@@ -12,7 +12,9 @@ import { findObjectById, isEmpty } from "../../../../../utils/array";
 
 export default function Menu() {
 
-  const { menu,
+  const {
+    username,
+    menu,
     handleDelete,
     isModeAdmin,
     resetMenu,
@@ -37,7 +39,7 @@ export default function Menu() {
 
   const handleCardDelete = (event, id) => {
     event.stopPropagation()
-    handleDelete(id)
+    handleDelete(id, username)
     id === itemSelected.id && setItemSelected(EMPTY_ITEM)
     handleDeleteItemToBuy(id)
   }
