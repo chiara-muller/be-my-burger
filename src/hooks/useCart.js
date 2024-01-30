@@ -21,13 +21,13 @@ export function useCart() {
       return // arrete le comportement ==> on evite le else
     }
     incrementItemInCart(itemToBuy, cartCopy);
+    setLocalStorage(username, cartCopy)
   }
 
-  const incrementItemInCart = (itemToBuy, cartCopy, username) => {
+  const incrementItemInCart = (itemToBuy, cartCopy) => {
     const indexOfCartItemToIncrement = findIndexById(itemToBuy.id, cart);
     cartCopy[indexOfCartItemToIncrement].quantity += 1;
     setCart(cartCopy);
-    setLocalStorage(username, cartCopy)
   }
 
   const handleDeleteItemToBuy = (itemId, username) => {
