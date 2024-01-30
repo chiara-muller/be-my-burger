@@ -37,13 +37,14 @@ export function useCart() {
     setLocalStorage(username, cartUpdated)
   }
 
-  const handleEditItemToBuy = (itemBeingEdited) => {
+  const handleEditItemToBuy = (itemBeingEdited, username) => {
     const cartCopy = deepClone(cart)
     const idOfItemToEdit = findIndexById(itemBeingEdited.id, cartCopy)
     const editedPrice = replaceFrenchCommaWithDot(itemBeingEdited.price)
     const itemWithEditedPrice = {...itemBeingEdited, price: editedPrice}
     cartCopy[idOfItemToEdit] = itemWithEditedPrice
     setCart(cartCopy)
+    setLocalStorage(username, cartCopy)
   }
 
   return { cart, setCart, handleAddItemToBuy, handleDeleteItemToBuy, handleEditItemToBuy }

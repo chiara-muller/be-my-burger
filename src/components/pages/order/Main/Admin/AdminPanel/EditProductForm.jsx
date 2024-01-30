@@ -11,7 +11,6 @@ export default function EditProductForm() {
   const [ valueOnFocus, setValueOnFocus ] = useState()
   const { isSubmitted : isSaved, displaySuccessMessage } = useSuccessMessage()
 
-
   const handleChange = (event) => {
     const {name, value} = event.target
     const itemBeingUpdated = {
@@ -20,7 +19,7 @@ export default function EditProductForm() {
     }
     setItemSelected(itemBeingUpdated) // update le formulaire
     handleEdit(itemBeingUpdated, username) // update le menu
-    handleEditItemToBuy(itemBeingUpdated) // update le panier
+    handleEditItemToBuy(itemBeingUpdated, username) // update le panier
   }
 
   const handleOnFocus = (event) => {
