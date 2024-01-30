@@ -13,8 +13,6 @@ export default function Cart() {
 
   const { menu, cart, isModeAdmin, handleDeleteItemToBuy } = useContext(OrderContext)
 
-  if (menu === undefined) return <span>chargement</span>
-
   const totalPrice = cart.reduce((total, item) => {
     if (isNaN(item.price)) return total
     total += item.price * item.quantity
@@ -27,7 +25,7 @@ export default function Cart() {
     <CartStyled>
       <Total amountToPay={formatPrice(totalPrice)}/>
       {isCartEmpty ?
-        <EmptyCart/> :
+        <EmptyCart isLoading={menu === undefined}/> :
         <CartItems
           cart={cart}
           isModeAdmin={isModeAdmin}
