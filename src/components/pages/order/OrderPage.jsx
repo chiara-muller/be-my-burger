@@ -3,11 +3,13 @@ import styled from "styled-components";
 import NavBar from "./NavBar/NavBar";
 import Main from "./Main/Main";
 import { theme } from "../../../theme";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import OrderContext from "../../../context/OrderContext"
 import { EMPTY_ITEM } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 import { useCart } from "../../../hooks/useCart";
+import { useParams } from "react-router-dom";
+import { initializeUserSession } from "./helpers/initializeUserSession";
 
 export default function OrderPage() {
 
@@ -18,11 +20,13 @@ export default function OrderPage() {
   const [ itemSelected, setItemSelected ]         = useState(EMPTY_ITEM)
 
   const { menu, setMenu, handleAdd, handleDelete, handleEdit, resetMenu} = useMenu()
-  const { cart, handleAddItemToBuy, handleDeleteItemToBuy, handleEditItemToBuy } = useCart()
+  const { cart, setCart, handleAddItemToBuy, handleDeleteItemToBuy, handleEditItemToBuy } = useCart()
+  const { username } = useParams()
 
   const titleEditRef = useRef()
 
   const orderContextValue = {
+    username,
     menu,
     cart,
     setMenu,
@@ -45,6 +49,10 @@ export default function OrderPage() {
     setItemSelected,
     titleEditRef
   }
+
+  useEffect(() => {
+    initializeUserSession(username, setMenu, setCart)
+  }, [])
 
   return (
     <OrderContext.Provider value={orderContextValue}>

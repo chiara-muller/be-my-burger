@@ -9,10 +9,13 @@ import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfItemIsClicked } from "./helper";
 import { DEFAULT_IMAGE, EMPTY_ITEM } from "../../../../../enums/product";
 import { findObjectById, isEmpty } from "../../../../../utils/array";
+import Loader from "./Loader";
 
 export default function Menu() {
 
-  const { menu,
+  const {
+    username,
+    menu,
     handleDelete,
     isModeAdmin,
     resetMenu,
@@ -37,20 +40,22 @@ export default function Menu() {
 
   const handleCardDelete = (event, id) => {
     event.stopPropagation()
-    handleDelete(id)
+    handleDelete(id, username)
     id === itemSelected.id && setItemSelected(EMPTY_ITEM)
-    handleDeleteItemToBuy(id)
+    handleDeleteItemToBuy(id, username)
   }
 
   const handleAddClick = (event, idItemClicked) => {
     event.stopPropagation()
     const itemToBuy = findObjectById(idItemClicked, menu)
-    handleAddItemToBuy(itemToBuy)
+    handleAddItemToBuy(itemToBuy, username)
   }
+
+  if (menu === undefined) return <Loader/>
 
   if (isEmpty(menu)) {
     if (!isModeAdmin) return <EmptyMenuClient />
-    return <EmptyMenuAdmin onReset={resetMenu} />
+    return <EmptyMenuAdmin onReset={() => resetMenu(username)} />
   }
 
   return (

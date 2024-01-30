@@ -2,6 +2,8 @@ import { createContext } from "react";
 
 export default createContext({
 
+  username: "",
+
   menu: [],
 
   isModeAdmin: false,

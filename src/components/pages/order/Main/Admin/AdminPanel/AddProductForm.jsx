@@ -8,7 +8,7 @@ import { replaceFrenchCommaWithDot } from "../../../../../../utils/maths"
 
 export default function AddProductForm() {
 
-  const { handleAdd, newItem, setNewItem } = useContext(OrderContext)
+  const { username, handleAdd, newItem, setNewItem } = useContext(OrderContext)
   const { displaySuccessMessage, isSubmitted } = useSuccessMessage()
 
   const handleSubmit = (event) => {
@@ -19,8 +19,7 @@ export default function AddProductForm() {
       id: Date.now(),
       price: replaceFrenchCommaWithDot(newItem.price)
     }
-    console.log(newItemToAdd)
-    handleAdd(newItemToAdd)
+    handleAdd(newItemToAdd, username)
     setNewItem(EMPTY_ITEM)
     displaySuccessMessage()
   }

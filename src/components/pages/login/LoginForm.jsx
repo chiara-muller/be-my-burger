@@ -4,36 +4,34 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
 import { BsPersonCircle } from "react-icons/bs";
 import { IoIosArrowForward } from "react-icons/io";
-
 import TextInput from '../../resusable-ui/TextInput';
 import Button from '../../resusable-ui/Button';
 import { theme } from '../../../theme';
+import { authenticateUser } from "../../../api/user"
+import Welcome from './Welcome';
 
 export default function LoginForm() {
 
-  const [inputValue, setInputValue ] = useState("")
+  const [username, setUsername ] = useState("")
   const navigate = useNavigate()
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    setInputValue("")
-    navigate(`order/${inputValue}`)
+    authenticateUser(username)
+    setUsername("")
+    navigate(`order/${username}`)
    }
 
    const handleChange = (event) => {
-      setInputValue(event.target.value)
+      setUsername(event.target.value)
     }
 
   return (
       <LoginFormStyled action="submit" onSubmit={handleSubmit}>
-        <div>
-          <h1>Bienvenue chez nous !</h1>
-          <hr />
-          <h2>Connectez-vous</h2>
-        </div>
+        <Welcome/>
         <div>
           <TextInput
-            value={inputValue}
+            value={username}
             onChange={handleChange}
             placeholder="Entrez votre prénom"
             Icon={<BsPersonCircle />}

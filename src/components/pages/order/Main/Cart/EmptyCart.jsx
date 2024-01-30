@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
 
-export default function EmptyCart() {
+export default function EmptyCart({isLoading}) {
+
+  const emptyCartMessage = "Votre commande est vide."
+  const emptyLoadingMessage = "Chargement en cours..."
+
   return (
-    <EmptyCartStyled className="empty-message">Votre commande est vide.</EmptyCartStyled>
+    <EmptyCartStyled className="empty-message">{isLoading ? emptyLoadingMessage : emptyCartMessage}</EmptyCartStyled>
   )
 }
 
