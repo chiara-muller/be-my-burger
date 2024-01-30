@@ -30,10 +30,11 @@ export function useCart() {
     setLocalStorage(username, cartCopy)
   }
 
-  const handleDeleteItemToBuy = (itemId) => {
+  const handleDeleteItemToBuy = (itemId, username) => {
     const cartCopy = deepClone(cart)
     const cartUpdated = removeObjectById(itemId, cartCopy)
     setCart(cartUpdated)
+    setLocalStorage(username, cartUpdated)
   }
 
   const handleEditItemToBuy = (itemBeingEdited) => {

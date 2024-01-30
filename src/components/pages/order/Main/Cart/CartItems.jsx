@@ -9,11 +9,11 @@ import { findObjectById } from "../../../../../utils/array";
 
 export default function CartItems({ cart, isModeAdmin, handleDeleteItemToBuy }) {
 
-  const { itemSelected, setItemSelected, setCurrentTabActive, setIsCollapsed, titleEditRef } = useContext(OrderContext)
+  const { username, itemSelected, setItemSelected, setCurrentTabActive, setIsCollapsed, titleEditRef } = useContext(OrderContext)
 
   const handleItemDelete = (event, id) => {
     event.stopPropagation()
-    handleDeleteItemToBuy(id)
+    handleDeleteItemToBuy(id, username)
   }
 
   const handleCartItemClick = async (idItemClicked) => {

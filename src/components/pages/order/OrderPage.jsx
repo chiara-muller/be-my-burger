@@ -56,17 +56,20 @@ export default function OrderPage() {
     setMenu(menuReceived)
   }
 
-  const initializeCart = async () => {
-    const cartReceived = await getLocalStorage(username)
+  const initializeCart = () => {
+    const cartReceived = getLocalStorage(username)
     if (cartReceived) setCart(cartReceived)
   }
 
-  useEffect(() => {
-    initializeMenu()
-  }, [])
+  const initializeUserSession = async () => {
+    await initializeMenu()
+    initializeCart()
+  }
+
+  // this function will assure that the Menu is loaded before initializing the cart
 
   useEffect(() => {
-    initializeCart()
+    initializeUserSession()
   }, [])
 
   return (

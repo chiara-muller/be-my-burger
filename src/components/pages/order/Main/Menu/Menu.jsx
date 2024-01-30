@@ -42,7 +42,7 @@ export default function Menu() {
     event.stopPropagation()
     handleDelete(id, username)
     id === itemSelected.id && setItemSelected(EMPTY_ITEM)
-    handleDeleteItemToBuy(id)
+    handleDeleteItemToBuy(id, username)
   }
 
   const handleAddClick = (event, idItemClicked) => {
