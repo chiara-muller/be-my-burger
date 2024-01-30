@@ -9,8 +9,7 @@ import { EMPTY_ITEM } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 import { useCart } from "../../../hooks/useCart";
 import { useParams } from "react-router-dom";
-import { getMenu } from "../../../api/menu";
-import { getLocalStorage } from "../../../utils/window";
+import { initializeUserSession } from "./helpers/initializeUserSession";
 
 export default function OrderPage() {
 
@@ -51,25 +50,8 @@ export default function OrderPage() {
     titleEditRef
   }
 
-  const initializeMenu = async () => {
-    const menuReceived = await getMenu(username)
-    setMenu(menuReceived)
-  }
-
-  const initializeCart = () => {
-    const cartReceived = getLocalStorage(username)
-    if (cartReceived) setCart(cartReceived)
-  }
-
-  const initializeUserSession = async () => {
-    await initializeMenu()
-    initializeCart()
-  }
-
-  // this function will assure that the Menu is loaded before initializing the cart
-
   useEffect(() => {
-    initializeUserSession()
+    initializeUserSession(username, setMenu, setCart)
   }, [])
 
   return (
