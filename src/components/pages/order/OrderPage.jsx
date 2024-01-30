@@ -10,6 +10,7 @@ import { useMenu } from "../../../hooks/useMenu";
 import { useCart } from "../../../hooks/useCart";
 import { useParams } from "react-router-dom";
 import { getMenu } from "../../../api/menu";
+import { getLocalStorage } from "../../../utils/window";
 
 export default function OrderPage() {
 
@@ -20,7 +21,7 @@ export default function OrderPage() {
   const [ itemSelected, setItemSelected ]         = useState(EMPTY_ITEM)
 
   const { menu, setMenu, handleAdd, handleDelete, handleEdit, resetMenu} = useMenu()
-  const { cart, handleAddItemToBuy, handleDeleteItemToBuy, handleEditItemToBuy } = useCart()
+  const { cart, setCart, handleAddItemToBuy, handleDeleteItemToBuy, handleEditItemToBuy } = useCart()
   const { username } = useParams()
 
   const titleEditRef = useRef()
@@ -55,10 +56,18 @@ export default function OrderPage() {
     setMenu(menuReceived)
   }
 
+  const initializeCart = async () => {
+    const cartReceived = await getLocalStorage(username)
+    if (cartReceived) setCart(cartReceived)
+  }
+
   useEffect(() => {
     initializeMenu()
   }, [])
 
+  useEffect(() => {
+    initializeCart()
+  }, [])
 
   return (
     <OrderContext.Provider value={orderContextValue}>

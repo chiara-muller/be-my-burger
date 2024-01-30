@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { fakeBasket } from "../fakeData/fakeBasket";
 import { deepClone, removeObjectById, findObjectById, findIndexById} from "../utils/array";
 import { replaceFrenchCommaWithDot } from "../utils/maths";
 import { setLocalStorage } from "../utils/window";
 
 export function useCart() {
 
-  const [ cart, setCart ] = useState(fakeBasket.EMPTY)
+  const [ cart, setCart ] = useState([])
 
   const handleAddItemToBuy = (itemToBuy, username) => {
     const cartCopy = deepClone(cart)

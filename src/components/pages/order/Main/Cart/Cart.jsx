@@ -11,7 +11,9 @@ import { isEmpty } from "../../../../../utils/array";
 
 export default function Cart() {
 
-  const { cart, isModeAdmin, handleDeleteItemToBuy } = useContext(OrderContext)
+  const { menu, cart, isModeAdmin, handleDeleteItemToBuy } = useContext(OrderContext)
+
+  if (menu === undefined) return <span>chargement</span>
 
   const totalPrice = cart.reduce((total, item) => {
     if (isNaN(item.price)) return total
