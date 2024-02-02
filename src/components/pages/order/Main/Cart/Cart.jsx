@@ -1,24 +1,15 @@
 import styled from "styled-components";
-import Total from "./Total";
-import Footer from "./Footer";
-import CartItems from "./CartItems";
-import EmptyCart from "./EmptyCart";
-import { useContext } from "react";
-import OrderContext from "../../../../../context/OrderContext";
+import CartHeader from "./CartHeader/CartHeader"
 import { theme } from "../../../../../theme";
-import { isEmpty } from "../../../../../utils/array";
+import CartBody from "./CartBody/CartBody";
+import CartFooter from "./CartFooter";
 
 export default function Cart() {
-
-  const { menu, cart } = useContext(OrderContext)
-
-  const isCartEmpty = isEmpty(cart)
-
   return (
     <CartStyled>
-      <Total />
-      {isCartEmpty ? <EmptyCart isLoading={menu === undefined}/> : <CartItems />}
-      <Footer />
+      <CartHeader />
+      <CartBody />
+      <CartFooter />
     </CartStyled>
   )
 }

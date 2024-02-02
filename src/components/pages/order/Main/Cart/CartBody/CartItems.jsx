@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import CartItem from "./CartItem";
-import { DEFAULT_IMAGE } from "../../../../../enums/product";
-import { checkIfItemIsClicked } from "../Menu/helper";
+import { DEFAULT_IMAGE } from "../../../../../../enums/product";
+import { checkIfItemIsClicked } from "../../Menu/helper";
 import { useContext } from "react";
-import OrderContext from "../../../../../context/OrderContext";
-import { findObjectById } from "../../../../../utils/array";
+import OrderContext from "../../../../../../context/OrderContext";
+import { findObjectById } from "../../../../../../utils/array";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { cartAnimation } from "../../../../../theme/animations";
+import { cartAnimation } from "../../../../../../theme/animations";
 
 
 export default function CartItems() {

@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import { theme } from "../../../../../theme";
-import Header from "../../../../resusable-ui/Header";
+import { theme } from "../../../../../../theme";
+import Header from "../../../../../resusable-ui/Header";
 import { useContext } from "react";
-import OrderContext from "../../../../../context/OrderContext";
-import { formatPrice } from "../../../../../utils/maths";
+import OrderContext from "../../../../../../context/OrderContext";
+import { formatPrice } from "../../../../../../utils/maths";
 import { totalPrice } from "./helpers";
-import CasinoEffect from "../../../../resusable-ui/CasinoEffect";
+import CasinoEffect from "../../../../../resusable-ui/CasinoEffect";
 
-export default function Total() {
+export default function CartHeader() {
 
   const { cart } = useContext(OrderContext)
 
@@ -15,15 +15,15 @@ export default function Total() {
 
   return (
     <Header>
-      <TotalStyled>
+      <CartHeaderStyled>
         <span>Total</span>
         <CasinoEffect count={formatPrice(total)}/>
-      </TotalStyled>
+      </CartHeaderStyled>
     </Header>
   )
 }
 
-const TotalStyled = styled.div`
+const CartHeaderStyled = styled.div`
 
   height: 100%;
   display: flex;

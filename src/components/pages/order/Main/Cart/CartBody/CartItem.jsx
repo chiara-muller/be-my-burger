@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
-import { formatPrice } from "../../../../../utils/maths";
+import { formatPrice } from "../../../../../../utils/maths";
 import { MdDeleteForever } from "react-icons/md"
-import { theme } from "../../../../../theme";
-import CasinoEffect from "../../../../resusable-ui/CasinoEffect";
+import { theme } from "../../../../../../theme";
+import CasinoEffect from "../../../../../resusable-ui/CasinoEffect";
 
 export default function CartItem({
   id,
