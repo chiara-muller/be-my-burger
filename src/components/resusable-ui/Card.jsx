@@ -13,12 +13,13 @@ export default function Card({
   onClick,
   isHoverable,
   isSelected,
-  onAddButtonClick
+  onAddButtonClick,
+  className
 }) {
 
 
   return (
-    <CardStyled key={id} onClick={onClick} $isHoverable={isHoverable} $isSelected={isSelected}>
+    <CardStyled key={id} className={className} onClick={onClick} $isHoverable={isHoverable} $isSelected={isSelected}>
       <div className="card">
         {hasDeleteButton && (
           <button className="delete-button" onClick={onDelete}>

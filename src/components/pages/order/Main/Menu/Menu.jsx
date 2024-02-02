@@ -10,6 +10,7 @@ import { checkIfItemIsClicked } from "./helper";
 import { DEFAULT_IMAGE, EMPTY_ITEM } from "../../../../../enums/product";
 import { findObjectById, isEmpty } from "../../../../../utils/array";
 import Loader from "./Loader";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 export default function Menu() {
 
@@ -60,25 +61,28 @@ export default function Menu() {
   }
 
   return (
-    <MenuStyled>
+    <TransitionGroup component={MenuStyled}>
       {menu.map(({id, title, imageSource, price, quantity}) => {
         return (
-          <Card
-            key={id}
-            title={title}
-            imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
-            leftDescription={ "0,00€" && formatPrice(price)}
-            quantity={quantity}
-            hasDeleteButton={isModeAdmin}
-            onDelete={(event) => handleCardDelete(event, id)}
-            onClick={(event) => handleClick(event, id)}
-            isHoverable={isModeAdmin}
-            isSelected={checkIfItemIsClicked(id, itemSelected.id)}
-            onAddButtonClick={(event) => handleAddClick(event, id)}
-          />
+          <CSSTransition appear={true} key={id} classNames={"new-card"} timeout={200}>
+            <Card
+              key={id}
+              title={title}
+              imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
+              leftDescription={ "0,00€" && formatPrice(price)}
+              quantity={quantity}
+              hasDeleteButton={isModeAdmin}
+              onDelete={(event) => handleCardDelete(event, id)}
+              onClick={(event) => handleClick(event, id)}
+              isHoverable={isModeAdmin}
+              isSelected={checkIfItemIsClicked(id, itemSelected.id)}
+              onAddButtonClick={(event) => handleAddClick(event, id)}
+              className={"card"}
+            />
+          </CSSTransition>
         )
       })}
-    </MenuStyled>
+    </TransitionGroup>
   )
 }
 
@@ -96,4 +100,32 @@ const MenuStyled = styled.div`
   grid-gap: ${theme.gridUnit * 5}px;
   overflow-y: scroll;
 
+  .new-card-enter {
+    .card {
+      transform: translateX(-100px);
+      opacity: 0%;
+    }
+  }
+  .new-card-enter-active {
+    .card {
+      transform: translateX(0px);
+      transition: 0.5s;
+      opacity: 100%;
+    }
+  }
+
+  .new-card-exit {
+    .card {
+      opacity: 1;
+
+    }
+  }
+  .new-card-exit-active {
+    .card {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 300ms, transform 300ms;
+    }
+  }
+  .new-card-exit-done {}
 `;
