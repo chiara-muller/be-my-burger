@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Total from "./Total";
-import { formatPrice } from "../../../../../utils/maths"
 import Footer from "./Footer";
 import CartItems from "./CartItems";
 import EmptyCart from "./EmptyCart";
@@ -11,27 +10,14 @@ import { isEmpty } from "../../../../../utils/array";
 
 export default function Cart() {
 
-  const { menu, cart, isModeAdmin, handleDeleteItemToBuy } = useContext(OrderContext)
-
-  const totalPrice = cart.reduce((total, item) => {
-    if (isNaN(item.price)) return total
-    total += item.price * item.quantity
-    return total
-  }, 0)
+  const { menu, cart } = useContext(OrderContext)
 
   const isCartEmpty = isEmpty(cart)
 
   return (
     <CartStyled>
-      <Total amountToPay={formatPrice(totalPrice)}/>
-      {isCartEmpty ?
-        <EmptyCart isLoading={menu === undefined}/> :
-        <CartItems
-          cart={cart}
-          isModeAdmin={isModeAdmin}
-          handleDeleteItemToBuy={handleDeleteItemToBuy}
-        />
-      }
+      <Total />
+      {isCartEmpty ? <EmptyCart isLoading={menu === undefined}/> : <CartItems />}
       <Footer />
     </CartStyled>
   )

@@ -7,9 +7,19 @@ import OrderContext from "../../../../../context/OrderContext";
 import { findObjectById } from "../../../../../utils/array";
 
 
-export default function CartItems({ cart, isModeAdmin, handleDeleteItemToBuy }) {
+export default function CartItems() {
 
-  const { username, itemSelected, setItemSelected, setCurrentTabActive, setIsCollapsed, titleEditRef } = useContext(OrderContext)
+  const {
+    username,
+    itemSelected,
+    setItemSelected,
+    setCurrentTabActive,
+    setIsCollapsed,
+    titleEditRef,
+    cart,
+    isModeAdmin,
+    handleDeleteItemToBuy
+  } = useContext(OrderContext)
 
   const handleItemDelete = (event, id) => {
     event.stopPropagation()
