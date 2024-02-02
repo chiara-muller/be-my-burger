@@ -11,6 +11,7 @@ import { DEFAULT_IMAGE, EMPTY_ITEM } from "../../../../../enums/product";
 import { findObjectById, isEmpty } from "../../../../../utils/array";
 import Loader from "./Loader";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { menuAnimation } from "../../../../../theme/animations";
 
 export default function Menu() {
 
@@ -64,7 +65,7 @@ export default function Menu() {
     <TransitionGroup component={MenuStyled}>
       {menu.map(({id, title, imageSource, price, quantity}) => {
         return (
-          <CSSTransition appear={true} key={id} classNames={"new-card"} timeout={200}>
+          <CSSTransition key={id} classNames={"animation-menu"} timeout={300}>
             <Card
               key={id}
               title={title}
@@ -100,32 +101,5 @@ const MenuStyled = styled.div`
   grid-gap: ${theme.gridUnit * 5}px;
   overflow-y: scroll;
 
-  .new-card-enter {
-    .card {
-      transform: translateX(-100px);
-      opacity: 0%;
-    }
-  }
-  .new-card-enter-active {
-    .card {
-      transform: translateX(0px);
-      transition: 0.5s;
-      opacity: 100%;
-    }
-  }
-
-  .new-card-exit {
-    .card {
-      opacity: 1;
-
-    }
-  }
-  .new-card-exit-active {
-    .card {
-      opacity: 0;
-      transform: scale(0.9);
-      transition: opacity 300ms, transform 300ms;
-    }
-  }
-  .new-card-exit-done {}
+  ${menuAnimation}
 `;

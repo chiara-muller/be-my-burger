@@ -11,7 +11,7 @@ export function useMenu() {
   const handleAdd = (itemToAdd, username) => {
     const menuCopy = deepClone(menu) // deep clone of the menu
     // or const menuCopy = [...menu]
-    menuCopy.push(itemToAdd)
+    menuCopy.unshift(itemToAdd)
     setMenu(menuCopy)
     syncMenus(username, menuCopy)
   }

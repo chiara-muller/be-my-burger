@@ -6,6 +6,7 @@ import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
 import { findObjectById } from "../../../../../utils/array";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { cartAnimation } from "../../../../../theme/animations";
 
 
 export default function CartItems() {
@@ -41,8 +42,8 @@ export default function CartItems() {
       <TransitionGroup>
         {cart.map((cartItem) => {
           return (
-            <CSSTransition appear={true} classNames={"new-item-card"} key={cartItem.id} timeout={300}>
-              <div className="cart-item" >
+            <CSSTransition appear={true} classNames={"animation-cart"} key={cartItem.id} timeout={300}>
+              <div className="card-container" >
                 <CartItem
                   {...cartItem}
                   imageSource={cartItem.imageSource ? cartItem.imageSource : DEFAULT_IMAGE}
@@ -68,7 +69,7 @@ const CartItemsStyled = styled.div`
   flex-direction: column;
   overflow-y: scroll;
 
-  .cart-item {
+  .card-container {
     margin: 10px 16px;
     height: 86px;
     box-sizing: border-box;
@@ -80,46 +81,6 @@ const CartItemsStyled = styled.div`
     }
   }
 
-  .new-item-card-appear {
-    .item {
-      transform: translateX(100px);
-      opacity: 0%;
-    }
-  }
-  .new-item-card-appear-active {
-    .item {
-      transform: translateX(0px);
-      transition: 0.5s;
-      opacity: 100%;
-    }
-  }
-
-  .new-item-card-enter {
-    .item {
-      transform: translateX(100px);
-      opacity: 0%;
-    }
-  }
-  .new-item-card-enter-active {
-    .item {
-      transform: translateX(0px);
-      transition: 0.5s;
-      opacity: 100%;
-    }
-  }
-
-  .new-item-card-exit {
-    .item {
-      transform: translateX(0px);
-      opacity: 100%;
-    }
-  }
-  .new-item-card-exit-active {
-    .item {
-      transform: translateX(-100px);
-      transition: 0.5s;
-      opacity: 0%;
-    }
-  }
+  ${cartAnimation}
 
 `;
