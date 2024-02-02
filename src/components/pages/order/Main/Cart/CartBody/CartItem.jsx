@@ -33,9 +33,7 @@ export default function CartItem({
           <span className="price">{formatPrice(price)}</span>
         </div>
         <div className="quantity">
-          {/* <span>x {quantity}</span> */}
-          <span>x</span>
-          <CasinoEffect count={quantity}/>
+          <CasinoEffect count={`x ${quantity}`}/>
         </div>
       </div>
     </CartItemStyled>
