@@ -2,17 +2,17 @@ import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import Header from "../../../../resusable-ui/Header";
 
-export default function Footer() {
+export default function CartFooter() {
   return (
     <Header>
-      <FooterStyled>
+      <CartFooterStyled>
         <span>Codé avec ❤️ and React.JS</span>
-      </FooterStyled>
+      </CartFooterStyled>
     </Header>
   )
 }
 
-const FooterStyled = styled.div`
+const CartFooterStyled = styled.div`
 
   height: 100%;
   display: flex;

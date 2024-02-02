@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import Button from "./Button";
 import { theme } from "../../theme";
 import { TiDelete } from "react-icons/ti"
+import { fadeInFromRight } from "../../theme/animations";
 
 export default function Card({
   title,
@@ -13,12 +14,13 @@ export default function Card({
   onClick,
   isHoverable,
   isSelected,
-  onAddButtonClick
+  onAddButtonClick,
+  className
 }) {
 
 
   return (
-    <CardStyled key={id} onClick={onClick} $isHoverable={isHoverable} $isSelected={isSelected}>
+    <CardStyled key={id} className={className} onClick={onClick} $isHoverable={isHoverable} $isSelected={isSelected}>
       <div className="card">
         {hasDeleteButton && (
           <button className="delete-button" onClick={onDelete}>
@@ -72,6 +74,7 @@ const CardStyled = styled.div`
       cursor: pointer;
       width: 30px;
       height: 30px;
+      animation: ${fadeInFromRight} 500ms ease-out;
 
       &:hover {
         color: ${theme.colors.red};
@@ -85,6 +88,7 @@ const CardStyled = styled.div`
         width: 100%;
         height: 100%;
       }
+
     }
 
     .image-container {

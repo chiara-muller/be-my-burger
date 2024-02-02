@@ -3,19 +3,24 @@ import AdminTabs from "./AdminTabs"
 import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
 import AdminPanel from "./AdminPanel/AdminPanel";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { panelAnimation } from "../../../../../theme/animations";
 
 export default function Admin() {
 
   const { isCollapsed } = useContext(OrderContext)
 
   return (
-    <AdminStyled>
-      <AdminTabs/>
-        {!isCollapsed && (<AdminPanel />)}
-    </AdminStyled>
+    <TransitionGroup component={AdminStyled}>
+      <CSSTransition appear={true} timeout={500} classNames={"panel-animated"}>
+        <div className="panel">
+          <AdminTabs/>
+          {!isCollapsed && <AdminPanel />}
+        </div>
+      </CSSTransition>
+    </TransitionGroup>
   )
 }
-
 
 const AdminStyled = styled.div`
 
@@ -23,5 +28,7 @@ const AdminStyled = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
+
+  ${panelAnimation}
 
 `;

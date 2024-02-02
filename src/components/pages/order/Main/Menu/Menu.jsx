@@ -10,6 +10,8 @@ import { checkIfItemIsClicked } from "./helper";
 import { DEFAULT_IMAGE, EMPTY_ITEM } from "../../../../../enums/product";
 import { findObjectById, isEmpty } from "../../../../../utils/array";
 import Loader from "./Loader";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { menuAnimation } from "../../../../../theme/animations";
 
 export default function Menu() {
 
@@ -29,7 +31,8 @@ export default function Menu() {
   } = useContext(OrderContext)
 
   // on rend la fonction asynchrone pour que le focus attende que les premiers setter soit exécutés avant de s'exécuter lui même
-  const handleClick = async (idItemClicked) => {
+  const handleClick = async (event, idItemClicked) => {
+    event.stopPropagation()
     if (!isModeAdmin) return // si on n'est pas en mode admin, on n'execute pas handleClick
     setCurrentTabActive("edit")
     setIsCollapsed(false)
@@ -59,25 +62,28 @@ export default function Menu() {
   }
 
   return (
-    <MenuStyled>
+    <TransitionGroup component={MenuStyled}>
       {menu.map(({id, title, imageSource, price, quantity}) => {
         return (
-          <Card
-            key={id}
-            title={title}
-            imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
-            leftDescription={ "0,00€" && formatPrice(price)}
-            quantity={quantity}
-            hasDeleteButton={isModeAdmin}
-            onDelete={(event) => handleCardDelete(event, id)}
-            onClick={() => handleClick(id)}
-            isHoverable={isModeAdmin}
-            isSelected={checkIfItemIsClicked(id, itemSelected.id)}
-            onAddButtonClick={(event) => handleAddClick(event, id)}
-          />
+          <CSSTransition key={id} classNames={"animation-menu"} timeout={300}>
+            <Card
+              key={id}
+              title={title}
+              imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
+              leftDescription={ "0,00€" && formatPrice(price)}
+              quantity={quantity}
+              hasDeleteButton={isModeAdmin}
+              onDelete={(event) => handleCardDelete(event, id)}
+              onClick={(event) => handleClick(event, id)}
+              isHoverable={isModeAdmin}
+              isSelected={checkIfItemIsClicked(id, itemSelected.id)}
+              onAddButtonClick={(event) => handleAddClick(event, id)}
+              className={"card"}
+            />
+          </CSSTransition>
         )
       })}
-    </MenuStyled>
+    </TransitionGroup>
   )
 }
 
@@ -95,4 +101,5 @@ const MenuStyled = styled.div`
   grid-gap: ${theme.gridUnit * 5}px;
   overflow-y: scroll;
 
+  ${menuAnimation}
 `;

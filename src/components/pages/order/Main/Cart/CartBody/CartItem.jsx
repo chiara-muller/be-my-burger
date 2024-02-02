@@ -1,7 +1,8 @@
 import styled, { css } from "styled-components";
-import { formatPrice } from "../../../../../utils/maths";
+import { formatPrice } from "../../../../../../utils/maths";
 import { MdDeleteForever } from "react-icons/md"
-import { theme } from "../../../../../theme";
+import { theme } from "../../../../../../theme";
+import CasinoEffect from "../../../../../resusable-ui/CasinoEffect";
 
 export default function CartItem({
   id,
@@ -32,7 +33,7 @@ export default function CartItem({
           <span className="price">{formatPrice(price)}</span>
         </div>
         <div className="quantity">
-          <span>x {quantity}</span>
+          <CasinoEffect count={`x ${quantity}`}/>
         </div>
       </div>
     </CartItemStyled>
@@ -153,6 +154,10 @@ const CartItemStyled = styled.div`
         }
       }
     }
+  }
+
+  span {
+    padding: 1px;
   }
 
   ${({ $isClickable, $isSelected }) => $isClickable && $isSelected && selectedStyle}
