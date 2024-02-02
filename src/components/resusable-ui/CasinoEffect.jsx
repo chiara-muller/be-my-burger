@@ -15,7 +15,6 @@ const CasinoEffectStyled = styled.div`
 
   position: relative;
   overflow-y: hidden;
-  border: 1px solid red;
 
   //MOUNTING
   span {
@@ -41,5 +40,4 @@ const CasinoEffectStyled = styled.div`
     transform: translateY(-100%);
     transition: 300ms;
   }
-  .count-animated-exit-done{}
 `;

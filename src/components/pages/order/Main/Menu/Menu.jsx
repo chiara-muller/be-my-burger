@@ -29,7 +29,8 @@ export default function Menu() {
   } = useContext(OrderContext)
 
   // on rend la fonction asynchrone pour que le focus attende que les premiers setter soit exécutés avant de s'exécuter lui même
-  const handleClick = async (idItemClicked) => {
+  const handleClick = async (event, idItemClicked) => {
+    event.stopPropagation()
     if (!isModeAdmin) return // si on n'est pas en mode admin, on n'execute pas handleClick
     setCurrentTabActive("edit")
     setIsCollapsed(false)
@@ -70,7 +71,7 @@ export default function Menu() {
             quantity={quantity}
             hasDeleteButton={isModeAdmin}
             onDelete={(event) => handleCardDelete(event, id)}
-            onClick={() => handleClick(id)}
+            onClick={(event) => handleClick(event, id)}
             isHoverable={isModeAdmin}
             isSelected={checkIfItemIsClicked(id, itemSelected.id)}
             onAddButtonClick={(event) => handleAddClick(event, id)}

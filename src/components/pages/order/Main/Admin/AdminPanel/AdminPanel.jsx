@@ -17,7 +17,7 @@ export default function AdminPanel() {
 
   return (
     <TransitionGroup component={AdminPanelStyled}>
-      <CSSTransition appear={true} classNames={"admin-panel-animated"} timeout={500} key={tabActive.Content}>
+      <CSSTransition classNames="panel-animated" timeout={3000}>
         {tabActive.Content}
       </CSSTransition>
     </TransitionGroup>
@@ -26,7 +26,6 @@ export default function AdminPanel() {
 
 const AdminPanelStyled = styled.div`
 
-  position: relative;
   height: 240px;
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
   background: ${theme.colors.white};
@@ -35,15 +34,16 @@ const AdminPanelStyled = styled.div`
   padding: 30px 5%;
   box-sizing: border-box;
 
-  .admin-panel-animated-enter{
+  .panel-animated-enter{
+    transform: translateY(100%);
+  }
+  .panel-animated-enter-active{
     transform: translateY(0%);
-    position: absolute;
-    bottom: 0;
+    transition: 5s;
   }
-  .admin-panel-animated-active{
-    transform: translateY(-100%);
-    transition: 300ms;
-  }
-  .admin-panel-animated-exit{}
+  .panel-animated-enter-done{}
 
+  .panel-animated-exit{}
+  .panel-animated-exit-active{}
+  .panel-animated-exit-done{}
 `;
