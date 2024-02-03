@@ -15,11 +15,11 @@ export default function LoginForm() {
   const [username, setUsername ] = useState("")
   const navigate = useNavigate()
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    authenticateUser(username)
+    const userReceived = await authenticateUser(username)
     setUsername("")
-    navigate(`order/${username}`)
+    navigate(`order/${userReceived.username}`)
    }
 
    const handleChange = (event) => {
