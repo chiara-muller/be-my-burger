@@ -22,8 +22,11 @@ const Form = React.forwardRef(({ product, onSubmit, onChange, onFocus, onBlur, c
             onBlur={onBlur}
             version="minimalist"
             ref={ref && input.name === "title" ? ref : null}
+            className={"input"}
           />
         ))}
+        <button className="input stock-button" type="button">En stock</button>
+        <button className="input ad-button" type="button">Avec pub</button>
       </div>
       <div className="form-footer">{children}</div>
     </FormStyled>
@@ -49,9 +52,18 @@ const FormStyled = styled.form`
   .input-fields {
     grid-area: 1 / 2 / -2 / 3;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr) ;
     grid-template-rows: repeat(3, 1fr);
     grid-row-gap: 8px;
+    grid-column-gap: 8px;
+  }
+
+  .input:nth-child(1) {
+    grid-area: 1 / 1 / -3 / 4;
+  }
+
+  .input:nth-child(2) {
+    grid-area: 2 / 1 / -2 / 4;
   }
 
   .form-footer {
@@ -61,4 +73,5 @@ const FormStyled = styled.form`
     position: relative;
     top: 3px;
   }
+
 `;
