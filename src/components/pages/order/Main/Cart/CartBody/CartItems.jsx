@@ -51,6 +51,7 @@ export default function CartItems() {
                   isClickable={isModeAdmin}
                   onClick={() =>handleCartItemClick(cartItem.id)}
                   isSelected={checkIfItemIsClicked(cartItem.id, itemSelected.id)}
+                  price={cartItem.isAvailable ? cartItem.price : NaN}
                   className={"item"}
                 />
               </div>

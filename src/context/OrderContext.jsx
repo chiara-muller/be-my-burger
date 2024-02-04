@@ -33,4 +33,9 @@ export default createContext({
   handleDeleteItemToBuy: () => {},
   handleEditItemToBuy: () => {},
 
+  isAvailable: true,
+  setIsAvailable: () => {},
+  isAdvertised: false,
+  setIsAdvertised: () => {},
+
 })

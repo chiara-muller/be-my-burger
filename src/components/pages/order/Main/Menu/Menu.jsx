@@ -27,7 +27,7 @@ export default function Menu() {
     setIsCollapsed,
     setItemSelected,
     handleAddItemToBuy,
-    handleDeleteItemToBuy
+    handleDeleteItemToBuy,
   } = useContext(OrderContext)
 
   // on rend la fonction asynchrone pour que le focus attende que les premiers setter soit exécutés avant de s'exécuter lui même
@@ -63,7 +63,7 @@ export default function Menu() {
 
   return (
     <TransitionGroup component={MenuStyled}>
-      {menu.map(({id, title, imageSource, price, quantity}) => {
+      {menu.map(({id, title, imageSource, price, quantity, isAvailable}) => {
         return (
           <CSSTransition key={id} classNames={"animation-menu"} timeout={300}>
             <Card
@@ -78,7 +78,7 @@ export default function Menu() {
               isHoverable={isModeAdmin}
               isSelected={checkIfItemIsClicked(id, itemSelected.id)}
               onAddButtonClick={(event) => handleAddClick(event, id)}
-              className={"card"}
+              className={`${!isAvailable ? 'not-available' : ''}`}
             />
           </CSSTransition>
         )
@@ -100,6 +100,15 @@ const MenuStyled = styled.div`
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
   grid-gap: ${theme.gridUnit * 5}px;
   overflow-y: scroll;
+
+  .not-available {
+    opacity: 0.5;
+    image-rendering: url("/images/stock-epuise.png");
+    background-image: url("/images/stock-epuise.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+}
 
   ${menuAnimation}
 `;

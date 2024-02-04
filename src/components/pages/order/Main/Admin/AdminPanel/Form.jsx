@@ -5,7 +5,7 @@ import ImagePreview from "./ImagePreview";
 import TextInput from "../../../../../resusable-ui/TextInput";
 import { getInputTextsConfig } from "./inputTextsConfig";
 
-const Form = React.forwardRef(({ product, onSubmit, onChange, onFocus, onBlur, children }, ref) => {
+const Form = React.forwardRef(({ product, onSubmit, onChange, onFocus, onBlur, children, onStockButtonClick, onAdButtonClick }, ref) => {
 
   const inputTexts = getInputTextsConfig(product)
 
@@ -25,8 +25,8 @@ const Form = React.forwardRef(({ product, onSubmit, onChange, onFocus, onBlur, c
             className={"input"}
           />
         ))}
-        <button className="input stock-button" type="button">En stock</button>
-        <button className="input ad-button" type="button">Avec pub</button>
+      <button className="input stock-button" type="button" onClick={onStockButtonClick}>En stock</button>
+      <button className="input ad-button" type="button" onClick={onAdButtonClick}>Sans pub</button>
       </div>
       <div className="form-footer">{children}</div>
     </FormStyled>

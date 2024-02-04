@@ -20,12 +20,13 @@ export default function Card({
 
 
   return (
-    <CardStyled key={id} className={className} onClick={onClick} $isHoverable={isHoverable} $isSelected={isSelected}>
+    <CardStyled key={id} className={className} onClick={onClick} $isHoverable={isHoverable} $isSelected={isSelected} >
       <div className="card">
         {hasDeleteButton && (
           <button className="delete-button" onClick={onDelete}>
             <TiDelete className="icon"/>
-          </button>)}
+          </button>
+        )}
         <div className="image-container">
           <img src={imageSource} alt="menu image"/>
         </div>
@@ -144,9 +145,11 @@ const CardStyled = styled.div`
         padding: 12px; */
       }
     }
+
     ${({ $isHoverable, $isSelected }) => $isHoverable && $isSelected && selectedStyle}
   }
 `;
+
 
 const hoverableStyle = css`
   &:hover {
@@ -210,3 +213,10 @@ const selectedStyle = css`
     }
   }
 `
+
+// const unavailableStyle = css`
+//   background-image: url("/images/stock-epuise.png");
+//   background-repeat: no-repeat;
+//   background-position: center;
+//   z-index: 1;
+// `

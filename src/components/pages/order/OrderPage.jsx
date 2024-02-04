@@ -18,6 +18,8 @@ export default function OrderPage() {
   const [ currentTabActive, setCurrentTabActive ] = useState("add")
   const [ newItem, setNewItem ]                   = useState(EMPTY_ITEM)
   const [ itemSelected, setItemSelected ]         = useState(EMPTY_ITEM)
+  const [ isAvailable, setIsAvailable ]           = useState(true)
+  const [ isAdvertised, setIsAdvertised ]         = useState(false)
 
   const { menu, setMenu, handleAdd, handleDelete, handleEdit, resetMenu} = useMenu()
   const { cart, setCart, handleAddItemToBuy, handleDeleteItemToBuy, handleEditItemToBuy } = useCart()
@@ -47,7 +49,11 @@ export default function OrderPage() {
     setNewItem,
     itemSelected,
     setItemSelected,
-    titleEditRef
+    titleEditRef,
+    isAvailable,
+    setIsAvailable,
+    isAdvertised,
+    setIsAdvertised
   }
 
   useEffect(() => {

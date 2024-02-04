@@ -34,8 +34,22 @@ export default function EditProductForm() {
     }
   }
 
+  const handleStockClick = () => {
+    const stockStatus = itemSelected.isAvailable
+    const stockStatusUpdated = !stockStatus
+    console.log("itemSelected:", itemSelected)
+    const itemUpdated = {
+      ...itemSelected,
+      isAvailable: stockStatusUpdated
+    }
+    console.log("itemUpdated:", itemUpdated)
+    setItemSelected(itemUpdated)
+    handleEdit(itemUpdated, username)
+    handleEditItemToBuy(itemUpdated, username)
+  }
+
   return (
-    <Form product={itemSelected} onChange={handleChange} ref={titleEditRef} onFocus={handleOnFocus} onBlur={handleOnBlur}>
+    <Form product={itemSelected} onChange={handleChange} ref={titleEditRef} onFocus={handleOnFocus} onBlur={handleOnBlur} onStockButtonClick={handleStockClick}>
       {isSaved ? <SavingMessage /> : <EditInfoMessage />}
     </Form>
   )

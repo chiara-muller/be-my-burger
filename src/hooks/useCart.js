@@ -9,6 +9,7 @@ export function useCart() {
 
   const handleAddItemToBuy = (itemToBuy, username) => {
     const cartCopy = deepClone(cart)
+    if (itemToBuy.isAvailable === false) return
     const isItemInCart = findObjectById(itemToBuy.id, cartCopy)
     if (!isItemInCart) {
       const newCartItem = {
@@ -40,6 +41,7 @@ export function useCart() {
   const handleEditItemToBuy = (itemBeingEdited, username) => {
     const cartCopy = deepClone(cart)
     const idOfItemToEdit = findIndexById(itemBeingEdited.id, cartCopy)
+
     const editedPrice = replaceFrenchCommaWithDot(itemBeingEdited.price)
     const itemWithEditedPrice = {...itemBeingEdited, price: editedPrice}
     cartCopy[idOfItemToEdit] = itemWithEditedPrice
