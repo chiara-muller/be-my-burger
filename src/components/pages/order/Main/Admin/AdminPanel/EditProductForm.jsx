@@ -36,12 +36,10 @@ export default function EditProductForm() {
   const handleStockClick = () => {
     const stockStatus = itemSelected.isAvailable
     const stockStatusUpdated = !stockStatus
-    console.log("itemSelected:", itemSelected)
     const itemUpdated = {
       ...itemSelected,
-      isAvailable: stockStatusUpdated
+      isAvailable: stockStatusUpdated,
     }
-    console.log("itemUpdated:", itemUpdated)
     setItemSelected(itemUpdated)
     handleEdit(itemUpdated, username)
   }

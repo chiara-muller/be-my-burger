@@ -12,6 +12,7 @@ export default function Card({
   hasDeleteButton,
   onDelete,
   onClick,
+  isAvailable,
   isHoverable,
   isSelected,
   onAddButtonClick,
@@ -20,7 +21,7 @@ export default function Card({
 
 
   return (
-    <CardStyled key={id} className={className} onClick={onClick} $isHoverable={isHoverable} $isSelected={isSelected} >
+    <CardStyled key={id} className={className} onClick={onClick} isAvailable={isAvailable} $isHoverable={isHoverable} $isSelected={isSelected} >
       <div className="card">
         {hasDeleteButton && (
           <button className="delete-button" onClick={onDelete}>

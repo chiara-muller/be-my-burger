@@ -36,7 +36,6 @@ export default function CartItems() {
       <TransitionGroup>
         {cart.map((cartItem) => {
           const menuItem = findObjectById(cartItem.id, menu)
-          console.log(menuItem)
           return (
             <CSSTransition appear={true} classNames={"animation-cart"} key={cartItem.id} timeout={300}>
               <div className="card-container" >
@@ -47,10 +46,8 @@ export default function CartItems() {
                   onDeleteItem={(event) => handleItemDelete(event, cartItem.id)}
                   isClickable={isModeAdmin}
                   onClick={() => handleClick(cartItem.id)}
-                  // onClick={isModeAdmin ? handleItemSelected(cartItem.id): null}
                   isSelected={checkIfItemIsClicked(cartItem.id, itemSelected.id)}
-                  // price={menuItem.isAvailable ? menuItem.price : NaN}
-                  // className={"item"}
+                  price={menuItem.isAvailable ? menuItem.price : "Non disponible"}
                 />
               </div>
             </CSSTransition>

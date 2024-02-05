@@ -69,7 +69,7 @@ export default function Menu() {
               onClick={() => handleClick(id)}
               isHoverable={isModeAdmin}
               isSelected={checkIfItemIsClicked(id, itemSelected.id)}
-              onAddButtonClick={(event) => handleAddClick(event, id)}
+              onAddButtonClick={isAvailable ? (event) => handleAddClick(event, id) : null}
               className={`${!isAvailable ? 'not-available' : ''}`}
             />
           </CSSTransition>
