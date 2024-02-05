@@ -13,46 +13,44 @@ export default function CartItems() {
 
   const {
     username,
-    itemSelected,
-    setItemSelected,
-    setCurrentTabActive,
-    setIsCollapsed,
-    titleEditRef,
+    menu,
     cart,
     isModeAdmin,
-    handleDeleteItemToBuy
+    itemSelected,
+    handleDeleteItemToBuy,
+    handleItemSelected
   } = useContext(OrderContext)
+
+  const handleClick =  (idItemClicked) => {
+    if (!isModeAdmin) return // si on n'est pas en mode admin, on n'execute pas handleClick
+    handleItemSelected(idItemClicked)
+  }
 
   const handleItemDelete = (event, id) => {
     event.stopPropagation()
     handleDeleteItemToBuy(id, username)
   }
 
-  const handleCartItemClick = async (idItemClicked) => {
-    if (!isModeAdmin) return // si on n'est pas en mode admin, on n'execute pas handleClick
-    setCurrentTabActive("edit")
-    setIsCollapsed(false)
-    const itemClicked = findObjectById(idItemClicked, cart)
-    await setItemSelected(itemClicked)
-    titleEditRef.current.focus()
-  }
-
   return (
     <CartItemsStyled>
       <TransitionGroup>
         {cart.map((cartItem) => {
+          const menuItem = findObjectById(cartItem.id, menu)
+          console.log(menuItem)
           return (
             <CSSTransition appear={true} classNames={"animation-cart"} key={cartItem.id} timeout={300}>
               <div className="card-container" >
                 <CartItem
-                  {...cartItem}
-                  imageSource={cartItem.imageSource ? cartItem.imageSource : DEFAULT_IMAGE}
+                  {...menuItem}
+                  imageSource={menuItem.imageSource ? menuItem.imageSource : DEFAULT_IMAGE}
+                  quantity={cartItem.quantity}
                   onDeleteItem={(event) => handleItemDelete(event, cartItem.id)}
                   isClickable={isModeAdmin}
-                  onClick={() =>handleCartItemClick(cartItem.id)}
+                  onClick={() => handleClick(cartItem.id)}
+                  // onClick={isModeAdmin ? handleItemSelected(cartItem.id): null}
                   isSelected={checkIfItemIsClicked(cartItem.id, itemSelected.id)}
-                  price={cartItem.isAvailable ? cartItem.price : NaN}
-                  className={"item"}
+                  // price={menuItem.isAvailable ? menuItem.price : NaN}
+                  // className={"item"}
                 />
               </div>
             </CSSTransition>

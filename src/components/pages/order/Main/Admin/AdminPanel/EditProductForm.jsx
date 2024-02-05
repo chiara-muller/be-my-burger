@@ -7,7 +7,7 @@ import { useSuccessMessage } from "../../../../../../hooks/useSuccessMessage";
 
 export default function EditProductForm() {
 
-  const { username, itemSelected, setItemSelected, handleEdit, titleEditRef, handleEditItemToBuy } = useContext(OrderContext)
+  const { username, itemSelected, setItemSelected, handleEdit, titleEditRef } = useContext(OrderContext)
   const [ valueOnFocus, setValueOnFocus ] = useState()
   const { isSubmitted : isSaved, displaySuccessMessage } = useSuccessMessage()
 
@@ -19,7 +19,6 @@ export default function EditProductForm() {
     }
     setItemSelected(itemBeingUpdated) // update le formulaire
     handleEdit(itemBeingUpdated, username) // update le menu
-    handleEditItemToBuy(itemBeingUpdated, username) // update le panier
   }
 
   const handleOnFocus = (event) => {
@@ -45,7 +44,6 @@ export default function EditProductForm() {
     console.log("itemUpdated:", itemUpdated)
     setItemSelected(itemUpdated)
     handleEdit(itemUpdated, username)
-    handleEditItemToBuy(itemUpdated, username)
   }
 
   return (

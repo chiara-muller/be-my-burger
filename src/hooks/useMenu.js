@@ -25,6 +25,7 @@ export function useMenu() {
 
   const handleEdit = (itemBeingEdited, username) => {
     const menuCopy = deepClone(menu)
+    console.log("menuItemBeingEdited:", itemBeingEdited.quantity)
     const idOfItemToEdit = menuCopy.findIndex((item) => item.id === itemBeingEdited.id)
     const editedPrice = replaceFrenchCommaWithDot(itemBeingEdited.price)
     const itemWithEditedPrice = {...itemBeingEdited, price: editedPrice}

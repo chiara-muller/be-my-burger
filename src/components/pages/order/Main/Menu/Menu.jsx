@@ -8,7 +8,7 @@ import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfItemIsClicked } from "./helper";
 import { DEFAULT_IMAGE, EMPTY_ITEM } from "../../../../../enums/product";
-import { findObjectById, isEmpty } from "../../../../../utils/array";
+import { isEmpty } from "../../../../../utils/array";
 import Loader from "./Loader";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { menuAnimation } from "../../../../../theme/animations";
@@ -22,23 +22,16 @@ export default function Menu() {
     isModeAdmin,
     resetMenu,
     itemSelected,
-    titleEditRef,
-    setCurrentTabActive,
-    setIsCollapsed,
     setItemSelected,
     handleAddItemToBuy,
     handleDeleteItemToBuy,
+    handleItemSelected,
   } = useContext(OrderContext)
 
   // on rend la fonction asynchrone pour que le focus attende que les premiers setter soit exécutés avant de s'exécuter lui même
-  const handleClick = async (event, idItemClicked) => {
-    event.stopPropagation()
+  const handleClick =  (idItemClicked) => {
     if (!isModeAdmin) return // si on n'est pas en mode admin, on n'execute pas handleClick
-    setCurrentTabActive("edit")
-    setIsCollapsed(false)
-    const itemClicked = findObjectById(idItemClicked, menu)
-    await setItemSelected(itemClicked)
-    titleEditRef.current.focus()
+    handleItemSelected(idItemClicked)
   }
 
   const handleCardDelete = (event, id) => {
@@ -50,8 +43,7 @@ export default function Menu() {
 
   const handleAddClick = (event, idItemClicked) => {
     event.stopPropagation()
-    const itemToBuy = findObjectById(idItemClicked, menu)
-    handleAddItemToBuy(itemToBuy, username)
+    handleAddItemToBuy(idItemClicked, username)
   }
 
   if (menu === undefined) return <Loader/>
@@ -74,7 +66,7 @@ export default function Menu() {
               quantity={quantity}
               hasDeleteButton={isModeAdmin}
               onDelete={(event) => handleCardDelete(event, id)}
-              onClick={(event) => handleClick(event, id)}
+              onClick={() => handleClick(id)}
               isHoverable={isModeAdmin}
               isSelected={checkIfItemIsClicked(id, itemSelected.id)}
               onAddButtonClick={(event) => handleAddClick(event, id)}
