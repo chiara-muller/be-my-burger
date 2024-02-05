@@ -3,6 +3,7 @@ import Button from "./Button";
 import { theme } from "../../theme";
 import { TiDelete } from "react-icons/ti"
 import { fadeInFromRight } from "../../theme/animations";
+import Ribbon from "../resusable-ui/Ribbon"
 
 export default function Card({
   title,
@@ -13,6 +14,7 @@ export default function Card({
   onDelete,
   onClick,
   isAvailable,
+  isAdvertised,
   isHoverable,
   isSelected,
   onAddButtonClick,
@@ -23,6 +25,7 @@ export default function Card({
   return (
     <CardStyled key={id} className={className} onClick={onClick} isAvailable={isAvailable} $isHoverable={isHoverable} $isSelected={isSelected} >
       <div className="card">
+        {isAdvertised && <Ribbon/>}
         {hasDeleteButton && (
           <button className="delete-button" onClick={onDelete}>
             <TiDelete className="icon"/>

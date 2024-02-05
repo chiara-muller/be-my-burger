@@ -3,6 +3,7 @@ import { formatPrice } from "../../../../../../utils/maths";
 import { MdDeleteForever } from "react-icons/md"
 import { theme } from "../../../../../../theme";
 import CasinoEffect from "../../../../../resusable-ui/CasinoEffect";
+import Sticker from "../../../../../resusable-ui/Sticker"
 
 export default function CartItem({
   id,
@@ -14,11 +15,13 @@ export default function CartItem({
   isClickable,
   className,
   onClick,
-  isSelected
+  isSelected,
+  isAdvertised
 }) {
 
   return (
     <CartItemStyled key={id} className={className} $isClickable={isClickable} onClick={onClick} $isSelected={isSelected}>
+      {isAdvertised && <Sticker/>}
       <div className="delete-button" onClick={onDeleteItem}>
         <MdDeleteForever className="icon" />
       </div>

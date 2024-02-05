@@ -44,8 +44,19 @@ export default function EditProductForm() {
     handleEdit(itemUpdated, username)
   }
 
+  const handleAdClick = () => {
+    const adStatus = itemSelected.isAdvertised
+    const adStatusUpdated = !adStatus
+    const itemUpdated = {
+      ...itemSelected,
+      isAdvertised: adStatusUpdated,
+    }
+    setItemSelected(itemUpdated)
+    handleEdit(itemUpdated, username)
+  }
+
   return (
-    <Form product={itemSelected} onChange={handleChange} ref={titleEditRef} onFocus={handleOnFocus} onBlur={handleOnBlur} onStockButtonClick={handleStockClick}>
+    <Form product={itemSelected} onChange={handleChange} ref={titleEditRef} onFocus={handleOnFocus} onBlur={handleOnBlur} onStockButtonClick={handleStockClick} onAdButtonClick={handleAdClick}>
       {isSaved ? <SavingMessage /> : <EditInfoMessage />}
     </Form>
   )

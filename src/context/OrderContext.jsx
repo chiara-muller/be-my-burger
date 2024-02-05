@@ -34,9 +34,4 @@ export default createContext({
   handleEditItemToBuy: () => {},
   handleItemSelected: () => {},
 
-  isAvailable: true,
-  setIsAvailable: () => {},
-  isAdvertised: false,
-  setIsAdvertised: () => {},
-
 })

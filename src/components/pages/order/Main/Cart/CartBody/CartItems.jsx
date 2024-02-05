@@ -48,6 +48,7 @@ export default function CartItems() {
                   onClick={() => handleClick(cartItem.id)}
                   isSelected={checkIfItemIsClicked(cartItem.id, itemSelected.id)}
                   price={menuItem.isAvailable ? menuItem.price : "Non disponible"}
+                  isAdvertised={menuItem.isAdvertised}
                 />
               </div>
             </CSSTransition>
