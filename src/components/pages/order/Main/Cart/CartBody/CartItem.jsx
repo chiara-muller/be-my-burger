@@ -21,12 +21,12 @@ export default function CartItem({
 
   return (
     <CartItemStyled key={id} className={className} $isClickable={isClickable} onClick={onClick} $isSelected={isSelected}>
-      {isAdvertised && <Sticker/>}
       <div className="delete-button" onClick={onDeleteItem}>
         <MdDeleteForever className="icon" />
       </div>
       <div className="image">
-        <img src={imageSource} alt={title} />
+        {isAdvertised && <Sticker/>}
+        <img src={imageSource} alt={title}/>
       </div>
       <div className="text-info">
         <div className="left-info">
@@ -59,6 +59,7 @@ const CartItemStyled = styled.div`
   position: relative;
 
   .image {
+    position: relative;
     box-sizing: border-box;
     height: 70px;
     img {

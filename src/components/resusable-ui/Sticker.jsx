@@ -6,10 +6,13 @@ export default function Sticker({ label = "new", className }) {
 }
 
 const StickerStyled = styled.span`
+  position: absolute;
+  bottom: 0;
+  right: 10px;
   font-size: ${theme.fonts.size.XXXS};
   padding: 1em;
-  width: 15px;
-  height: 15px;
+  width: 30px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
