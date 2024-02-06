@@ -4,13 +4,16 @@ import styled from "styled-components";
 import ImagePreview from "./ImagePreview";
 import TextInput from "../../../../../resusable-ui/TextInput";
 import { getInputTextsConfig } from "./inputTextsConfig";
+import { FiPackage } from "react-icons/fi";
+import { GoMegaphone } from "react-icons/go"
+import { theme } from "../../../../../../theme";
 
-const Form = React.forwardRef(({ product, onSubmit, onChange, onFocus, onBlur, children, onStockButtonClick, onAdButtonClick, isAdvertised }, ref) => {
+const Form = React.forwardRef(({ product, onSubmit, onChange, onFocus, onBlur, children, onStockButtonClick, onAdButtonClick, isAvailable, isAdvertised }, ref) => {
 
   const inputTexts = getInputTextsConfig(product)
 
   return (
-    <FormStyled onSubmit={onSubmit} isAdvertised={isAdvertised}>
+    <FormStyled onSubmit={onSubmit}>
       <ImagePreview imageSource={product.imageSource} title={product.title}/>
       <div className="input-fields">
       {inputTexts.map((input) => (
@@ -25,8 +28,12 @@ const Form = React.forwardRef(({ product, onSubmit, onChange, onFocus, onBlur, c
             className={"input"}
           />
         ))}
-      <button className="input stock-button" type="button" onClick={onStockButtonClick}>En stock</button>
-      <button className="input ad-button" type="button" onClick={onAdButtonClick}>Sans pub</button>
+      <button className="input button" type="button" onClick={onStockButtonClick}>
+        <span className="icon"><FiPackage/></span>{isAvailable ? "En rupture" : "En stock"}
+      </button>
+      <button className="input button" type="button" onClick={onAdButtonClick}>
+        <span className="icon"><GoMegaphone/></span>{isAdvertised ? "Sans pub" : "Avec pub"}
+      </button>
       </div>
       <div className="form-footer">{children}</div>
     </FormStyled>
@@ -64,6 +71,20 @@ const FormStyled = styled.form`
 
   .input:nth-child(2) {
     grid-area: 2 / 1 / -2 / 4;
+  }
+
+  .button {
+    display: flex;
+    align-items: center;
+    border: none;
+    background-color: ${theme.colors.background_white};
+
+    .icon {
+      display: flex;
+      font-size: ${theme.fonts.size.SM};
+      color: ${theme.colors.greyBlue};
+      margin: 0 13px 0 8px;
+    }
   }
 
   .form-footer {

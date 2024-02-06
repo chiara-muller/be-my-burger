@@ -56,7 +56,17 @@ export default function EditProductForm() {
   }
 
   return (
-    <Form product={itemSelected} onChange={handleChange} ref={titleEditRef} onFocus={handleOnFocus} onBlur={handleOnBlur} onStockButtonClick={handleStockClick} onAdButtonClick={handleAdClick}>
+    <Form
+      product={itemSelected}
+      onChange={handleChange}
+      ref={titleEditRef}
+      onFocus={handleOnFocus}
+      onBlur={handleOnBlur}
+      onStockButtonClick={handleStockClick}
+      onAdButtonClick={handleAdClick}
+      isAvailable={itemSelected.isAvailable}
+      isAdvertised={itemSelected.isAdvertised}
+    >
       {isSaved ? <SavingMessage /> : <EditInfoMessage />}
     </Form>
   )

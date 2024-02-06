@@ -82,7 +82,6 @@ export default function Menu() {
 
 const MenuStyled = styled.div`
 
-
   background: ${theme.colors.background_white};
   display: grid;
   /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
@@ -96,7 +95,6 @@ const MenuStyled = styled.div`
 
   .not-available {
     opacity: 0.5;
-    image-rendering: url("/images/stock-epuise.png");
     background-image: url("/images/stock-epuise.png");
     background-repeat: no-repeat;
     background-position: center;

@@ -217,10 +217,3 @@ const selectedStyle = css`
     }
   }
 `
-
-// const unavailableStyle = css`
-//   background-image: url("/images/stock-epuise.png");
-//   background-repeat: no-repeat;
-//   background-position: center;
-//   z-index: 1;
-// `

@@ -13,15 +13,13 @@ export default function AddProductForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    // copy du state + ajout de id
     const newItemToAdd = {
       ...newItem,
       id: Date.now(),
       price: replaceFrenchCommaWithDot(newItem.price),
-      isAvailable: true,
-      isAdvertised: false
+      // isAvailable: true,
+      // isAdvertised: false
     }
-    if (handleAdClick(newItemToAdd) || handleStock(newItemToAdd)) return
     handleAdd(newItemToAdd, username)
     setNewItem(EMPTY_ITEM)
     displaySuccessMessage()
@@ -33,25 +31,40 @@ export default function AddProductForm() {
     setNewItem({...newItem, [name]: newValue}) // copy du state + ajout des nouvelles valeurs en dynamique property name
   }
 
-  const handleAdClick = (newItem) => {
-    const adStatus = newItem.isAdvertised
-    const adStatusUpdated = !adStatus
-    newItem.isAdvertised = adStatusUpdated
-  }
+  // const handleStockClick = (newItem) => {
+  //   const stockStatus = newItem.isAvailable
+  //   const stockStatusUpdated = !stockStatus
+  //   newItem.isAvailable = stockStatusUpdated
+  // }
 
-  const handleStock = (newItem) => {
-    const stockStatus = newItem.isAvailable
-    const stockStatusUpdated = !stockStatus
-    newItem.isAvailable = stockStatusUpdated
-  }
+  // const handleAdClick = (newItem) => {
+  //   const adStatus = newItem.isAdvertised
+  //   const adStatusUpdated = !adStatus
+  //   newItem.isAdvertised = adStatusUpdated
+  // }
+  const handleStockClick = () => {
+    setNewItem(prevItem => ({
+      ...prevItem,
+      isAvailable: !prevItem.isAvailable
+    }));
+  };
+
+  const handleAdClick = () => {
+    setNewItem(prevItem => ({
+      ...prevItem,
+      isAdvertised: !prevItem.isAdvertised
+    }));
+  };
 
   return (
     <Form
       product={newItem}
       onSubmit={handleSubmit}
       onChange={handleChange}
-      onAdButtonClick={() => handleAdClick(newItem)}
-      onStockButonClick={handleStock}
+      onStockButtonClick={() => handleStockClick()}
+      onAdButtonClick={() => handleAdClick()}
+      isAvailable={newItem.isAvailable}
+      isAdvertised={newItem.isAdvertised}
     >
       <SubmitButton isSubmitted={isSubmitted}/>
     </Form>
