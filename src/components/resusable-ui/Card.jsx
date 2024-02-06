@@ -23,9 +23,10 @@ export default function Card({
 
 
   return (
-    <CardStyled key={id} className={className} onClick={onClick} isAvailable={isAvailable} $isHoverable={isHoverable} $isSelected={isSelected} >
+    <CardStyled key={id} className={className} onClick={onClick} $isHoverable={isHoverable} $isSelected={isSelected} >
       <div className="card">
         {isAdvertised && <Ribbon/>}
+        {!isAvailable && <div className="not-available-image" />}
         {hasDeleteButton && (
           <button className="delete-button" onClick={onDelete}>
             <TiDelete className="icon"/>
@@ -152,6 +153,19 @@ const CardStyled = styled.div`
 
     ${({ $isHoverable, $isSelected }) => $isHoverable && $isSelected && selectedStyle}
   }
+
+  .not-available-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/images/stock-epuise.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 1;
+  opacity: 1;
+}
 `;
 
 

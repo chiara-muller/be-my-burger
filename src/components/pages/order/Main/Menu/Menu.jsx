@@ -72,6 +72,7 @@ export default function Menu() {
               onAddButtonClick={isAvailable ? (event) => handleAddClick(event, id) : null}
               className={`${!isAvailable ? 'not-available' : ''}`}
               isAdvertised={isAdvertised}
+              isAvailable={isAvailable}
             />
           </CSSTransition>
         )
@@ -95,11 +96,7 @@ const MenuStyled = styled.div`
 
   .not-available {
     opacity: 0.5;
-    background-image: url("/images/stock-epuise.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: 1;
-}
+  }
 
   ${menuAnimation}
 `;
