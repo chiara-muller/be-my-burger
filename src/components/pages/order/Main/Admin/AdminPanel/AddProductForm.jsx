@@ -21,6 +21,7 @@ export default function AddProductForm() {
       isAvailable: true,
       isAdvertised: false
     }
+    if (handleAdClick(newItemToAdd) || handleStock(newItemToAdd)) return
     handleAdd(newItemToAdd, username)
     setNewItem(EMPTY_ITEM)
     displaySuccessMessage()
@@ -32,8 +33,26 @@ export default function AddProductForm() {
     setNewItem({...newItem, [name]: newValue}) // copy du state + ajout des nouvelles valeurs en dynamique property name
   }
 
+  const handleAdClick = (newItem) => {
+    const adStatus = newItem.isAdvertised
+    const adStatusUpdated = !adStatus
+    newItem.isAdvertised = adStatusUpdated
+  }
+
+  const handleStock = (newItem) => {
+    const stockStatus = newItem.isAvailable
+    const stockStatusUpdated = !stockStatus
+    newItem.isAvailable = stockStatusUpdated
+  }
+
   return (
-    <Form product={newItem} onSubmit={handleSubmit} onChange={handleChange}>
+    <Form
+      product={newItem}
+      onSubmit={handleSubmit}
+      onChange={handleChange}
+      onAdButtonClick={() => handleAdClick(newItem)}
+      onStockButonClick={handleStock}
+    >
       <SubmitButton isSubmitted={isSubmitted}/>
     </Form>
   )

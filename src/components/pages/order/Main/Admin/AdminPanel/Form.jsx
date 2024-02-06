@@ -5,12 +5,12 @@ import ImagePreview from "./ImagePreview";
 import TextInput from "../../../../../resusable-ui/TextInput";
 import { getInputTextsConfig } from "./inputTextsConfig";
 
-const Form = React.forwardRef(({ product, onSubmit, onChange, onFocus, onBlur, children, onStockButtonClick, onAdButtonClick }, ref) => {
+const Form = React.forwardRef(({ product, onSubmit, onChange, onFocus, onBlur, children, onStockButtonClick, onAdButtonClick, isAdvertised }, ref) => {
 
   const inputTexts = getInputTextsConfig(product)
 
   return (
-    <FormStyled onSubmit={onSubmit}>
+    <FormStyled onSubmit={onSubmit} isAdvertised={isAdvertised}>
       <ImagePreview imageSource={product.imageSource} title={product.title}/>
       <div className="input-fields">
       {inputTexts.map((input) => (
