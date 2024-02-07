@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { theme } from "../../../../../../theme"
+import { fadeIn } from "../../../../../../theme/animations"
 
 // eslint-disable-next-line react/prop-types
 export default function ImagePreview({ imageSource, title }) {
@@ -25,6 +26,7 @@ const ImagePreviewStyled = styled.div`
     height: 100px;
     object-fit: contain;
     object-position: center;
+    animation: ${fadeIn} 1s;
   }
 
   .empty-image {

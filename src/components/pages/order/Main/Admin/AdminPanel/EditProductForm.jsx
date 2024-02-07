@@ -42,6 +42,7 @@ export default function EditProductForm() {
     }
     setItemSelected(itemUpdated)
     handleEdit(itemUpdated, username)
+    displaySuccessMessage()
   }
 
   const handleAdClick = () => {
@@ -53,6 +54,7 @@ export default function EditProductForm() {
     }
     setItemSelected(itemUpdated)
     handleEdit(itemUpdated, username)
+    displaySuccessMessage()
   }
 
   return (

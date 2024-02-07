@@ -51,11 +51,6 @@ const FormStyled = styled.form`
   height: 100%;
   width: 70%;
 
-  .image-container {
-    border-radius: 5px;
-    grid-area: 1 / 1 / 4 / 2;
-  }
-
   .input-fields {
     grid-area: 1 / 2 / -2 / 3;
     display: grid;
