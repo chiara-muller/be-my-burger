@@ -1,9 +1,7 @@
 import styled, { css } from "styled-components";
-import { formatPrice } from "../../../../../../utils/maths";
 import { MdDeleteForever } from "react-icons/md"
 import { theme } from "../../../../../../theme";
 import CasinoEffect from "../../../../../resusable-ui/CasinoEffect";
-import Sticker from "../../../../../resusable-ui/Sticker"
 
 export default function CartItem({
   id,
@@ -16,7 +14,6 @@ export default function CartItem({
   className,
   onClick,
   isSelected,
-  isAdvertised
 }) {
 
   return (
@@ -25,7 +22,6 @@ export default function CartItem({
         <MdDeleteForever className="icon" />
       </div>
       <div className="image">
-        {isAdvertised && <Sticker/>}
         <img src={imageSource} alt={title}/>
       </div>
       <div className="text-info">
@@ -33,7 +29,7 @@ export default function CartItem({
           <div className="title">
             <span>{title}</span>
           </div>
-          <span className="price">{formatPrice(price)}</span>
+          <span className="price">{price}</span>
         </div>
         <div className="quantity">
           <CasinoEffect count={`x ${quantity}`}/>

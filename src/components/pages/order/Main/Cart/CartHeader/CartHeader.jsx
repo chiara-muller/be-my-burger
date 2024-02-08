@@ -13,6 +13,8 @@ export default function CartHeader() {
 
   const totalPrice = calculateTotalPrice(cart, menu)
 
+  console.log(cart)
+
   return (
     <Header>
       <CartHeaderStyled>

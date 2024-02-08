@@ -90,7 +90,7 @@ export const fadeInFromRight = keyframes`
     opacity: 1;
     transform: translateX(0);
   }
-  `
+`
 
 export const fadeIn = keyframes`
   0% {
@@ -99,5 +99,19 @@ export const fadeIn = keyframes`
 
   100% {
     opacity: 1;
+  }
+`
+
+export const fadeInFromTop = keyframes`
+  0% {
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(-40%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 `

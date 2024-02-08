@@ -2,8 +2,7 @@ import styled, { css } from "styled-components";
 import Button from "./Button";
 import { theme } from "../../theme";
 import { TiDelete } from "react-icons/ti"
-import { fadeInFromRight } from "../../theme/animations";
-import Ribbon from "../resusable-ui/Ribbon"
+import { fadeInFromRight, fadeInFromTop } from "../../theme/animations";
 
 export default function Card({
   title,
@@ -13,26 +12,30 @@ export default function Card({
   hasDeleteButton,
   onDelete,
   onClick,
-  isAvailable,
-  isAdvertised,
   isHoverable,
   isSelected,
   onAddButtonClick,
-  className
+  className,
+  isOverlapImageVisible,
+  overlapImageSource
 }) {
 
 
   return (
     <CardStyled key={id} className={className} onClick={onClick} $isHoverable={isHoverable} $isSelected={isSelected} >
       <div className="card">
-        {isAdvertised && <Ribbon/>}
-        {!isAvailable && <div className="not-available-image" />}
         {hasDeleteButton && (
-          <button className="delete-button" onClick={onDelete}>
+          <button className="delete-button" aria-label="delete-button" onClick={onDelete}>
             <TiDelete className="icon"/>
           </button>
         )}
         <div className="image-container">
+          {isOverlapImageVisible && (
+            <div className="overlap">
+              <div className="transparent-layer"></div>
+              <img className="overlap-image" src={overlapImageSource} alt="overlap" />
+            </div>
+          )}
           <img src={imageSource} alt="menu image"/>
         </div>
         <div className="bottom-card">
@@ -40,7 +43,12 @@ export default function Card({
           <div className="pay-container">
             <div className="price">{leftDescription}</div>
             <div>
-              <Button label={"Ajouter"} className={"add-button"} onClick={onAddButtonClick}/>
+              <Button
+                label={"Ajouter"}
+                className={"add-button"}
+                onClick={onAddButtonClick}
+                disabled={isOverlapImageVisible}
+              />
             </div>
           </div>
         </div>
@@ -110,6 +118,34 @@ const CardStyled = styled.div`
         height: 100%;
         object-fit: contain;
       }
+
+      .overlap {
+        .overlap-image {
+          margin: auto;
+          position: absolute;
+          top: 50%;
+          bottom: 50%;
+          left: 10%;
+          right: 90%;
+          width: 80%;
+          height: 100%;
+          z-index: 1;
+          animation: ${fadeInFromTop} 500ms;
+          border-radius: ${theme.borderRadius.extraRound};
+        }
+
+        .transparent-layer {
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          opacity: 70%;
+          background: snow;
+          z-index: 1;
+          border-radius: ${theme.borderRadius.extraRound};
+        }
+      }
     }
 
     .bottom-card {
@@ -153,19 +189,6 @@ const CardStyled = styled.div`
 
     ${({ $isHoverable, $isSelected }) => $isHoverable && $isSelected && selectedStyle}
   }
-
-  .not-available-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("/images/stock-epuise.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  z-index: 1;
-  opacity: 1;
-}
 `;
 
 

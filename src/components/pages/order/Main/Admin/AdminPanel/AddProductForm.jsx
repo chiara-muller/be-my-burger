@@ -17,8 +17,6 @@ export default function AddProductForm() {
       ...newItem,
       id: Date.now(),
       price: replaceFrenchCommaWithDot(newItem.price),
-      // isAvailable: true,
-      // isAdvertised: false
     }
     handleAdd(newItemToAdd, username)
     setNewItem(EMPTY_ITEM)
@@ -31,41 +29,8 @@ export default function AddProductForm() {
     setNewItem({...newItem, [name]: newValue}) // copy du state + ajout des nouvelles valeurs en dynamique property name
   }
 
-  // const handleStockClick = (newItem) => {
-  //   const stockStatus = newItem.isAvailable
-  //   const stockStatusUpdated = !stockStatus
-  //   newItem.isAvailable = stockStatusUpdated
-  // }
-
-  // const handleAdClick = (newItem) => {
-  //   const adStatus = newItem.isAdvertised
-  //   const adStatusUpdated = !adStatus
-  //   newItem.isAdvertised = adStatusUpdated
-  // }
-  const handleStockClick = () => {
-    setNewItem(prevItem => ({
-      ...prevItem,
-      isAvailable: !prevItem.isAvailable
-    }));
-  };
-
-  const handleAdClick = () => {
-    setNewItem(prevItem => ({
-      ...prevItem,
-      isAdvertised: !prevItem.isAdvertised
-    }));
-  };
-
   return (
-    <Form
-      product={newItem}
-      onSubmit={handleSubmit}
-      onChange={handleChange}
-      onStockButtonClick={() => handleStockClick()}
-      onAdButtonClick={() => handleAdClick()}
-      isAvailable={newItem.isAvailable}
-      isAdvertised={newItem.isAdvertised}
-    >
+    <Form product={newItem} onSubmit={handleSubmit} onChange={handleChange}>
       <SubmitButton isSubmitted={isSubmitted}/>
     </Form>
   )

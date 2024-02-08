@@ -3,14 +3,14 @@ import React from "react";
 import styled from "styled-components";
 import ImagePreview from "./ImagePreview";
 import TextInput from "../../../../../resusable-ui/TextInput";
-import { getInputTextsConfig } from "./inputTextsConfig";
-import { FiPackage } from "react-icons/fi";
-import { GoMegaphone } from "react-icons/go"
+import { getInputSelectConfig, getInputTextsConfig } from "./inputTextsConfig";
 import { theme } from "../../../../../../theme";
+import SelectInput from "../../../../../resusable-ui/SelectInput";
 
-const Form = React.forwardRef(({ product, onSubmit, onChange, onFocus, onBlur, children, onStockButtonClick, onAdButtonClick, isAvailable, isAdvertised }, ref) => {
+const Form = React.forwardRef(({ product, onSubmit, onChange, onFocus, onBlur, children}, ref) => {
 
   const inputTexts = getInputTextsConfig(product)
+  const inputSelects = getInputSelectConfig(product)
 
   return (
     <FormStyled onSubmit={onSubmit}>
@@ -28,12 +28,15 @@ const Form = React.forwardRef(({ product, onSubmit, onChange, onFocus, onBlur, c
             className={"input"}
           />
         ))}
-      <button className="input button" type="button" onClick={onStockButtonClick}>
-        <span className="icon"><FiPackage/></span>{isAvailable ? "En rupture" : "En stock"}
-      </button>
-      <button className="input button" type="button" onClick={onAdButtonClick}>
-        <span className="icon"><GoMegaphone/></span>{isAdvertised ? "Sans pub" : "Avec pub"}
-      </button>
+      {inputSelects.map((inputSelect) => (
+        <SelectInput
+          {...inputSelect}
+          key={inputSelect.id}
+          onChange={onChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
+        />
+      ))}
       </div>
       <div className="form-footer">{children}</div>
     </FormStyled>

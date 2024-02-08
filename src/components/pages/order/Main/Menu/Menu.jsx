@@ -7,11 +7,13 @@ import OrderContext from "../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfItemIsClicked } from "./helper";
-import { DEFAULT_IMAGE, EMPTY_ITEM } from "../../../../../enums/product";
+import { DEFAULT_IMAGE, EMPTY_ITEM, IMAGE_NO_STOCK } from "../../../../../enums/product";
 import { isEmpty } from "../../../../../utils/array";
 import Loader from "./Loader";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { menuAnimation } from "../../../../../theme/animations";
+import { convertStringToBoolean } from "../../../../../utils/string"
+import Ribbon from "../../../../resusable-ui/Ribbon"
 
 export default function Menu() {
 
@@ -46,6 +48,8 @@ export default function Menu() {
     handleAddItemToBuy(idItemClicked, username)
   }
 
+  let cardContainerClassName = isModeAdmin ? "card-container is-hoverable" : "card-container"
+
   if (menu === undefined) return <Loader/>
 
   if (isEmpty(menu)) {
@@ -55,25 +59,27 @@ export default function Menu() {
 
   return (
     <TransitionGroup component={MenuStyled}>
-      {menu.map(({id, title, imageSource, price, quantity, isAvailable, isAdvertised}) => {
+      {menu.map(({id, title, imageSource, price, isAvailable, isAdvertised}) => {
         return (
           <CSSTransition key={id} classNames={"animation-menu"} timeout={300}>
-            <Card
-              key={id}
-              title={title}
-              imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
-              leftDescription={ "0,00€" && formatPrice(price)}
-              quantity={quantity}
-              hasDeleteButton={isModeAdmin}
-              onDelete={(event) => handleCardDelete(event, id)}
-              onClick={() => handleClick(id)}
-              isHoverable={isModeAdmin}
-              isSelected={checkIfItemIsClicked(id, itemSelected.id)}
-              onAddButtonClick={isAvailable ? (event) => handleAddClick(event, id) : null}
-              className={`${!isAvailable ? 'not-available' : ''}`}
-              isAdvertised={isAdvertised}
-              isAvailable={isAvailable}
-            />
+            <div className={cardContainerClassName}>
+            {convertStringToBoolean(isAdvertised) && <Ribbon/>}
+              <Card
+                key={id}
+                title={title}
+                imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
+                leftDescription={formatPrice(price)}
+                hasDeleteButton={isModeAdmin}
+                onDelete={(event) => handleCardDelete(event, id)}
+                onClick={() => handleClick(id)}
+                isHoverable={isModeAdmin}
+                isSelected={checkIfItemIsClicked(id, itemSelected.id)}
+                onAddButtonClick={isAvailable ? (event) => handleAddClick(event, id) : null}
+                className={`${!isAvailable ? 'not-available' : ''}`}
+                overlapImageSource={IMAGE_NO_STOCK}
+                isOverlapImageVisible={convertStringToBoolean(isAvailable) === false}
+              />
+            </div>
           </CSSTransition>
         )
       })}
@@ -94,9 +100,22 @@ const MenuStyled = styled.div`
   grid-gap: ${theme.gridUnit * 5}px;
   overflow-y: scroll;
 
-  .not-available {
-    opacity: 0.5;
+  ${menuAnimation}
+
+  .card-container {
+    position: relative;
+    height: 330px; // pour éviter une zone de click verticale bizarre qu'on voit qu'au pointeur de l'outil inspect du navigateur
+    border-radius: ${theme.borderRadius.extraRound};
+
+    &.is-hoverable {
+      &:hover {
+        transform: scale(1.05);
+        transition: ease-out 0.4s;
+      }
+    }
   }
 
-  ${menuAnimation}
+  .ribbon {
+    z-index: 2;
+  }
 `;

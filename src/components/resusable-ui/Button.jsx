@@ -3,9 +3,9 @@ import { theme } from "../../theme";
 
 
 // eslint-disable-next-line react/prop-types
-export default function Button({label, Icon, className, version="normal", onClick}) {
+export default function Button({label, Icon, className, version="normal", onClick, disabled}) {
   return (
-    <ButtonStyled className={className} version={version} onClick={onClick}>
+    <ButtonStyled className={className} version={version} onClick={onClick} disabled={disabled}>
       <span> {label} </span>
       <div className="icon">{Icon && Icon}</div>
     </ButtonStyled>

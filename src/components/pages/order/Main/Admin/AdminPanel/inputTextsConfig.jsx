@@ -1,6 +1,9 @@
 import { FaHamburger } from "react-icons/fa"
 import { BsFillCameraFill } from "react-icons/bs"
 import { MdOutlineEuro } from "react-icons/md"
+import { FiPackage } from "react-icons/fi"
+import { GoMegaphone } from "react-icons/go"
+import { advertisingOptions, stockOptions } from "../../../../../../enums/selects"
 
 export const getInputTextsConfig = (newItem) => [
   {
@@ -59,5 +62,24 @@ export const editInputTextsConfig = (item) => [
     placeholder: "Prix",
     Icon: <MdOutlineEuro />,
     version: "minimalist",
+  },
+]
+
+export const getInputSelectConfig = (item) => [
+  {
+    id: "3",
+    name: "isAvailable",
+    value: item.isAvailable,
+    options: stockOptions,
+    Icon: <FiPackage/>,
+    className: "is-available",
+  },
+  {
+    id: "4",
+    name: "isAdvertised",
+    value: item.isAdvertised,
+    options: advertisingOptions,
+    Icon: <GoMegaphone/>,
+    className: "is-advertised",
   },
 ]

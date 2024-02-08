@@ -33,30 +33,6 @@ export default function EditProductForm() {
     }
   }
 
-  const handleStockClick = () => {
-    const stockStatus = itemSelected.isAvailable
-    const stockStatusUpdated = !stockStatus
-    const itemUpdated = {
-      ...itemSelected,
-      isAvailable: stockStatusUpdated,
-    }
-    setItemSelected(itemUpdated)
-    handleEdit(itemUpdated, username)
-    displaySuccessMessage()
-  }
-
-  const handleAdClick = () => {
-    const adStatus = itemSelected.isAdvertised
-    const adStatusUpdated = !adStatus
-    const itemUpdated = {
-      ...itemSelected,
-      isAdvertised: adStatusUpdated,
-    }
-    setItemSelected(itemUpdated)
-    handleEdit(itemUpdated, username)
-    displaySuccessMessage()
-  }
-
   return (
     <Form
       product={itemSelected}
@@ -64,10 +40,6 @@ export default function EditProductForm() {
       ref={titleEditRef}
       onFocus={handleOnFocus}
       onBlur={handleOnBlur}
-      onStockButtonClick={handleStockClick}
-      onAdButtonClick={handleAdClick}
-      isAvailable={itemSelected.isAvailable}
-      isAdvertised={itemSelected.isAdvertised}
     >
       {isSaved ? <SavingMessage /> : <EditInfoMessage />}
     </Form>

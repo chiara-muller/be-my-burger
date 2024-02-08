@@ -8,7 +8,6 @@ export function useCart() {
 
   const handleAddItemToBuy = (idItemToBuy, username) => {
     const cartCopy = deepClone(cart)
-    // if (itemToBuy.isAvailable === false) return
     const itemAlreadyInCart = findObjectById(idItemToBuy, cartCopy)
     if (itemAlreadyInCart) {
       incrementItemInCart(idItemToBuy, cartCopy, username)
