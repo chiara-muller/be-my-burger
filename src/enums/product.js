@@ -12,5 +12,7 @@ export const DEFAULT_IMAGE = "/images/coming-soon.png"
 export const IMAGE_NO_STOCK = "/images/stock-epuise.png"
 
 export const BASKET_MESSAGE = {
-  NOT_AVAILABLE: "Non disponible"
+  NOT_AVAILABLE: "Non disponible",
+  EMPTY_CART: "Votre commande est vide.",
+  LOADING_MESSAGE: "Chargement en cours...",
 }

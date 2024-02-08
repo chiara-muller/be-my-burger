@@ -25,4 +25,5 @@ const CartFooterStyled = styled.div`
     font-size: ${theme.fonts.size.P2};
     font-weight: ${theme.fonts.weights.bold};
   }
+
 `;

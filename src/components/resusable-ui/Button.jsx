@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components"
 import { theme } from "../../theme";
 
-
 // eslint-disable-next-line react/prop-types
 export default function Button({label, Icon, className, version="normal", onClick, disabled}) {
   return (
@@ -48,13 +47,13 @@ const extraStylePrimary = css`
     color: ${theme.colors.white};
   }
 
-  &.is-disabled {
+  &:disabled {
     opacity: 50%;
     cursor: not-allowed;
     z-index: 2;
   }
 
-  &.with-focus {
+  .with-focus {
     border: 1px solid white;
     background-color: ${theme.colors.white};
     color: ${theme.colors.primary};

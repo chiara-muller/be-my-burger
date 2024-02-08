@@ -12,6 +12,7 @@ export default function EmptyMenuClient() {
 }
 
 const EmptyMenuStyled = styled.div`
+
   background-color: ${theme.colors.background_white};
   box-shadow: ${theme.shadows.strong};
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
@@ -36,4 +37,5 @@ const EmptyMenuStyled = styled.div`
     font-size: ${theme.fonts.size.P4};
     margin-top: 20px;
   }
+
 `

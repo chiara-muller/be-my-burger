@@ -106,7 +106,7 @@ const MenuStyled = styled.div`
     height: 330px; // pour éviter une zone de click verticale bizarre qu'on voit qu'au pointeur de l'outil inspect du navigateur
     border-radius: ${theme.borderRadius.extraRound};
 
-    &.is-hoverable {
+    .is-hoverable {
       &:hover {
         transform: scale(1.05);
         transition: ease-out 0.4s;

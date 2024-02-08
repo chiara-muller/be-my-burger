@@ -7,7 +7,6 @@ import ToastAdmin from "./ToastAdmin";
 import ToggleButton from "../../../resusable-ui/ToggleButton";
 import OrderContext from "../../../../context/OrderContext";
 
-
 export default function NavbarRightSide() {
 
   const { isModeAdmin, setIsModeAdmin } = useContext(OrderContext)
@@ -16,7 +15,6 @@ export default function NavbarRightSide() {
 
     if (!isModeAdmin) {
       toast.info("Mode admin activé", {
-      // icon: <FaUserSecret size={30} />,
       theme: "dark",
       position: "bottom-right",
       autoClose: 5000,

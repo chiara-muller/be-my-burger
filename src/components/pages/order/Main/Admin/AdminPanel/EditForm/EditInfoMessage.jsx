@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "../../../../../../theme";
+import { theme } from "../../../../../../../theme";
 
 export default function EditInfoMessage() {
   return (
@@ -8,9 +8,9 @@ export default function EditInfoMessage() {
       <span className="live-update">en temps réel</span>
     </EditInfoMessageStyled>
   )
- }
+}
 
- const EditInfoMessageStyled = styled.span`
+const EditInfoMessageStyled = styled.span`
 
   color: ${theme.colors.primary};
   font-size: ${theme.fonts.size.SM};
@@ -18,4 +18,5 @@ export default function EditInfoMessage() {
   .live-update {
     text-decoration: underline;
   }
- `;
+
+`;

@@ -13,8 +13,6 @@ export default function CartHeader() {
 
   const totalPrice = calculateTotalPrice(cart, menu)
 
-  console.log(cart)
-
   return (
     <Header>
       <CartHeaderStyled>
@@ -36,4 +34,5 @@ const CartHeaderStyled = styled.div`
   font-size: ${theme.fonts.size.P4};
   font-weight: ${theme.fonts.weights.bold};
   letter-spacing: 2px;
+
 `;

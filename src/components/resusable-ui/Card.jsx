@@ -89,6 +89,7 @@ const CardStyled = styled.div`
       width: 30px;
       height: 30px;
       animation: ${fadeInFromRight} 500ms ease-out;
+      z-index: 2;
 
       &:hover {
         color: ${theme.colors.red};
@@ -156,7 +157,6 @@ const CardStyled = styled.div`
       .item-name {
         margin: auto 0;
         font-size: ${theme.fonts.size.P4};
-        /* letter-spacing: 0.5px; */
         position: relative;
         bottom: 10px;
         font-weight: ${theme.fonts.weights.bold};
@@ -180,7 +180,7 @@ const CardStyled = styled.div`
       .add-button {
         padding: 10px 18px;
         margin: 10px 0;
-        font-size: ${theme.fonts.size.P0}
+        font-size: ${theme.fonts.size.P0};
         /* ;
         cursor: pointer;
         padding: 12px; */

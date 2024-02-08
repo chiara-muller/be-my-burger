@@ -166,6 +166,7 @@ const CartItemStyled = styled.div`
 
 
 const selectedStyle = css`
+
   background: ${theme.colors.primary};
 
   .price {
@@ -175,4 +176,5 @@ const selectedStyle = css`
   .quantity {
     color: ${theme.colors.white}
   }
+
 `

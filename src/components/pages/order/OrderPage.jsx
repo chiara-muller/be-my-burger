@@ -36,7 +36,7 @@ export default function OrderPage() {
 
   useEffect(() => {
     initializeUserSession(username, setMenu, setCart)
-  }, [])
+  })
 
   const orderContextValue = {
     username,
@@ -64,7 +64,6 @@ export default function OrderPage() {
     titleEditRef,
   }
 
-
   return (
     <OrderContext.Provider value={orderContextValue}>
       <OrderPageStyled>
@@ -75,6 +74,7 @@ export default function OrderPage() {
       </OrderPageStyled>
     </OrderContext.Provider>
   )
+
 }
 
 const OrderPageStyled = styled.div`

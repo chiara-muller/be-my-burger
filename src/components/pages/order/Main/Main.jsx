@@ -39,4 +39,5 @@ const MainStyled = styled.div`
     display: grid; // we need this otherwise the menu is unscrollable
     border-radius: 0px 0px 15px 0px;
   }
+
 `;

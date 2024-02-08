@@ -1,7 +1,6 @@
 import styled from "styled-components"
 import { theme } from "../../../../../theme"
 
-
 export default function Loader() {
   return (
     <LoaderStyled>
@@ -11,6 +10,7 @@ export default function Loader() {
 }
 
 const LoaderStyled = styled.div`
+
   background-color: ${theme.colors.background_white};
   box-shadow: ${theme.shadows.strong};
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
@@ -25,4 +25,5 @@ const LoaderStyled = styled.div`
     font-size: ${theme.fonts.size.P4};
     font-weight: ${theme.fonts.weights.regular};
   }
+
 `

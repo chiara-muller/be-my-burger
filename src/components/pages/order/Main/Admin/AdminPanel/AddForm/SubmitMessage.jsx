@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { FiCheck } from "react-icons/fi"
-import { theme } from "../../../../../../theme"
+import { theme } from "../../../../../../../theme"
 
 export default function SubmitMessage() {
   return (
@@ -12,6 +12,7 @@ export default function SubmitMessage() {
 }
 
 const SubmitMessageStyled = styled.div`
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,9 +27,11 @@ const SubmitMessageStyled = styled.div`
     border-radius: 50%;
     vertical-align: middle;
   }
+
   .message {
     margin-left: 5px;
     font-size: ${theme.fonts.size.SM};
     color: ${theme.colors.success};
   }
+
 `

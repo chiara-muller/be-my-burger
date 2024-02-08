@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { theme } from "../../theme";
 
 export default function SelectInput({options, name, value, onChange, Icon, className, ...restProps}) {
-
   return (
     <SelectInputStyled className={className}>
       {Icon && <div className="icon">{Icon}</div>}
@@ -25,7 +24,7 @@ const SelectInputStyled = styled.div`
 
   .icon {
     font-size: ${theme.fonts.P1};
-    margin-right: 13px;
+    margin-right: 5px;
     color: ${theme.colors.greyBlue};
     display: flex; // centre verticalement l'icône dans le champ select
   }

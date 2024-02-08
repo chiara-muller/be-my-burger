@@ -2,7 +2,6 @@
 import styled from "styled-components"
 import { theme } from "../../theme"
 
-
 export default function ToggleButton({
   isChecked,
   onToggle,
@@ -10,7 +9,6 @@ export default function ToggleButton({
   labelIfUnchecked = "Ouvrir",
 })
 {
-
   return (
     <ToggleButtonStyled>
       <input
@@ -25,13 +23,13 @@ export default function ToggleButton({
         className="rounded"
         data-checked={labelIfChecked}
         data-unchecked={labelIfUnchecked}
-      ></label>
+      >
+      </label>
     </ToggleButtonStyled>
   )
 }
 
 const ToggleButtonStyled = styled.div`
-  /* border: 1px solid red; */
 
   display: flex;
   margin-right: 10px;
@@ -69,7 +67,6 @@ const ToggleButtonStyled = styled.div`
 
     // text inside the switch button (for checked and unchecked)
     &.toggle + label:after {
-      /* border: 1px solid blue; */
       width: 150px;
       text-align: center;
       z-index: 2;

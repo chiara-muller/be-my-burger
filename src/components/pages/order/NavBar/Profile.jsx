@@ -37,6 +37,7 @@ const ProfileStyled = styled.div`
     text-align: right;
     margin-right: 1Opx;
   }
+
   .greetings {
     color: ${theme.colors.greyBlue};
     font-size: ${theme.fonts.size.P1};
@@ -53,7 +54,6 @@ const ProfileStyled = styled.div`
     border: none;
     font-size: ${theme.fonts.size.XS};
     color: ${theme.colors.greyBlue};
-
     position: relative;
     bottom: 2px;
 
@@ -62,8 +62,8 @@ const ProfileStyled = styled.div`
       color: ${theme.colors.greyDark};
       cursor: pointer;
     }
-  }
 
+  }
 
   .icon-container {
     display: flex;
@@ -77,4 +77,5 @@ const ProfileStyled = styled.div`
     font-size: ${theme.fonts.size.P4};
     color: ${theme.colors.greyBlue};
   }
+
 `;

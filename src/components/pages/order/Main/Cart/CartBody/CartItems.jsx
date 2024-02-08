@@ -11,7 +11,6 @@ import { convertStringToBoolean } from "../../../../../../utils/string";
 import Sticker from "../../../../../resusable-ui/Sticker"
 import { formatPrice } from "../../../../../../utils/maths";
 
-
 export default function CartItems() {
 
   const {

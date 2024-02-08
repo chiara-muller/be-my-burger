@@ -1,13 +1,10 @@
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
+import { BASKET_MESSAGE } from "../../../../../../enums/product";
 
 export default function EmptyCart({isLoading}) {
-
-  const emptyCartMessage = "Votre commande est vide."
-  const emptyLoadingMessage = "Chargement en cours..."
-
   return (
-    <EmptyCartStyled className="empty-message">{isLoading ? emptyLoadingMessage : emptyCartMessage}</EmptyCartStyled>
+    <EmptyCartStyled className="empty-message">{isLoading ? BASKET_MESSAGE.LOADING_MESSAGE : BASKET_MESSAGE.EMPTY_CART}</EmptyCartStyled>
   )
 }
 
