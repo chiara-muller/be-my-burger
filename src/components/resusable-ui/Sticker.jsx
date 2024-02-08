@@ -11,8 +11,8 @@ const StickerStyled = styled.span`
   right: 10px;
   font-size: ${theme.fonts.size.XXXS};
   padding: 1em;
-  width: 30px;
-  height: 30px;
+  width: 15px;
+  height: 15px;
   display: flex;
   justify-content: center;
   align-items: center;

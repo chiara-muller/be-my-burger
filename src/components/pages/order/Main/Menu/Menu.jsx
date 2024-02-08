@@ -74,8 +74,7 @@ export default function Menu() {
                 onClick={() => handleClick(id)}
                 isHoverable={isModeAdmin}
                 isSelected={checkIfItemIsClicked(id, itemSelected.id)}
-                onAddButtonClick={isAvailable ? (event) => handleAddClick(event, id) : null}
-                className={`${!isAvailable ? 'not-available' : ''}`}
+                onAddButtonClick={(event) => handleAddClick(event, id)}
                 overlapImageSource={IMAGE_NO_STOCK}
                 isOverlapImageVisible={convertStringToBoolean(isAvailable) === false}
               />
