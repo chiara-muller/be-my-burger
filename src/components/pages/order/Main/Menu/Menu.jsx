@@ -13,7 +13,7 @@ import Loader from "./Loader";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { menuAnimation } from "../../../../../theme/animations";
 import { convertStringToBoolean } from "../../../../../utils/string"
-import Ribbon from "../../../../resusable-ui/Ribbon"
+import RibbonAnimated, { ribbonAnimation } from "./RibbonAnimated";
 
 export default function Menu() {
 
@@ -63,7 +63,7 @@ export default function Menu() {
         return (
           <CSSTransition key={id} classNames={"animation-menu"} timeout={300}>
             <div className={cardContainerClassName}>
-            {convertStringToBoolean(isAdvertised) && <Ribbon/>}
+            {convertStringToBoolean(isAdvertised) && <RibbonAnimated/>}
               <Card
                 key={id}
                 title={title}
@@ -106,7 +106,7 @@ const MenuStyled = styled.div`
     height: 330px; // pour éviter une zone de click verticale bizarre qu'on voit qu'au pointeur de l'outil inspect du navigateur
     border-radius: ${theme.borderRadius.extraRound};
 
-    .is-hoverable {
+    &.is-hoverable {
       &:hover {
         transform: scale(1.05);
         transition: ease-out 0.4s;
@@ -117,4 +117,7 @@ const MenuStyled = styled.div`
   .ribbon {
     z-index: 2;
   }
+
+  ${ribbonAnimation}
+
 `;
