@@ -4,20 +4,20 @@ import Header from "../../../../../resusable-ui/Header";
 import { useContext } from "react";
 import OrderContext from "../../../../../../context/OrderContext";
 import { formatPrice } from "../../../../../../utils/maths";
-import { totalPrice } from "./helpers";
+import { calculateTotalPrice} from "./helpers";
 import CasinoEffect from "../../../../../resusable-ui/CasinoEffect";
 
 export default function CartHeader() {
 
-  const { cart } = useContext(OrderContext)
+  const { cart, menu } = useContext(OrderContext)
 
-  const total = totalPrice(cart)
+  const totalPrice = calculateTotalPrice(cart, menu)
 
   return (
     <Header>
       <CartHeaderStyled>
         <span>Total</span>
-        <CasinoEffect count={formatPrice(total)}/>
+        <CasinoEffect count={formatPrice(totalPrice)}/>
       </CartHeaderStyled>
     </Header>
   )
@@ -34,4 +34,5 @@ const CartHeaderStyled = styled.div`
   font-size: ${theme.fonts.size.P4};
   font-weight: ${theme.fonts.weights.bold};
   letter-spacing: 2px;
+
 `;

@@ -1,7 +1,6 @@
 import styled from "styled-components"
 import { BsCloudCheck } from "react-icons/bs"
-import { theme } from "../../../../../../theme"
-
+import { theme } from "../../../../../../../theme"
 
 export default function SavingMessage() {
   return (
@@ -9,12 +8,13 @@ export default function SavingMessage() {
       <div className="icon">
         <BsCloudCheck />
       </div>
-      <span className="sentence">Modifications enregistrées !</span>
+      <span>Modifications enregistrées !</span>
     </SavingMessageStyled>
   )
 }
 
 const SavingMessageStyled = styled.div`
+
   display: flex;
   color: ${theme.colors.blue};
   font-size: ${theme.fonts.size.SM};
@@ -24,4 +24,5 @@ const SavingMessageStyled = styled.div`
     display: flex;
     margin: 0 10px;
   }
+
 `

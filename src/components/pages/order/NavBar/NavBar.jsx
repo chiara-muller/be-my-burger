@@ -3,9 +3,7 @@ import NavbarRightSide from "./NavbarRightSide";
 import NavbarLeftSide from "./NavbarLeftSide";
 import { theme } from "../../../../theme"
 
-
 export default function NavBar() {
-
   return (
     <NavBarStyled>
       <NavbarLeftSide />

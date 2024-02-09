@@ -1,5 +1,6 @@
 import styled from "styled-components"
-import { theme } from "../../../../../../theme"
+import { theme } from "../../../../../../../theme"
+import { fadeIn } from "../../../../../../../theme/animations"
 
 // eslint-disable-next-line react/prop-types
 export default function ImagePreview({ imageSource, title }) {
@@ -15,6 +16,7 @@ export default function ImagePreview({ imageSource, title }) {
 }
 
 const ImagePreviewStyled = styled.div`
+
   grid-area: 1 / 1 / 4 / 2;
   display: flex;
   justify-content: center;
@@ -25,10 +27,10 @@ const ImagePreviewStyled = styled.div`
     height: 100px;
     object-fit: contain;
     object-position: center;
+    animation: ${fadeIn} 1s;
   }
 
   .empty-image {
-    /* background-color: green; */
     height: 100%;
     width: 100%;
     display: flex;
@@ -39,4 +41,5 @@ const ImagePreviewStyled = styled.div`
     color: ${theme.colors.greySemiDark};
     border-radius: ${theme.borderRadius.round};
   }
+
 `

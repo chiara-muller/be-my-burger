@@ -13,7 +13,7 @@ export default function Admin() {
   return (
     <TransitionGroup component={AdminStyled}>
       <CSSTransition appear={true} timeout={500} classNames={"panel-animated"}>
-        <div className="panel">
+        <div>
           <AdminTabs/>
           {!isCollapsed && <AdminPanel />}
         </div>
@@ -28,6 +28,7 @@ const AdminStyled = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 3;
 
   ${panelAnimation}
 

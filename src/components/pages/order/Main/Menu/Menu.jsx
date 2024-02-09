@@ -7,11 +7,13 @@ import OrderContext from "../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfItemIsClicked } from "./helper";
-import { DEFAULT_IMAGE, EMPTY_ITEM } from "../../../../../enums/product";
-import { findObjectById, isEmpty } from "../../../../../utils/array";
+import { DEFAULT_IMAGE, EMPTY_ITEM, IMAGE_NO_STOCK } from "../../../../../enums/product";
+import { isEmpty } from "../../../../../utils/array";
 import Loader from "./Loader";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { menuAnimation } from "../../../../../theme/animations";
+import { convertStringToBoolean } from "../../../../../utils/string"
+import RibbonAnimated, { ribbonAnimation } from "./RibbonAnimated";
 
 export default function Menu() {
 
@@ -22,23 +24,16 @@ export default function Menu() {
     isModeAdmin,
     resetMenu,
     itemSelected,
-    titleEditRef,
-    setCurrentTabActive,
-    setIsCollapsed,
     setItemSelected,
     handleAddItemToBuy,
-    handleDeleteItemToBuy
+    handleDeleteItemToBuy,
+    handleItemSelected,
   } = useContext(OrderContext)
 
   // on rend la fonction asynchrone pour que le focus attende que les premiers setter soit exécutés avant de s'exécuter lui même
-  const handleClick = async (event, idItemClicked) => {
-    event.stopPropagation()
+  const handleClick =  (idItemClicked) => {
     if (!isModeAdmin) return // si on n'est pas en mode admin, on n'execute pas handleClick
-    setCurrentTabActive("edit")
-    setIsCollapsed(false)
-    const itemClicked = findObjectById(idItemClicked, menu)
-    await setItemSelected(itemClicked)
-    titleEditRef.current.focus()
+    handleItemSelected(idItemClicked)
   }
 
   const handleCardDelete = (event, id) => {
@@ -50,9 +45,10 @@ export default function Menu() {
 
   const handleAddClick = (event, idItemClicked) => {
     event.stopPropagation()
-    const itemToBuy = findObjectById(idItemClicked, menu)
-    handleAddItemToBuy(itemToBuy, username)
+    handleAddItemToBuy(idItemClicked, username)
   }
+
+  let cardContainerClassName = isModeAdmin ? "card-container is-hoverable" : "card-container"
 
   if (menu === undefined) return <Loader/>
 
@@ -63,23 +59,26 @@ export default function Menu() {
 
   return (
     <TransitionGroup component={MenuStyled}>
-      {menu.map(({id, title, imageSource, price, quantity}) => {
+      {menu.map(({id, title, imageSource, price, isAvailable, isAdvertised}) => {
         return (
           <CSSTransition key={id} classNames={"animation-menu"} timeout={300}>
-            <Card
-              key={id}
-              title={title}
-              imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
-              leftDescription={ "0,00€" && formatPrice(price)}
-              quantity={quantity}
-              hasDeleteButton={isModeAdmin}
-              onDelete={(event) => handleCardDelete(event, id)}
-              onClick={(event) => handleClick(event, id)}
-              isHoverable={isModeAdmin}
-              isSelected={checkIfItemIsClicked(id, itemSelected.id)}
-              onAddButtonClick={(event) => handleAddClick(event, id)}
-              className={"card"}
-            />
+            <div className={cardContainerClassName}>
+            {convertStringToBoolean(isAdvertised) && <RibbonAnimated/>}
+              <Card
+                key={id}
+                title={title}
+                imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
+                leftDescription={formatPrice(price)}
+                hasDeleteButton={isModeAdmin}
+                onDelete={(event) => handleCardDelete(event, id)}
+                onClick={() => handleClick(id)}
+                isHoverable={isModeAdmin}
+                isSelected={checkIfItemIsClicked(id, itemSelected.id)}
+                onAddButtonClick={(event) => handleAddClick(event, id)}
+                overlapImageSource={IMAGE_NO_STOCK}
+                isOverlapImageVisible={convertStringToBoolean(isAvailable) === false}
+              />
+            </div>
           </CSSTransition>
         )
       })}
@@ -88,7 +87,6 @@ export default function Menu() {
 }
 
 const MenuStyled = styled.div`
-
 
   background: ${theme.colors.background_white};
   display: grid;
@@ -102,4 +100,24 @@ const MenuStyled = styled.div`
   overflow-y: scroll;
 
   ${menuAnimation}
+
+  .card-container {
+    position: relative;
+    height: 330px; // pour éviter une zone de click verticale bizarre qu'on voit qu'au pointeur de l'outil inspect du navigateur
+    border-radius: ${theme.borderRadius.extraRound};
+
+    &.is-hoverable {
+      &:hover {
+        transform: scale(1.05);
+        transition: ease-out 0.4s;
+      }
+    }
+  }
+
+  .ribbon {
+    z-index: 2;
+  }
+
+  ${ribbonAnimation}
+
 `;

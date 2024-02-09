@@ -10,12 +10,12 @@ const TextInput = React.forwardRef(({value,
     version = "normal",
     ...otherProps
   }, ref) => {
-      return (
-    <TextInputStyled className={className} version={version}>
-      <div className="icon">{Icon && Icon}</div>
-      <input value={value} onChange={onChange} type="text" {...otherProps} ref={ref}/>
-    </TextInputStyled>
-  )
+    return (
+      <TextInputStyled className={className} version={version}>
+        <div className="icon">{Icon && Icon}</div>
+        <input value={value} onChange={onChange} type="text" {...otherProps} ref={ref}/>
+      </TextInputStyled>
+    )
 })
 
 export default TextInput;
@@ -52,7 +52,6 @@ const TextInputStyled = styled.div`
   // or we can desctructure props like so => ${({version}) => extraStyle[version]}
 
 `
-
 
 const extraStyleNormal = css`
   background-color: ${theme.colors.white};

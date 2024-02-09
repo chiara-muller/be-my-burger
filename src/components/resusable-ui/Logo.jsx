@@ -12,7 +12,6 @@ export default function Logo( {scale} ) {
   )
 }
 
-
 const LogoStyled = styled.div`
 
   display: flex;

@@ -3,7 +3,6 @@ import Logo from "../../resusable-ui/Logo";
 import LoginForm from "./LoginForm"
 
 export default function LoginPage() {
-
   return (
     <LoginPageStyled >
       <Logo scale={2.5}/>
@@ -33,6 +32,5 @@ const LoginPageStyled = styled.div`
     bottom: 0;
     z-index: -1;
   }
-
 
 `;

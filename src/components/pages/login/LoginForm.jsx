@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import styled from 'styled-components'
 import { BsPersonCircle } from "react-icons/bs";
 import { IoIosArrowForward } from "react-icons/io";
@@ -15,16 +14,16 @@ export default function LoginForm() {
   const [username, setUsername ] = useState("")
   const navigate = useNavigate()
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    authenticateUser(username)
+    const userReceived = await authenticateUser(username)
     setUsername("")
-    navigate(`order/${username}`)
-   }
+    navigate(`order/${userReceived.username}`)
+  }
 
-   const handleChange = (event) => {
-      setUsername(event.target.value)
-    }
+  const handleChange = (event) => {
+    setUsername(event.target.value)
+  }
 
   return (
       <LoginFormStyled action="submit" onSubmit={handleSubmit}>

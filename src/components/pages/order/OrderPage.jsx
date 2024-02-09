@@ -10,6 +10,7 @@ import { useMenu } from "../../../hooks/useMenu";
 import { useCart } from "../../../hooks/useCart";
 import { useParams } from "react-router-dom";
 import { initializeUserSession } from "./helpers/initializeUserSession";
+import { findObjectById } from "../../../utils/array";
 
 export default function OrderPage() {
 
@@ -24,6 +25,18 @@ export default function OrderPage() {
   const { username } = useParams()
 
   const titleEditRef = useRef()
+
+  const handleItemSelected = async (idItemClicked) => {
+    const itemClicked = findObjectById(idItemClicked, menu)
+    await setIsCollapsed(false)
+    await setCurrentTabActive("edit")
+    await setItemSelected(itemClicked)
+    titleEditRef.current.focus()
+  }
+
+  useEffect(() => {
+    initializeUserSession(username, setMenu, setCart)
+  })
 
   const orderContextValue = {
     username,
@@ -42,17 +55,14 @@ export default function OrderPage() {
     handleAddItemToBuy,
     handleDeleteItemToBuy,
     handleEditItemToBuy,
+    handleItemSelected,
     resetMenu,
     newItem,
     setNewItem,
     itemSelected,
     setItemSelected,
-    titleEditRef
+    titleEditRef,
   }
-
-  useEffect(() => {
-    initializeUserSession(username, setMenu, setCart)
-  }, [])
 
   return (
     <OrderContext.Provider value={orderContextValue}>
@@ -64,6 +74,7 @@ export default function OrderPage() {
       </OrderPageStyled>
     </OrderContext.Provider>
   )
+
 }
 
 const OrderPageStyled = styled.div`

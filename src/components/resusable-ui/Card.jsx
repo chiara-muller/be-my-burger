@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import Button from "./Button";
 import { theme } from "../../theme";
 import { TiDelete } from "react-icons/ti"
-import { fadeInFromRight } from "../../theme/animations";
+import { fadeInFromRight, fadeInFromTop } from "../../theme/animations";
 
 export default function Card({
   title,
@@ -15,18 +15,27 @@ export default function Card({
   isHoverable,
   isSelected,
   onAddButtonClick,
-  className
+  className,
+  isOverlapImageVisible,
+  overlapImageSource
 }) {
 
 
   return (
-    <CardStyled key={id} className={className} onClick={onClick} $isHoverable={isHoverable} $isSelected={isSelected}>
+    <CardStyled key={id} className={className} onClick={onClick} $isHoverable={isHoverable} $isSelected={isSelected} >
       <div className="card">
         {hasDeleteButton && (
-          <button className="delete-button" onClick={onDelete}>
+          <button className="delete-button" aria-label="delete-button" onClick={onDelete}>
             <TiDelete className="icon"/>
-          </button>)}
+          </button>
+        )}
         <div className="image-container">
+          {isOverlapImageVisible && (
+            <div className="overlap">
+              <div className="transparent-layer"></div>
+              <img className="overlap-image" src={overlapImageSource} alt="overlap" />
+            </div>
+          )}
           <img src={imageSource} alt="menu image"/>
         </div>
         <div className="bottom-card">
@@ -34,7 +43,12 @@ export default function Card({
           <div className="pay-container">
             <div className="price">{leftDescription}</div>
             <div>
-              <Button label={"Ajouter"} className={"add-button"} onClick={onAddButtonClick}/>
+              <Button
+                label={"Ajouter"}
+                className={"add-button"}
+                onClick={onAddButtonClick}
+                disabled={isOverlapImageVisible}
+              />
             </div>
           </div>
         </div>
@@ -75,6 +89,7 @@ const CardStyled = styled.div`
       width: 30px;
       height: 30px;
       animation: ${fadeInFromRight} 500ms ease-out;
+      z-index: 2;
 
       &:hover {
         color: ${theme.colors.red};
@@ -104,6 +119,34 @@ const CardStyled = styled.div`
         height: 100%;
         object-fit: contain;
       }
+
+      .overlap {
+        .overlap-image {
+          margin: auto;
+          position: absolute;
+          top: 50%;
+          bottom: 50%;
+          left: 10%;
+          right: 90%;
+          width: 80%;
+          height: 100%;
+          z-index: 1;
+          animation: ${fadeInFromTop} 500ms;
+          border-radius: ${theme.borderRadius.extraRound};
+        }
+
+        .transparent-layer {
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          opacity: 70%;
+          background: snow;
+          z-index: 1;
+          border-radius: ${theme.borderRadius.extraRound};
+        }
+      }
     }
 
     .bottom-card {
@@ -114,7 +157,6 @@ const CardStyled = styled.div`
       .item-name {
         margin: auto 0;
         font-size: ${theme.fonts.size.P4};
-        /* letter-spacing: 0.5px; */
         position: relative;
         bottom: 10px;
         font-weight: ${theme.fonts.weights.bold};
@@ -138,20 +180,20 @@ const CardStyled = styled.div`
       .add-button {
         padding: 10px 18px;
         margin: 10px 0;
-        font-size: ${theme.fonts.size.P0}
+        font-size: ${theme.fonts.size.P0};
         /* ;
         cursor: pointer;
         padding: 12px; */
       }
     }
+
     ${({ $isHoverable, $isSelected }) => $isHoverable && $isSelected && selectedStyle}
   }
+
 `;
 
 const hoverableStyle = css`
   &:hover {
-    transform: scale(1.05);
-    transition: ease-out 0.4s;
     box-shadow: ${theme.shadows.orangeHighLight};
     cursor: pointer;
   }

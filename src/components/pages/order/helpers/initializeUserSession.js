@@ -11,9 +11,8 @@ const initializeCart = (username, setCart) => {
   if (cartReceived) setCart(cartReceived)
 }
 
+// this function will assure that the Menu is loaded before initializing the cart
 export const initializeUserSession = async (username, setMenu, setCart) => {
   await initializeMenu(username, setMenu)
   initializeCart(username, setCart)
 }
-
-// this function will assure that the Menu is loaded before initializing the cart

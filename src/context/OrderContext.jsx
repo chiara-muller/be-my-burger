@@ -32,5 +32,6 @@ export default createContext({
   handleAddItemToBuy: () => {},
   handleDeleteItemToBuy: () => {},
   handleEditItemToBuy: () => {},
+  handleItemSelected: () => {},
 
 })

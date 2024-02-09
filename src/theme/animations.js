@@ -57,6 +57,27 @@ export const cartAnimation = css`
   }
 `
 
+export const menuAnimation = css`
+    .animation-menu-enter {
+      transform: translateX(-120px);
+      opacity: 0.01;
+        &.animation-menu-enter-active {
+          transform: translateX(0px);
+          transition: all 300ms ease-out;
+          opacity: 1;
+        }
+    }
+
+    .animation-menu-exit {
+      opacity: 1;
+      transform: translateY(0);
+        &.animation-menu-exit-active {
+          opacity: 0.01;
+          transition: 300ms ease-out;
+        }
+    }
+  `
+
 export const fadeInFromRight = keyframes`
   0% {
     position: absolute;
@@ -71,23 +92,26 @@ export const fadeInFromRight = keyframes`
   }
 `
 
-export const menuAnimation = css`
-  .animation-menu-enter {
-    transform: translateX(-120px);
-    opacity: 0.01;
-      &.animation-menu-enter-active {
-        transform: translateX(0px);
-        transition: all 300ms ease-out;
-        opacity: 1;
-      }
+export const fadeIn = keyframes`
+  0% {
+    opacity: 0;
   }
 
-  .animation-menu-exit {
+  100% {
+    opacity: 1;
+  }
+`
+
+export const fadeInFromTop = keyframes`
+  0% {
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(-40%);
+  }
+
+  100% {
     opacity: 1;
     transform: translateY(0);
-      &.animation-menu-exit-active {
-        opacity: 0.01;
-        transition: 300ms ease-out;
-      }
   }
 `
